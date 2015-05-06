@@ -42,8 +42,8 @@ package acide.gui.fileEditor.fileEditorPanel.fileEditorTextEditionArea.listeners
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Cursor;
 
-import acide.gui.explorerPanel.popup.AcideExplorerPanelPopupMenu;
 import acide.gui.mainWindow.AcideMainWindow;
 
 /**
@@ -55,7 +55,12 @@ import acide.gui.mainWindow.AcideMainWindow;
 public class AcideFileEditorKeyboardListener extends KeyAdapter {
 
 	int arr[] = new int[2];
+	
+	private AcideMainWindow acideWindow;
 
+	public AcideFileEditorKeyboardListener() {
+		this.acideWindow = AcideMainWindow.getInstance();
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -75,14 +80,15 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 
 		// If it is F5
 		if (keyEvent.getKeyCode() == KeyEvent.VK_F9){
-
+			acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 			// Sends the file content to the console
 			AcideMainWindow.getInstance().getFileEditorManager()
 					.getSelectedFileEditorPanel().getPopupMenu()
 					.getSendFileContentToConsoleMenuItem().doClick();
+			
 		
 			}
-		
+		acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		
 	
 	}

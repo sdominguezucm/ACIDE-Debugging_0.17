@@ -25,16 +25,6 @@
             <__currentGrammarConfiguration>./configuration/grammars/bytes.jar</__currentGrammarConfiguration>
           </acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
           <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
-            <__path>.\examples\aggregates.dl</__path>
-            <__type>Normal</__type>
-            <__caretPosition>56</__caretPosition>
-            <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
-            <__activeTextEditionArea>1</__activeTextEditionArea>
-            <__lexiconConfiguration>./configuration/lexicon/des.xml</__lexiconConfiguration>
-            <__previousGrammarConfiguration>./configuration/grammars/bytes.jar</__previousGrammarConfiguration>
-            <__currentGrammarConfiguration>./configuration/grammars/bytes.jar</__currentGrammarConfiguration>
-          </acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
-          <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
             <__path>.\examples\family.ra</__path>
             <__type>Normal</__type>
             <__caretPosition>0</__caretPosition>
@@ -45,9 +35,19 @@
             <__currentGrammarConfiguration>./configuration/grammars/bytes.jar</__currentGrammarConfiguration>
           </acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
           <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
+            <__path>.\examples\aggregates.dl</__path>
+            <__type>Normal</__type>
+            <__caretPosition>56</__caretPosition>
+            <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
+            <__activeTextEditionArea>1</__activeTextEditionArea>
+            <__lexiconConfiguration>./configuration/lexicon/des.xml</__lexiconConfiguration>
+            <__previousGrammarConfiguration>./configuration/grammars/bytes.jar</__previousGrammarConfiguration>
+            <__currentGrammarConfiguration>./configuration/grammars/bytes.jar</__currentGrammarConfiguration>
+          </acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
+          <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
             <__path>.\examples\family.sql</__path>
             <__type>Normal</__type>
-            <__caretPosition>800</__caretPosition>
+            <__caretPosition>530</__caretPosition>
             <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
             <__activeTextEditionArea>1</__activeTextEditionArea>
             <__lexiconConfiguration>./configuration/lexicon/sql.xml</__lexiconConfiguration>

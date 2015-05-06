@@ -169,6 +169,7 @@ public class AcideMainWindowMouseListener extends MouseAdapter {
 		double y = mouseEvent.getLocationOnScreen().getY();
 		
 		if (!dragged) {
+			
 			//If the dragged motion has not started yet
 			if (((x < firstX + 10) && (y < firstY + 10)) || ((x > firstX + 10) || (y > firstY + 10))) {
 				// Waits for a minimum movement
@@ -184,7 +185,14 @@ public class AcideMainWindowMouseListener extends MouseAdapter {
 
 			setBorder(tmp, Color.GREEN);
 			setBorder(origin, Color.GREEN);
+			//acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			
+		
+			
 		}
+		//acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		
+		
 	}
 	
 	/*
@@ -197,9 +205,10 @@ public class AcideMainWindowMouseListener extends MouseAdapter {
 		//Gets the location coordinates
 		double x = mouseEvent.getLocationOnScreen().getX();
 		double y = mouseEvent.getLocationOnScreen().getY();
-		
 		//The dragged motion has ended
 		dragged = false;
+		//Get back the default cursor
+		acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				
 		destination = findLocation(x, y, false);
 		
@@ -218,9 +227,26 @@ public class AcideMainWindowMouseListener extends MouseAdapter {
 		setBorder(origin, null);
 		setBorder(destination, null);
 		
-		//Get back the default cursor
-		acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		
+		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
+	 */
+	@Override 
+	public void mouseMoved(MouseEvent mouseEvent) {
+	/*	// Gets the location coordinates
+		double x = mouseEvent.getLocationOnScreen().getX();
+		double y = mouseEvent.getLocationOnScreen().getY();
+	
+		// only display a hand if the cursor is over the items
+		if (((x < firstX + 10) && (y < firstY + 10)) || ((x > firstX + 10) || (y > firstY + 10))) {
+			acideWindow.setCursor(new Cursor(Cursor.HAND_CURSOR));
+	        } else {
+	        	acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	        }*/
 	}
 	
 	/**

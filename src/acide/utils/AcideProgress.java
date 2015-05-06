@@ -17,7 +17,7 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      - Version from 0.12 to 0.15
+ *      -Version from 0.12 to 0.15
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
@@ -37,25 +37,51 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package acide.gui.listeners;
+package acide.utils;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
 
-import acide.gui.menuBar.configurationMenu.consoleMenu.gui.AcideConsolePanelSearchWindow;
+import javax.swing.*;
 
-/**
- * ACIDE - A Configurable IDE console panel search window mouse listener.
- * 
- * @version 0.11
- * @see MouseAdapter
- */
-public class AcideConsolePanelSearchWindowMouseListener  extends MouseAdapter {
+@SuppressWarnings("serial")
+public class AcideProgress extends JFrame {
+
+	JProgressBar current;
+	JTextArea out;
+	JButton find;
+	Thread runner;
+	int num = 0;
+
+	public AcideProgress() {
+		super("Progress");
 	
-	public void mouseClicked(MouseEvent mouseEvent) {
-
-		// Updates the console panel search window variables
-		AcideConsolePanelSearchWindow.getInstance().initializeVariables();
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel pane = new JPanel();
+		pane.setLayout(new FlowLayout());
+		current = new JProgressBar(0, 2000);
+		current.setValue(0);
+		current.setStringPainted(true);
+		pane.add(current);
+		setContentPane(pane);
 	}
+
+	public void iterate() {
+		while (num < 2000) {
+			current.setValue(num);
+			repaint();
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+			}
+			num += 95;
+		}
+	}
+
+	/*public static void main(String[] arguments) {
+		AcideProgress frame = new AcideProgress();
+		frame.pack();
+		frame.setVisible(true);
+		frame.iterate();
+	}*/
+
 }

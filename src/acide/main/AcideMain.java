@@ -60,12 +60,11 @@ import acide.resources.AcideResourceManager;
  * @version 0.11
  */
 public class AcideMain {
-
 	/**
 	 * Executes ACIDE - A Configurable IDE.
 	 */
 	private static void executeApplication() {
-
+		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				/*
@@ -78,7 +77,8 @@ public class AcideMain {
 
 					// Shows the splash screen
 					AcideSplashScreenWindow.getInstance()
-							.showSplashScreenWindow();
+							.showSplashScreenWindow();	
+					
 				}
 			});
 		} catch (InterruptedException exception) {
@@ -103,6 +103,7 @@ public class AcideMain {
 			@Override
 			public void run() {
 
+				
 				// Updates the log
 				AcideLog.getLog().info(
 						AcideLanguageManager.getInstance().getLabels()
@@ -116,7 +117,9 @@ public class AcideMain {
 				// Loads the ACIDE - A Configurable IDE workbench configuration
 				AcideWorkbenchConfiguration.getInstance().load();
 
-				// Closes the splash screen
+				
+				
+			// Closes the splash screen
 				AcideSplashScreenWindow.getInstance().closeSplashScreenWindow();
 
 				@SuppressWarnings("unused")

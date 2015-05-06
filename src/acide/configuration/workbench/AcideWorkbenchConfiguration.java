@@ -169,11 +169,11 @@ public class AcideWorkbenchConfiguration {
 		String workbenchConfigurationPath = null;
 
 		try {
-
+			
 			// Gets the ACIDE - A Configurable IDE workbench configuration path
 			workbenchConfigurationPath = AcideResourceManager.getInstance()
 					.getProperty("workbenchConfiguration");
-
+			//AcideMain.frame.repaint();
 		} catch (MissedPropertyException exception) {
 
 			// Updates the log

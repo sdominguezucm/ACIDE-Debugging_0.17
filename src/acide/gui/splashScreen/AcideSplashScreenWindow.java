@@ -51,6 +51,8 @@ import javax.swing.*;
  */
 public class AcideSplashScreenWindow extends JWindow {
 
+	private int count = 0;
+	
 	/**
 	 * ACIDE - A Configurable IDE splash screen window class serial version UID.
 	 */
@@ -73,6 +75,8 @@ public class AcideSplashScreenWindow extends JWindow {
 	 */
 	private static JPanel _mainPanel;
 
+	private static JProgressBar _progress;
+	
 	/**
 	 * Returns the ACIDE - A Configurable IDE splash screen window unique class
 	 * instance.
@@ -100,6 +104,7 @@ public class AcideSplashScreenWindow extends JWindow {
 		
 		// Sets the window configuration
 		setWindowConfiguration();
+		
 	}
 
 	/**
@@ -112,6 +117,8 @@ public class AcideSplashScreenWindow extends JWindow {
 
 		// Centers the window
 		setLocationRelativeTo(null);
+
+				
 	}
 
 	/**
@@ -125,6 +132,8 @@ public class AcideSplashScreenWindow extends JWindow {
 
 		// Adds the image to the panel
 		_mainPanel.add(_image, BorderLayout.CENTER);
+		
+		_mainPanel.add(_progress, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -141,6 +150,40 @@ public class AcideSplashScreenWindow extends JWindow {
 
 		// Creates the image label
 		_image = new JLabel(IMAGE);
+		
+		_progress = new JProgressBar(0, 1000);
+		_progress.setValue(0);
+		_progress.setStringPainted(true);
+		_progress.setVisible(true);
+		
+	}
+
+	public void iterate(final int finalValue) {
+		//_progress.setValue(count);
+		while ((finalValue <= 1000) && (count < finalValue)) {
+			 _progress.setIndeterminate(false);
+			try {
+				Thread.sleep(100);
+				 _progress.setValue(count);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			count += 90;
+		}
+	/*	SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				while ((finalValue <= 1000) && (count <= finalValue)) {
+					 _progress.setIndeterminate(false);
+					try {
+						_progress.setValue(count + 200);
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					count += 90;
+				}
+			}
+		});*/
 	}
 
 	/**
@@ -148,8 +191,11 @@ public class AcideSplashScreenWindow extends JWindow {
 	 */
 	public void showSplashScreenWindow() {
 
+		// iterate(200);
 		// Displays it
 		setVisible(true);
+		iterate(1000);
+
 	}
 
 	/**
@@ -158,6 +204,7 @@ public class AcideSplashScreenWindow extends JWindow {
 	public void closeSplashScreenWindow() {
 
 		// Closes it
+		iterate(999);
 		dispose();
 	}
 }
