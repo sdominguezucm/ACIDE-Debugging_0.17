@@ -90,7 +90,6 @@ public class AcideInsertedItemListener implements ActionListener {
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 	 * )
 	 */
-	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		String parameter = item.getItemConfiguration().getParameter().toLowerCase();
 		

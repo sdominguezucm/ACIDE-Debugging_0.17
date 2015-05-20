@@ -44,7 +44,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Cursor;
 
+
+
+import javax.swing.JOptionPane;
+
 import acide.gui.mainWindow.AcideMainWindow;
+import acide.gui.toolBarPanel.consolePanelToolBar.AcideSendFileToConsoleButtonAction;
+import acide.language.AcideLanguageManager;
 
 /**
  * ACIDE - A Configurable IDE file editor text edition area keyboard listener.
@@ -80,13 +86,17 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 
 		// If it is F5
 		if (keyEvent.getKeyCode() == KeyEvent.VK_F9){
+			
 			acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+			JOptionPane.showMessageDialog(null, AcideLanguageManager.getInstance().getLabels()
+					.getString("s2005"));
+			
 			// Sends the file content to the console
 			AcideMainWindow.getInstance().getFileEditorManager()
 					.getSelectedFileEditorPanel().getPopupMenu()
 					.getSendFileContentToConsoleMenuItem().doClick();
-			
-		
+			AcideSendFileToConsoleButtonAction.initRefresh();
+					
 			}
 		acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		

@@ -72,7 +72,6 @@ public class AcideMain {
 				 * 
 				 * @see java.lang.Runnable#run()
 				 */
-				@Override
 				public void run() {
 
 					// Shows the splash screen
@@ -100,7 +99,6 @@ public class AcideMain {
 			 * 
 			 * @see java.lang.Runnable#run()
 			 */
-			@Override
 			public void run() {
 
 				
@@ -122,7 +120,6 @@ public class AcideMain {
 			// Closes the splash screen
 				AcideSplashScreenWindow.getInstance().closeSplashScreenWindow();
 
-				@SuppressWarnings("unused")
 				// Stars the system keys observer thread
 				AcideKeyEventDispatcher systemKeysObserver = new AcideKeyEventDispatcher();
 

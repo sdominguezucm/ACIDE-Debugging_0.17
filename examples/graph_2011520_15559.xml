@@ -141,7 +141,7 @@ next(nil,_11642)
        </input_element>
 
 
-     <rule>next(nil,_13271):-br(nil),br(_13271),nil<_13271,not(between(nil,_13271))     </rule>
+     <rule> next(nil,_13271):-br(nil),br(_13271),nil<_13271,not(between(nil,_13271))     </rule>
      <line_begin>10     </line_begin>
      <line_end>13     </line_end>
    </node>

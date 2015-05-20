@@ -443,7 +443,6 @@ public class AcideAssertedDatabasePanel extends JFrame {
 			 * java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent
 			 * )
 			 */
-			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				if (_filterCheckBox.isSelected())
 					refreshNode();

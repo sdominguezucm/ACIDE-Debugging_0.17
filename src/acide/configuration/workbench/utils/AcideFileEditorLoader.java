@@ -513,7 +513,6 @@ public class AcideFileEditorLoader {
 					 * 
 					 * @see java.lang.Runnable#run()
 					 */
-					@Override
 					public void run() {
 
 						// Sets the selected file editor from the file
@@ -540,7 +539,6 @@ public class AcideFileEditorLoader {
 					 * 
 					 * @see java.lang.Runnable#run()
 					 */
-					@Override
 					public void run() {
 
 						// Sets the selected file editor panel

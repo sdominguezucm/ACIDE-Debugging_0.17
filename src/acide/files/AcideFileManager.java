@@ -102,7 +102,6 @@ public class AcideFileManager {
 		_fileChooser.setCurrentDirectory(new File(".\\"));
 		_fileChooser.addPropertyChangeListener(JFileChooser.FILE_FILTER_CHANGED_PROPERTY, new PropertyChangeListener() {
 			
-			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				
 				//check that the old value and the new one are not null and the both are intances of AcideFileExtensionFilterManager

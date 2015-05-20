@@ -67,17 +67,21 @@ import acide.language.AcideLanguageManager;
 @SuppressWarnings("static-access")
 public class AcideSendFileToConsoleButtonAction implements MouseListener {
 
+	public static void initRefresh(){
+		//unable the refresh buttons
+		AcideTraceDatalogPanel.refreshDatalog.setEnabled(false);
+		AcideTraceSQLPanel.refreshSQL.setEnabled(false);
+		//enable the refresh button
+		AcideGraphPanel.refreshPDG.setEnabled(true);
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		
 		// Gets the last focused elements
 		AcideLastElementOnFocus lastElementOnfocus = AcideMainWindow.getInstance().getLastElementOnFocus();
 		
-		//unable the refresh buttons
-		AcideTraceDatalogPanel.refreshDatalog.setEnabled(false);
-		AcideTraceSQLPanel.refreshSQL.setEnabled(false);
-		//enable the refresh button
-		AcideGraphPanel.refreshPDG.setEnabled(true);
+		initRefresh();
 		
 		// Sets the wait cursor
 		AcideMainWindow.getInstance().setCursor(

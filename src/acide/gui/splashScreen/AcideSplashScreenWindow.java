@@ -75,7 +75,7 @@ public class AcideSplashScreenWindow extends JWindow {
 	 */
 	private static JPanel _mainPanel;
 
-	private static JProgressBar _progress;
+//	private static JProgressBar _progress;
 	
 	/**
 	 * Returns the ACIDE - A Configurable IDE splash screen window unique class
@@ -133,7 +133,7 @@ public class AcideSplashScreenWindow extends JWindow {
 		// Adds the image to the panel
 		_mainPanel.add(_image, BorderLayout.CENTER);
 		
-		_mainPanel.add(_progress, BorderLayout.SOUTH);
+	//	_mainPanel.add(_progress, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -151,14 +151,14 @@ public class AcideSplashScreenWindow extends JWindow {
 		// Creates the image label
 		_image = new JLabel(IMAGE);
 		
-		_progress = new JProgressBar(0, 1000);
+	/*	_progress = new JProgressBar(0, 1000);
 		_progress.setValue(0);
 		_progress.setStringPainted(true);
-		_progress.setVisible(true);
+		_progress.setVisible(true);*/
 		
 	}
 
-	public void iterate(final int finalValue) {
+/*	public void iterate(final int finalValue) {
 		//_progress.setValue(count);
 		while ((finalValue <= 1000) && (count < finalValue)) {
 			 _progress.setIndeterminate(false);
@@ -170,21 +170,8 @@ public class AcideSplashScreenWindow extends JWindow {
 			}
 			count += 90;
 		}
-	/*	SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				while ((finalValue <= 1000) && (count <= finalValue)) {
-					 _progress.setIndeterminate(false);
-					try {
-						_progress.setValue(count + 200);
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					count += 90;
-				}
-			}
-		});*/
-	}
+	
+	}*/
 
 	/**
 	 * Shows the ACIDE - A Configurable IDE splash screen window.
@@ -194,7 +181,7 @@ public class AcideSplashScreenWindow extends JWindow {
 		// iterate(200);
 		// Displays it
 		setVisible(true);
-		iterate(1000);
+		//iterate(1000);
 
 	}
 
@@ -204,7 +191,7 @@ public class AcideSplashScreenWindow extends JWindow {
 	public void closeSplashScreenWindow() {
 
 		// Closes it
-		iterate(999);
+		//iterate(999);
 		dispose();
 	}
 }
