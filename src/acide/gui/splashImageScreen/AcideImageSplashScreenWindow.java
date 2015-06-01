@@ -37,7 +37,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package acide.gui.splashScreen;
+package acide.gui.splashImageScreen;
 
 import java.awt.*;
 
@@ -49,7 +49,7 @@ import javax.swing.*;
  * @version 0.11
  * @see JWindow
  */
-public class AcideSplashScreenWindow extends JWindow {
+public class AcideImageSplashScreenWindow extends JWindow {
 
 	/**
 	 * ACIDE - A Configurable IDE splash screen window class serial version UID.
@@ -59,11 +59,11 @@ public class AcideSplashScreenWindow extends JWindow {
 	 * ACIDE - A Configurable IDE splash screen window images resource path.
 	 */
 	private static final ImageIcon IMAGE = new ImageIcon(
-			"./resources/images/splashScreen.png");
+			"./resources/images/time.png");
 	/**
 	 * ACIDE - A Configurable IDE splash screen window unique class instance.
 	 */
-	private static AcideSplashScreenWindow _instance;
+	private static AcideImageSplashScreenWindow _instance;
 	/**
 	 * ACIDE - A Configurable IDE splash screen window label to show the image.
 	 */
@@ -73,8 +73,6 @@ public class AcideSplashScreenWindow extends JWindow {
 	 */
 	private static JPanel _mainPanel;
 
-//	private static JProgressBar _progress;
-	
 	/**
 	 * Returns the ACIDE - A Configurable IDE splash screen window unique class
 	 * instance.
@@ -82,9 +80,9 @@ public class AcideSplashScreenWindow extends JWindow {
 	 * @return the ACIDE - A Configurable IDE splash screen window unique class
 	 *         instance.
 	 */
-	public static AcideSplashScreenWindow getInstance() {
+	public static AcideImageSplashScreenWindow getInstance() {
 		if (_instance == null)
-			_instance = new AcideSplashScreenWindow();
+			_instance = new AcideImageSplashScreenWindow();
 		return _instance;
 	}
 
@@ -92,7 +90,7 @@ public class AcideSplashScreenWindow extends JWindow {
 	 * Creates a new ACIDE - A Configurable IDE splash screen window unique
 	 * class instance.
 	 */
-	public AcideSplashScreenWindow() {
+	public AcideImageSplashScreenWindow() {
 
 		// Builds the components
 		buildComponents();
@@ -115,8 +113,7 @@ public class AcideSplashScreenWindow extends JWindow {
 
 		// Centers the window
 		setLocationRelativeTo(null);
-
-				
+		
 	}
 
 	/**
@@ -131,7 +128,6 @@ public class AcideSplashScreenWindow extends JWindow {
 		// Adds the image to the panel
 		_mainPanel.add(_image, BorderLayout.CENTER);
 		
-	//	_mainPanel.add(_progress, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -149,28 +145,7 @@ public class AcideSplashScreenWindow extends JWindow {
 		// Creates the image label
 		_image = new JLabel(IMAGE);
 		
-	/*	_progress = new JProgressBar(0, 1000);
-		_progress.setValue(0);
-		_progress.setStringPainted(true);
-		_progress.setVisible(true);*/
-		
 	}
-
-/*	public void iterate(final int finalValue) {
-		//_progress.setValue(count);
-		while ((finalValue <= 1000) && (count < finalValue)) {
-			 _progress.setIndeterminate(false);
-			try {
-				Thread.sleep(100);
-				 _progress.setValue(count);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			count += 90;
-		}
-	
-	}*/
-
 	/**
 	 * Shows the ACIDE - A Configurable IDE splash screen window.
 	 */

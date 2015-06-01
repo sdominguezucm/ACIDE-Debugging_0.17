@@ -42,15 +42,21 @@ package acide.gui.fileEditor.fileEditorPanel.fileEditorTextEditionArea.listeners
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
+import java.lang.reflect.InvocationTargetException;
 
-
-
-import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.gui.toolBarPanel.consolePanelToolBar.AcideSendFileToConsoleButtonAction;
-import acide.language.AcideLanguageManager;
+import acide.gui.splashImageScreen.AcideImageSplashScreenWindow;
+import acide.gui.splashScreen.AcideSplashScreenWindow;
 
 /**
  * ACIDE - A Configurable IDE file editor text edition area keyboard listener.
@@ -61,21 +67,127 @@ import acide.language.AcideLanguageManager;
 public class AcideFileEditorKeyboardListener extends KeyAdapter {
 
 	int arr[] = new int[2];
-	
-	private AcideMainWindow acideWindow;
+
+	private static AcideMainWindow acideWindow;
+
+//	private static JProgressBar _progress;
+
+	/**
+	 * ACIDE - A Configurable IDE splash screen window main panel.
+	 */
+	private static JPanel _mainPanel;
 
 	public AcideFileEditorKeyboardListener() {
 		this.acideWindow = AcideMainWindow.getInstance();
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
 	 */
-	@Override
-	public void keyPressed(KeyEvent e) {
+
+	/*private static void executeTimeSplash() {
+
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {*/
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see java.lang.Runnable#run()
+				 */
+/*				public void run() {
+
+					// Shows the splash screen
+					AcideImageSplashScreenWindow.getInstance()
+							.showSplashScreenWindow();
+
+				}
+			});
+		} catch (InterruptedException exception) {
+
+			exception.printStackTrace();
+
+		} catch (InvocationTargetException exception) {
+
+			exception.printStackTrace();
+		}
+
+		SwingUtilities.invokeLater(new Runnable() {*/
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see java.lang.Runnable#run()
+			 */
+/*			public void run() {
+
+				// Sends the file content to the console
+				AcideMainWindow.getInstance().getFileEditorManager()
+						.getSelectedFileEditorPanel().getPopupMenu()
+						.getSendFileContentToConsoleMenuItem().doClick();
+
+				// Init to refresh buttons console
+				AcideSendFileToConsoleButtonAction.initRefresh();
+
+				// Closes the splash screen
+				AcideImageSplashScreenWindow.getInstance()
+						.closeSplashScreenWindow();
+
+			}
+		});
 	}
 
+	public void iterate(final int finalValue) {
+		// _progress.setValue(count);
+		int count = 0;
+		while ((finalValue <= 1000) && (count < finalValue)) {
+			_progress.setIndeterminate(false);
+			try {
+				Thread.sleep(100);
+				_progress.setValue(count);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			count += 90;
+		}
+
+	}
+
+	private void buildComponents() {
+
+		// Gets the content pane
+		//_mainPanel = (JPanel) getContentPane();
+
+		// Sets the window border
+		_mainPanel.setBorder(BorderFactory.createLineBorder(new Color(30, 70,
+				115), 2));
+
+		
+	 	// Creates the image label _image = new JLabel(IMAGE);
+		 
+
+		_progress = new JProgressBar(0, 1000);
+		_progress.setValue(0);
+		_progress.setStringPainted(true);
+		_progress.setVisible(true);
+	}
+
+	private void addComponents() {
+
+		// Sets the layout
+		_mainPanel.setLayout(new BorderLayout());
+
+		_mainPanel.add(_progress, BorderLayout.SOUTH);
+	}
+
+	private void setWindowConfiguration() {
+
+		// Applies the layout
+		acideWindow.pack();
+
+		// Centers the window
+		acideWindow.setLocationRelativeTo(null);
+	}*/
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -85,21 +197,41 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 	public void keyReleased(KeyEvent keyEvent) {
 
 		// If it is F5
-		if (keyEvent.getKeyCode() == KeyEvent.VK_F9){
-			
+		if (keyEvent.getKeyCode() == KeyEvent.VK_F9) {
 			acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-			JOptionPane.showMessageDialog(null, AcideLanguageManager.getInstance().getLabels()
-					.getString("s2005"));
+
+		/*	// Builds the components
+			buildComponents();
+
+			// Adds the components
+			addComponents();
+			
+			// Sets the window configuration
+			setWindowConfiguration();*/
+
+			AcideImageSplashScreenWindow.getInstance().showSplashScreenWindow();
+			/*
+			 * JOptionPane.showMessageDialog(null,
+			 * AcideLanguageManager.getInstance().getLabels()
+			 * .getString("s2005"));
+			 */
+	//		iterate(1000);
+			// executeTimeSplash();
 			
 			// Sends the file content to the console
 			AcideMainWindow.getInstance().getFileEditorManager()
 					.getSelectedFileEditorPanel().getPopupMenu()
 					.getSendFileContentToConsoleMenuItem().doClick();
+
+			// Init to refresh buttons console
 			AcideSendFileToConsoleButtonAction.initRefresh();
-					
-			}
+
+			// Closes the splash screen
+			AcideImageSplashScreenWindow.getInstance()
+					.closeSplashScreenWindow();
+
+		}
 		acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		
-	
+
 	}
 }

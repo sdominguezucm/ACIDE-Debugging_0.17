@@ -17,7 +17,7 @@
           <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
             <__path>.\examples\aggregates.ra</__path>
             <__type>Normal</__type>
-            <__caretPosition>91</__caretPosition>
+            <__caretPosition>36</__caretPosition>
             <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
             <__activeTextEditionArea>1</__activeTextEditionArea>
             <__lexiconConfiguration>./configuration/lexicon/ra.xml</__lexiconConfiguration>
@@ -77,7 +77,7 @@
         </__list>
       </__list>
     </__fileEditorPanelConfigurationList>
-    <__selectedFileEditorPanelName>family.sql</__selectedFileEditorPanelName>
+    <__selectedFileEditorPanelName>aggregates.ra</__selectedFileEditorPanelName>
     <__fontName>Monospaced.plain</__fontName>
     <__fontStyle>0</__fontStyle>
     <__fontSize>15</__fontSize>

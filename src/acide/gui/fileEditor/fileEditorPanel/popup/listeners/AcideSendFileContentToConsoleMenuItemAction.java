@@ -82,6 +82,7 @@ public class AcideSendFileContentToConsoleMenuItemAction implements
 							.getString("s2006"), AcideLanguageManager
 							.getInstance().getLabels().getString("s953"),JOptionPane.YES_NO_OPTION);
 		}
+		
 		// If it is OK
 		if (returnValueAreYouSure == JOptionPane.OK_OPTION) {
 		//AcideMainWindow.getInstance().getConsolePanel().executeCommand(AcideMainWindow.getInstance().getFileEditorManager().getSelectedFileEditorPanel().getTextEditionAreaContent(), " ");
