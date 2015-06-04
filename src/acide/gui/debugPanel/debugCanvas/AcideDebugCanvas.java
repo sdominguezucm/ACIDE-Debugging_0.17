@@ -41,6 +41,7 @@ package acide.gui.debugPanel.debugCanvas;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -58,6 +59,7 @@ import java.util.Scanner;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 
+import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.debugPanel.debugCanvas.exceptions.AcideDebugCanvasParseInputEqualsErrorException;
 import acide.gui.debugPanel.debugCanvas.listeners.AcideDebugCanvasMouseListener;
 import acide.gui.debugPanel.debugCanvas.listeners.AcideDebugCanvasMouseMotionListener;
@@ -573,14 +575,20 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		Scanner reader = new Scanner(input);
 		String line = "";
 		int countNodes = 0;
+		
+		// Puts the wait cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+			Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		
 		try {
 			// reads the next line
 			while (reader.hasNextLine()
 					&& !((line = reader.nextLine().replaceAll("\\p{Space}", ""))
 							.equals("$eot"))
 					&& !((line.replaceAll("\\p{Space}", "")).equals("$error"))) {
+				
 				if (!line.contains("$")) {
-
+					
 					// creates a new node
 					Node n = new Node();
 					// set the label
@@ -594,8 +602,6 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 								"wrong entry. Couldn't be able to add a new node");
 				}
 			
-
-			
 		} catch (Exception e) {
 			
 			// resets the graph
@@ -606,6 +612,8 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 			// generates an empty graph
 			g = new ArrayList<Node>();
 			String errorMsg = "";
+			
+			
 			// reads the output to get the error message from the console
 			while (reader.hasNextLine()
 					&& !((line = reader.nextLine())
@@ -621,6 +629,12 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		}
 		// Closes the reader
 		reader.close();
+		
+		// Puts the default cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+			Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					
+		
 		// returns the graph
 		return g;
 	}

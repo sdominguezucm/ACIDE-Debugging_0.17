@@ -39,6 +39,7 @@
  */
 package acide.gui.debugPanel.listeners;
 
+import java.awt.Cursor;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -47,6 +48,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.debugPanel.utils.AcideDebugPanelHighLighter;
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.process.console.DesDatabaseManager;
@@ -69,6 +71,11 @@ public class AcideDebugPanelTabbedPaneChangeListener implements ChangeListener {
 	 */
 	@Override
 	public void stateChanged(ChangeEvent ev) {
+		
+		// Puts the wait cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+			Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					
 		// Gets the selected tab
 		JTabbedPane sourceTabbedPane = (JTabbedPane) ev.getSource();
 		// Checks if the selected tab is the trace datalog tab
@@ -142,6 +149,11 @@ public class AcideDebugPanelTabbedPaneChangeListener implements ChangeListener {
 			// Adds the new views
 			for (String item : views)
 				viewBox.addItem(item);
+			
+			// Puts the default cursor
+			AcideDataViewReplaceWindow.getInstance().setCursor(
+				Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						
 
 		}
 

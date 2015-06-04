@@ -45,6 +45,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import javax.swing.*;
+
 import acide.gui.graphCanvas.AcideGraphCanvas;
 import acide.gui.graphUtils.DirectedWeightedGraph;
 import acide.gui.graphUtils.Node;
@@ -67,6 +69,8 @@ public class AcideGraphCanvasMouseMotionListener implements MouseMotionListener 
 	private int y=-1;
 	
 	private Node _selected =null;
+	
+	private JPopupMenu popup;
 	
 	/**
 	 * ACIDE - A Configurable IDE mouse motion listener the mouse was clicking a node.
@@ -138,5 +142,24 @@ public class AcideGraphCanvasMouseMotionListener implements MouseMotionListener 
 		_nodeClicked=false;
 		_selected =null;
 	}
+	
+	public void mousePresed(MouseEvent ev) {
+		
+		popup = new JPopupMenu(); //creamos el menu saliente
+	       popup.add(new JMenuItem("Un elemento del menu")); //agregamos elemento
+	       popup.add(new JMenuItem("Otro elemento del menu")); //.. y otro elemento
+		
+		mostrarPopupMenu(ev);
+	}
+	
+	/* Este metodo se encarga de mostrar el menu saliente */
+	   private void mostrarPopupMenu(MouseEvent e) {
+	      
+	       if (e.isPopupTrigger()) { //si se desea mostrar el menu saliente...
+	           popup.show(e.getComponent(),
+	                      e.getX(), e.getY()); //... mostramos el menu en la ubicacion del raton
+	       }
+
+	   }
 	
 }

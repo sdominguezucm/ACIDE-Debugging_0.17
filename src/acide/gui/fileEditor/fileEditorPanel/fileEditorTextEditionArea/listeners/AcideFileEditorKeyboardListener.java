@@ -75,10 +75,10 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 	/**
 	 * ACIDE - A Configurable IDE splash screen window main panel.
 	 */
-	private static JPanel _mainPanel;
+//	private static JPanel _mainPanel;
 
 	public AcideFileEditorKeyboardListener() {
-		this.acideWindow = AcideMainWindow.getInstance();
+		AcideFileEditorKeyboardListener.acideWindow = AcideMainWindow.getInstance();
 	}
 
 	/*
@@ -196,9 +196,9 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 	@Override
 	public void keyReleased(KeyEvent keyEvent) {
 
-		// If it is F5
+		// If it is F9
 		if (keyEvent.getKeyCode() == KeyEvent.VK_F9) {
-			acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+			AcideFileEditorKeyboardListener.acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
 		/*	// Builds the components
 			buildComponents();
@@ -209,7 +209,7 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 			// Sets the window configuration
 			setWindowConfiguration();*/
 
-			AcideImageSplashScreenWindow.getInstance().showSplashScreenWindow();
+			//AcideImageSplashScreenWindow.getInstance().showSplashScreenWindow();
 			/*
 			 * JOptionPane.showMessageDialog(null,
 			 * AcideLanguageManager.getInstance().getLabels()
@@ -227,11 +227,11 @@ public class AcideFileEditorKeyboardListener extends KeyAdapter {
 			AcideSendFileToConsoleButtonAction.initRefresh();
 
 			// Closes the splash screen
-			AcideImageSplashScreenWindow.getInstance()
-					.closeSplashScreenWindow();
+		/*	AcideImageSplashScreenWindow.getInstance()
+					.closeSplashScreenWindow();*/
 
 		}
-		acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		AcideFileEditorKeyboardListener.acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 	}
 }

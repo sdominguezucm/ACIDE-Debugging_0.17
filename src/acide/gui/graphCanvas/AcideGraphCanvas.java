@@ -42,6 +42,7 @@ package acide.gui.graphCanvas;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -59,6 +60,7 @@ import java.util.Scanner;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 
+import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.graphCanvas.listeners.AcideGraphCanvasMouseMotionListener;
 import acide.gui.graphCanvas.listeners.AcideGraphCanvasMouseWheelListener;
 import acide.gui.graphLayout.DHLayout;
@@ -869,6 +871,11 @@ public class AcideGraphCanvas extends Canvas {
 		Scanner reader = new Scanner(input);
 		String line = "";
 		boolean parseLinks = false;
+		
+		// Puts the wait cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+				Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+						
 		try {
 			// reads the next line
 			while (reader.hasNextLine()
@@ -935,6 +942,11 @@ public class AcideGraphCanvas extends Canvas {
 			// closes the reader
 			reader.close();
 		}
+		
+		// Puts the default cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+			Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				
 		return g;
 	}
 

@@ -249,8 +249,8 @@ public class AcideGraphPanel extends JPanel {
 		refreshPDG.setPreferredSize(new Dimension((int)(1.5*refreshPDG.getIcon().getIconWidth()),(int) refreshPDG.getPreferredSize().getHeight()));
 		// adds the action listener of the button
 		refreshPDG.addActionListener(new AcideGraphPanelRefreshListener());
-		//unable the refresh button
-		refreshPDG.setEnabled(false);
+		//enable the refresh button
+		refreshPDG.setEnabled(true);
 		// adds the refresh button
 		_buttonPanel.add(refreshPDG);
 		// creates the show labels check box

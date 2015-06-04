@@ -212,7 +212,7 @@ public class Node {
 			return false;
 		if (y != other.y)
 			return false;
-		return true;
+		return false;	//modif 0.17 (false)
 	}
 
 	/**

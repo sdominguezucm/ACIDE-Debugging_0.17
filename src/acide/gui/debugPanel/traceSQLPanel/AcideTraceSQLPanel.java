@@ -40,6 +40,7 @@
 package acide.gui.debugPanel.traceSQLPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.FocusAdapter;
@@ -57,6 +58,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.traceSQLPanel.listeners.AcideTraceSQLPanelFirstNodeListener;
 import acide.gui.debugPanel.traceSQLPanel.listeners.AcideTraceSQLPanelLastNodeListener;
@@ -69,6 +71,7 @@ import acide.gui.debugPanel.traceSQLPanel.listeners.AcideTraceSQLPanelZoomInList
 import acide.gui.debugPanel.traceSQLPanel.listeners.AcideTraceSQLPanelZoomOutListener;
 import acide.gui.debugPanel.traceSQLPanel.listeners.AcideTraceSQLPanelZoomSpinnerListener;
 import acide.gui.debugPanel.utils.AcideDebugPanelHighLighter;
+import acide.gui.fileEditor.fileEditorPanel.fileEditorTextEditionArea.listeners.AcideFileEditorKeyboardListener;
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.language.AcideLanguageManager;
 import acide.process.console.DesDatabaseManager;
@@ -154,6 +157,8 @@ public class AcideTraceSQLPanel extends JPanel {
 	
 	// builds the refresh button
 	public static JButton refreshSQL = new JButton();
+	
+	private static AcideMainWindow acideWindow;
 			
 
 	public AcideTraceSQLPanel() {
@@ -169,6 +174,8 @@ public class AcideTraceSQLPanel extends JPanel {
 		add(_mainButtonPanel, BorderLayout.SOUTH);
 
 		setHighLighter(new AcideDebugPanelHighLighter());
+		
+		//AcideTraceSQLPanel.acideWindow = AcideMainWindow.getInstance();
 
 	}
 
@@ -258,6 +265,10 @@ public class AcideTraceSQLPanel extends JPanel {
 			 */
 			@Override
 			public void focusGained(FocusEvent e) {
+				
+				// Puts the wait cursor
+				//AcideTraceSQLPanel.acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				
 				// Gets the views from the database
 				LinkedList<String> l = DesDatabaseManager.getInstance()
 						.executeCommand("/tapi /list_views");
@@ -289,6 +300,10 @@ public class AcideTraceSQLPanel extends JPanel {
 					viewBox.addItem(item);
 				viewBox.setPopupVisible(false);
 				viewBox.setPopupVisible(true);
+				
+				// Puts the default cursor
+				//AcideTraceSQLPanel.acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				
 			}
 		});
 		subButtonPanel2.add(_viewBox);

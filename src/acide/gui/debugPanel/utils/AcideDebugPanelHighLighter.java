@@ -40,6 +40,7 @@
 package acide.gui.debugPanel.utils;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -58,6 +59,7 @@ import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
 
 import acide.gui.assertedDatabasePanel.AcideAssertedDatabasePanel;
+import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.fileEditor.fileEditorManager.AcideFileEditorManager;
 import acide.gui.fileEditor.fileEditorPanel.fileEditorTextEditionArea.utils.AcideTextComponent;
 import acide.gui.mainWindow.AcideMainWindow;
@@ -351,6 +353,11 @@ public class AcideDebugPanelHighLighter {
 		boolean isAsserted = false;
 		int initLine = -1;
 		int endLine = -1;
+		
+		// Puts the wait cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+				Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					
 		// reads the line and chechks that is not a end nor an error
 		while (scan.hasNextLine()
 				&& !(line = scan.nextLine()).replaceAll(" ", "").equals(
@@ -391,6 +398,10 @@ public class AcideDebugPanelHighLighter {
 				}
 			}
 		}
+		// Puts the default cursor
+		AcideDataViewReplaceWindow.getInstance().setCursor(
+			Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					
 		scan.close();
 	}
 

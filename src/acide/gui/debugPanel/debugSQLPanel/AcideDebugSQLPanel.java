@@ -40,6 +40,7 @@
 package acide.gui.debugPanel.debugSQLPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.FocusAdapter;
@@ -57,6 +58,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelLastNodeListener;
@@ -69,9 +71,11 @@ import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomInList
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomOutListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomSpinnerListener;
 import acide.gui.debugPanel.utils.AcideDebugPanelHighLighter;
+import acide.gui.fileEditor.fileEditorPanel.fileEditorTextEditionArea.listeners.AcideFileEditorKeyboardListener;
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.language.AcideLanguageManager;
 import acide.process.console.DesDatabaseManager;
+
 
 /**
  * 
@@ -155,7 +159,9 @@ public class AcideDebugSQLPanel extends JPanel {
 	// builds the refresh button
 	public static JButton refreshSQL = new JButton();
 			
-
+	private static AcideMainWindow acideWindow;
+	
+	
 	public AcideDebugSQLPanel() {
 		// Sets the layout of the panel
 		setLayout(new BorderLayout());
@@ -169,6 +175,8 @@ public class AcideDebugSQLPanel extends JPanel {
 		add(_mainButtonPanel, BorderLayout.SOUTH);
 
 		setHighLighter(new AcideDebugPanelHighLighter());
+		
+		//AcideDebugSQLPanel.acideWindow = AcideMainWindow.getInstance();
 
 	}
 
@@ -258,6 +266,10 @@ public class AcideDebugSQLPanel extends JPanel {
 			 */
 			@Override
 			public void focusGained(FocusEvent e) {
+				
+				// Puts the wait cursor
+				//AcideDebugSQLPanel.acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+				
 				// Gets the views from the database
 				LinkedList<String> l = DesDatabaseManager.getInstance()
 						.executeCommand("/tapi /list_views");
@@ -289,6 +301,10 @@ public class AcideDebugSQLPanel extends JPanel {
 					viewBox.addItem(item);
 				viewBox.setPopupVisible(false);
 				viewBox.setPopupVisible(true);
+				
+				// Puts the default cursor
+				//AcideDebugSQLPanel.acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				
 			}
 		});
 		subButtonPanel2.add(_viewBox);
