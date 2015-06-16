@@ -47,7 +47,7 @@
           <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
             <__path>.\examples\family.sql</__path>
             <__type>Normal</__type>
-            <__caretPosition>334</__caretPosition>
+            <__caretPosition>336</__caretPosition>
             <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
             <__activeTextEditionArea>1</__activeTextEditionArea>
             <__lexiconConfiguration>./configuration/lexicon/sql.xml</__lexiconConfiguration>
@@ -87,7 +87,7 @@
         </__list>
       </__list>
     </__fileEditorPanelConfigurationList>
-    <__selectedFileEditorPanelName>family.sql</__selectedFileEditorPanelName>
+    <__selectedFileEditorPanelName>p.sql</__selectedFileEditorPanelName>
     <__fontName>Monospaced.plain</__fontName>
     <__fontStyle>0</__fontStyle>
     <__fontSize>15</__fontSize>
@@ -210,6 +210,8 @@
       <string>relop.sql</string>
       <string>Nouveau1</string>
       <string>C:\Users\Sergio\Dropbox\Universidad\ACIDE\ACIDE_16_trunk\trunk\examples\p.sql</string>
+      <string>New1</string>
+      <string>C:\Users\Sergio\Dropbox\Universidad\ACIDE\ACIDE_16_trunk\trunk\examples\new21.java</string>
     </__list>
   </__recentFilesConfiguration>
   <__recentProjectsConfiguration>

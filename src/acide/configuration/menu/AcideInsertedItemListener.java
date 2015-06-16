@@ -41,6 +41,7 @@ package acide.configuration.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -51,6 +52,7 @@ import acide.files.utils.AcideFileType;
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.gui.mainWindow.utils.AcideLastElementOnFocus;
 import acide.language.AcideLanguageManager;
+import acide.process.console.AcideDatabaseManager;
 
 /**																
  * ACIDE - A Configurable IDE inserted menu item listener.											
@@ -95,9 +97,13 @@ public class AcideInsertedItemListener implements ActionListener {
 		
 		//Gets the command of the inserted item
 		String command = item.getItemConfiguration().getCommand();
+		LinkedList<String> test = AcideDatabaseManager.getInstance()
+				.executeCommand("/tapi /test_tapi");
 		
+		if (test.equals("$succes")){
 		//If command starts with $ it is a default command
 		if (command.startsWith("$")){
+		
 			
 			//Execute the default action for the command
 			AcideInsertedItemListenersManager.getInstance().executeAction(command, actionEvent);
@@ -130,6 +136,7 @@ public class AcideInsertedItemListener implements ActionListener {
 			}
 		}
 
+	}
 		// Sets the focus in the last element on focus in ACIDE - A
 		// Configurable IDE
 		AcideLastElementOnFocus.setFocusOnLastElementOnFocus(AcideMainWindow.getInstance()

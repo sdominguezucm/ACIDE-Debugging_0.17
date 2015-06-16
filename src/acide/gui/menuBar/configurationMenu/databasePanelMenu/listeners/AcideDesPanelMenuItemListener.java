@@ -41,6 +41,7 @@ package acide.gui.menuBar.configurationMenu.databasePanelMenu.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -75,9 +76,11 @@ public class AcideDesPanelMenuItemListener implements ActionListener{
 		String shellPath = AcideProjectConfiguration.getInstance()
 				.getShellPath();
 		
+		LinkedList<String> result = AcideDatabaseManager.getInstance().executeCommand("/tapi /test_tapi");
 		//if it the console is des, then we can connect
-		if (shellPath.endsWith("\\des.exe") || shellPath.endsWith("/des")) {
-			
+		// KO we will change it for: if (/tapi /test_tapi) == $succes 
+		//if (shellPath.endsWith("\\des.exe") || shellPath.endsWith("/des")) {
+		for (String s : result){if (s.equals("$succes")){	
 			AcideMainWindow.getInstance().getMenu()
 			.getConfigurationMenu().getDatabasePanelMenu()
 				.getOdbcPanelMenuItem().setSelected(false);
@@ -112,5 +115,5 @@ public class AcideDesPanelMenuItemListener implements ActionListener{
 		AcideMainWindow.getInstance().getMenu().getConfigurationMenu().getDatabasePanelMenu()
 		.setShowDetailsEnabled(true);
 		
-	}
+	}}
 }

@@ -50,6 +50,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import com.oracle.xmlns.internal.webservices.jaxws_databinding.ExistingAnnotationsType;
+
 import acide.configuration.grammar.AcideGrammarConfiguration;
 import acide.configuration.lexicon.AcideLexiconConfiguration;
 import acide.files.project.AcideProjectFileType;
@@ -449,7 +451,6 @@ public class AcideFileEditorManager extends JPanel {
 
 						// If it is OK
 						if (returnValue2 == JOptionPane.OK_OPTION) {
-
 							// Saves the file editor panel
 							AcideMainWindow.getInstance().getMenu()
 									.getFileMenu().saveFile(index);

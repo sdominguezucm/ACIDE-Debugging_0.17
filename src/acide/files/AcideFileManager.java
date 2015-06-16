@@ -104,7 +104,7 @@ public class AcideFileManager {
 			
 			public void propertyChange(PropertyChangeEvent evt) {
 				
-				//check that the old value and the new one are not null and the both are intances of AcideFileExtensionFilterManager
+				//check that the old value and the new one are not null and the both are instances of AcideFileExtensionFilterManager
 				if(evt.getNewValue() != null && evt.getOldValue() != null &&
 						evt.getNewValue() instanceof AcideFileExtensionFilterManager &&
 						evt.getOldValue() instanceof AcideFileExtensionFilterManager){

@@ -53,6 +53,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 import javax.swing.AbstractAction;
@@ -125,8 +126,7 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 	 */
 	private JLabel _shellDirectoryLabel;
 	/**
-	 * ACIDE - A Configurable IDE console configuration window parameters
-	 * label.
+	 * ACIDE - A Configurable IDE console configuration window parameters label.
 	 */
 	private JLabel _parametersLabel;
 	/**
@@ -145,8 +145,8 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 	 */
 	private JTextField _shellDirectoryTextField;
 	/**
-	 * ACIDE - A Configurable IDE console configuration window parameters
-	 * text field.
+	 * ACIDE - A Configurable IDE console configuration window parameters text
+	 * field.
 	 */
 	private JTextField _parametersTextField;
 	/**
@@ -262,13 +262,14 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 
 		// Disables the shell directory label
 		_shellDirectoryLabel.setEnabled(false);
-		
-		//Creates the parameters label
-		_parametersLabel = new JLabel(AcideLanguageManager.getInstance().getLabels().getString("s2228"));
+
+		// Creates the parameters label
+		_parametersLabel = new JLabel(AcideLanguageManager.getInstance()
+				.getLabels().getString("s2228"));
 
 		// Creates the echo command check box
 		try {
-			
+
 			// Creates the shell directory text field
 			_shellDirectoryTextField = new JTextField(AcideResourceManager
 					.getInstance().getProperty("consolePanel.shellDirectory"));
@@ -290,8 +291,8 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 			// Creates the shell path text field
 			_shellPathTextField = new JTextField(AcideResourceManager
 					.getInstance().getProperty("consolePanel.shellPath"));
-			
-			//Creates the parametes text field
+
+			// Creates the parametes text field
 			_parametersTextField = new JTextField(AcideResourceManager
 					.getInstance().getProperty("consolePanel.parameters"));
 
@@ -310,7 +311,7 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 					.getInstance().getLabels().getString("s340"),
 					Boolean.parseBoolean(AcideResourceManager.getInstance()
 							.getProperty("consolePanel.isEchoCommand")));
-			
+
 			_echoCommandCheckBox.setSelected(true);
 
 			// Creates the apply button
@@ -400,21 +401,20 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 
 		// Adds the examine shell path button to the main panel
 		_mainPanel.add(_examineShellPathButton, constraints);
-		
+
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.gridx = 0;
 		constraints.gridy = 1;
 
 		// Adds the examine shell path button to the main panel
 		_mainPanel.add(_parametersLabel, constraints);
-		
+
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.gridx = 1;
 		constraints.gridy = 1;
 
 		// Adds the examine shell path button to the main panel
 		_mainPanel.add(_parametersTextField, constraints);
-		
 
 		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 0;
@@ -545,10 +545,9 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 	 */
 	class ApplyButtonAction implements ActionListener {
 
-		
 		private boolean isExecutable(File shell) {
 			boolean isExec = false;
-			
+
 			if (shell.exists() && !shell.isDirectory()) {
 
 				try {
@@ -558,10 +557,10 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 					isExec = false;
 				}
 			}
-			
+
 			return isExec;
 		}
-		
+
 		private String searchShellInOSPath(String shellPath) throws Exception {
 
 			String path = "";
@@ -636,8 +635,7 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 
 			return path;
 		}
-		
-		
+
 		public void newShell(String shellDirectory, String shellPath,
 				String shellParameters, String exitCommand,
 				boolean changeDirectory, boolean isEchoCommand) {
@@ -671,12 +669,12 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 				for (int index = 0; index < limit - 1; index++)
 					calculatedPath = calculatedPath
 							+ stringTokenizer.nextToken() + separator;
-				
+
 				String os = System.getProperty("os.name");
-                if ((os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0)
-                		&& !calculatedPath.startsWith(".")) {
-                    calculatedPath = File.separator + calculatedPath;
-                }
+				if ((os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0)
+						&& !calculatedPath.startsWith(".")) {
+					calculatedPath = File.separator + calculatedPath;
+				}
 
 				// Sets the shell directory in the resource manager
 				AcideResourceManager.getInstance().setProperty(
@@ -720,32 +718,33 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 			// Sets the exit command in the project configuration
 			AcideProjectConfiguration.getInstance().setExitCommand(exitCommand);
 		}
-		
+
 		/**
 		 * Unrolls the environment variables in the shell path if there are any
 		 * 
-		 * @param shellPath path provided by the user
+		 * @param shellPath
+		 *            path provided by the user
 		 * @return new path without environment variables
 		 */
 		private String getEnvironmentVariable(String shellPath) {
-			
+
 			String finalPath = shellPath;
-			
+
 			String os = System.getProperty("os.name");
 			if (os.contains("win") || os.contains("WIN") || os.contains("Win")) {
 				if (finalPath.contains("%")) {
-					
+
 					int start = finalPath.indexOf("%");
 					String envVar = finalPath.substring(start + 1);
 					int end = envVar.indexOf("%");
-					
+
 					if (end >= 0) {
-						
+
 						envVar = envVar.substring(start, end);
-						
-						//Gets environment variable
+
+						// Gets environment variable
 						String variable = System.getenv(envVar);
-						
+
 						if (variable != null) {
 							String beg = finalPath.substring(0, start);
 							String fin = finalPath.substring(end + 2);
@@ -760,7 +759,7 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 					String envVar = finalPath.substring(start + 1);
 					int end = envVar.indexOf("/");
 
-					if (end >= 0) 
+					if (end >= 0)
 						envVar = envVar.substring(start, end);
 
 					String variable = System.getenv(envVar);
@@ -775,41 +774,45 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 
 				}
 			}
-			
+
 			return finalPath;
-			
+
 		}
-		
+
 		/**
-		 * Checks if the shellPath is a DES instance, if that's not the case it disable
-		 * the DES database in case it was enabled.
+		 * Checks if the shellPath is a DES instance, if that's not the case it
+		 * disable the DES database in case it was enabled.
 		 * 
-		 * @param shellPath 
+		 * @param shellPath
 		 */
 		void validDesDatabase(String shellPath) {
-			
-			if (!shellPath.endsWith("\\des.exe") 
-					&& !shellPath.endsWith("/des")
-					&& AcideMainWindow.getInstance().getMenu()
+		/*	LinkedList<String> result = AcideDatabaseManager.getInstance()
+					.executeCommand("/tapi /test_tapi");*/
+			//for (String s : result) {
+				//if ((!s.equals("$succes"))
+				 if (!shellPath.endsWith("\\des.exe")
+				 && !shellPath.endsWith("/des")
+				&& AcideMainWindow.getInstance().getMenu()
 					.getConfigurationMenu().getDatabasePanelMenu()
 					.getDesPanelMenuItem().isSelected()) {
-				
-				AcideMainWindow.getInstance().getMenu()
-				.getConfigurationMenu().getDatabasePanelMenu()
-					.getDesPanelMenuItem().setSelected(false);
-				
-				AcideMainWindow.getInstance().getMenu()
-					.getConfigurationMenu().getDatabasePanelMenu()
-						.getOdbcPanelMenuItem().setSelected(true);
-				
-				AcideDatabaseManager.setInstance(new ODBCDatabaseManager());
-				
-				AcideMainWindow.getInstance().getDataBasePanel().updateDataBaseTreeOnChange();
-				
-			} 
+
+					AcideMainWindow.getInstance().getMenu()
+							.getConfigurationMenu().getDatabasePanelMenu()
+							.getDesPanelMenuItem().setSelected(false);
+
+					AcideMainWindow.getInstance().getMenu()
+							.getConfigurationMenu().getDatabasePanelMenu()
+							.getOdbcPanelMenuItem().setSelected(true);
+
+					AcideDatabaseManager.setInstance(new ODBCDatabaseManager());
+
+					AcideMainWindow.getInstance().getDataBasePanel()
+							.updateDataBaseTreeOnChange();
+
+				//}
+			}
 		}
-		
-		
+
 		/*
 		 * (non-Javadoc)
 		 * 
@@ -823,7 +826,7 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 			try {
 
 				// Get the shell components
-				//String fullPath = _shellPathTextField.getText();
+				// String fullPath = _shellPathTextField.getText();
 				String shellPath = _shellPathTextField.getText();
 				String shellDirectory = _shellDirectoryTextField.getText();
 				String shellParameters = _parametersTextField.getText();
@@ -832,82 +835,86 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 				boolean isEchoCommand = _echoCommandCheckBox.isSelected();
 				boolean invalidShell = false;
 				boolean invalidDirectory = false;
-								
+
 				File directory = new File(shellDirectory);
-				
-				//Check if there was data in the directory path text field
-				if (!changeDirectory || (shellDirectory != null && 
-						!shellDirectory.matches("") && directory.exists() && 
-						directory.isDirectory())) {
-					
-					//Check if there was data in the shell path text field
+
+				// Check if there was data in the directory path text field
+				if (!changeDirectory
+						|| (shellDirectory != null
+								&& !shellDirectory.matches("")
+								&& directory.exists() && directory
+									.isDirectory())) {
+
+					// Check if there was data in the shell path text field
 					if (shellPath != null && !shellPath.matches("")) {
-						//Unrolls environment variables if there are any
+						// Unrolls environment variables if there are any
 						shellPath = getEnvironmentVariable(shellPath);
-						//Check if the shell path exists
+						// Check if the shell path exists
 						File shell = new File(shellPath);
 						if (shell.exists()) {
-							//Check if the file is executable
+							// Check if the file is executable
 							if (isExecutable(shell)) {
-								//The file is a valid shell
-								newShell(shellDirectory, shellPath, shellParameters, exitCommand, changeDirectory, isEchoCommand);
+								// The file is a valid shell
+								newShell(shellDirectory, shellPath,
+										shellParameters, exitCommand,
+										changeDirectory, isEchoCommand);
 							} else {
-								//The file is not a valid shell
+								// The file is not a valid shell
 								invalidShell = true;
 							}
-							
+
 						} else {
-							//Search the shell in the OS Path
+							// Search the shell in the OS Path
 							String shellOSPath = searchShellInOSPath(shellPath);
 							if (shellOSPath != null && !shellOSPath.matches("")) {
-								//Valid shellOSPath
-								newShell(shellDirectory, shellOSPath, shellParameters, exitCommand, changeDirectory, isEchoCommand);
+								// Valid shellOSPath
+								newShell(shellDirectory, shellOSPath,
+										shellParameters, exitCommand,
+										changeDirectory, isEchoCommand);
 							} else {
-								//Invalid shellOSPath
-								invalidShell = true;	
+								// Invalid shellOSPath
+								invalidShell = true;
 							}
 						}
-						
+
 					} else {
-						//ShellPath error (no shellPath!)
+						// ShellPath error (no shellPath!)
 						invalidShell = true;
 					}
 				} else {
-					//Directory error (no directory!)
+					// Directory error (no directory!)
 					invalidDirectory = true;
 				}
-				
+
 				if (invalidDirectory) {
-					
+
 					// Displays an error message
-					JOptionPane.showMessageDialog(null,
-							AcideLanguageManager.getInstance().getLabels()
-									.getString("s2290"), "Error",
-							JOptionPane.ERROR_MESSAGE);
-					
-				} else if (invalidShell){
-					
+					JOptionPane.showMessageDialog(null, AcideLanguageManager
+							.getInstance().getLabels().getString("s2290"),
+							"Error", JOptionPane.ERROR_MESSAGE);
+
+				} else if (invalidShell) {
+
 					// Displays an error message
-					JOptionPane.showMessageDialog(null,
-							AcideLanguageManager.getInstance().getLabels()
-									.getString("s993"), "Error",
-							JOptionPane.ERROR_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null, AcideLanguageManager
+							.getInstance().getLabels().getString("s993"),
+							"Error", JOptionPane.ERROR_MESSAGE);
+
 				} else {
-					
+
 					validDesDatabase(shellPath);
-					
+
 					// If it is not the default project
 					if (!AcideProjectConfiguration.getInstance()
 							.isDefaultProject())
 
 						// The project has been modified
-						AcideProjectConfiguration.getInstance()
-								.setIsModified(true);
+						AcideProjectConfiguration.getInstance().setIsModified(
+								true);
 
 					// Closes the window
 					closeWindow();
-					
+
 				}
 			} catch (Exception exception) {
 				// Updates the log
@@ -915,45 +922,37 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 				exception.printStackTrace();
 			}
 		}
-		
-		private class ProcessResultReader extends Thread
-		{
-		    final InputStream is;
-		    @SuppressWarnings("unused")
+
+		private class ProcessResultReader extends Thread {
+			final InputStream is;
+			@SuppressWarnings("unused")
 			final String type;
-		    final StringBuilder sb;
+			final StringBuilder sb;
 
-		    ProcessResultReader(InputStream is, String type)
-		    {
-		        this.is = is;
-		        this.type = type;
-		        this.sb = new StringBuilder();
-		    }
+			ProcessResultReader(InputStream is, String type) {
+				this.is = is;
+				this.type = type;
+				this.sb = new StringBuilder();
+			}
 
-		    public void run()
-		    {
-		        try
-		        {
-		            final InputStreamReader isr = new InputStreamReader(is);
-		            final BufferedReader br = new BufferedReader(isr);
-		            String line = null;
-		            while ((line = br.readLine()) != null)
-		            {
-		                this.sb.append(line);
-		            }
-		        }
-		        catch (final IOException ioe)
-		        {
-		            System.err.println(ioe.getMessage());
-		            //throw new RuntimeException(ioe);
-		        }
-		    }
+			public void run() {
+				try {
+					final InputStreamReader isr = new InputStreamReader(is);
+					final BufferedReader br = new BufferedReader(isr);
+					String line = null;
+					while ((line = br.readLine()) != null) {
+						this.sb.append(line);
+					}
+				} catch (final IOException ioe) {
+					System.err.println(ioe.getMessage());
+					// throw new RuntimeException(ioe);
+				}
+			}
 
-		    @Override
-		    public String toString()
-		    {
-		        return this.sb.toString();
-		    }
+			@Override
+			public String toString() {
+				return this.sb.toString();
+			}
 		}
 	}
 
