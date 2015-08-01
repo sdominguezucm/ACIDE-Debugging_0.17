@@ -60,6 +60,7 @@ import acide.configuration.menu.AcideMenuItemsConfiguration;
 import acide.configuration.menu.AcideMenuObjectConfiguration;
 import acide.configuration.menu.AcideMenuSubmenuConfiguration;
 import acide.gui.menuBar.listeners.AcideMenuBarMouseClickListener;
+import acide.gui.menuBar.viewMenu.listeners.AcideShowAcideDataBasePanelMenuItemListener;
 import acide.language.AcideLanguageManager;
 import acide.log.AcideLog;
 import acide.resources.AcideResourceManager;

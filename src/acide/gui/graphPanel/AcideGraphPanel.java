@@ -127,6 +127,7 @@ public class AcideGraphPanel extends JPanel {
 
 	// creates the refresh button
 	public static JButton refreshPDG = new JButton();
+	
 			
 	
 	/**
@@ -251,6 +252,8 @@ public class AcideGraphPanel extends JPanel {
 		refreshPDG.addActionListener(new AcideGraphPanelRefreshListener());
 		//enable the refresh button
 		refreshPDG.setEnabled(true);
+		//sets tooltip button 
+		refreshPDG.setToolTipText(AcideLanguageManager.getInstance().getLabels().getString("s2044"));
 		// adds the refresh button
 		_buttonPanel.add(refreshPDG);
 		// creates the show labels check box

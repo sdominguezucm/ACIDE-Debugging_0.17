@@ -388,8 +388,8 @@ public class AcideDatabasePanelMenu extends JMenu{
 	 * 		if the name given as parameter is original
 	 */
 	public boolean isOriginal(String name){
-		if (!(name.equals(DES_PANEL_NAME))
-			&& !(name.equals(ODBC_PANEL_NAME))
+		if (/*!(name.equals(DES_PANEL_NAME))
+			&&*/ !(name.equals(ODBC_PANEL_NAME))
 			&& !(name.equals(SHOW_DETAILS_NAME))){
 			return true;
 		}else{

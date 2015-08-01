@@ -788,10 +788,14 @@ public class AcideConsoleConfigurationWindow extends JFrame {
 		void validDesDatabase(String shellPath) {
 		/*	LinkedList<String> result = AcideDatabaseManager.getInstance()
 					.executeCommand("/tapi /test_tapi");*/
+			LinkedList<String> result = DesDatabaseManager.getInstance()
+			.executeCommand("/tapi /test_tapi");
 			//for (String s : result) {
 				//if ((!s.equals("$succes"))
 				 if (!shellPath.endsWith("\\des.exe")
-				 && !shellPath.endsWith("/des")
+				&& !shellPath.endsWith("\\x.exe")
+				&& !shellPath.endsWith("\\hrsql.exe")
+				&& !shellPath.endsWith("/des")
 				&& AcideMainWindow.getInstance().getMenu()
 					.getConfigurationMenu().getDatabasePanelMenu()
 					.getDesPanelMenuItem().isSelected()) {

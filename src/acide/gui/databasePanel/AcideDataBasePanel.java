@@ -42,12 +42,16 @@ package acide.gui.databasePanel;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.HashMap;
@@ -59,13 +63,18 @@ import java.util.Vector;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.ToolTipManager;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeSelectionEvent;
@@ -77,6 +86,8 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import acide.configuration.menu.AcideInsertedItemListener;
+import acide.configuration.menu.AcideMenuItemsConfiguration;
 import acide.configuration.project.AcideProjectConfiguration;
 import acide.gui.databasePanel.Nodes.AcideDataBaseNodes;
 import acide.gui.databasePanel.Nodes.NodeColumns;
@@ -101,7 +112,18 @@ import acide.gui.databasePanel.popup.AcideDataBasePanelColumnsPopupMenu;
 import acide.gui.databasePanel.utils.AcideDataBaseTreeCellRenderer;
 import acide.gui.databasePanel.utils.AcideEnterTextWindow;
 import acide.gui.databasePanel.utils.AcideTree;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelLastNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelNexNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelPreviousNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelRefreshListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelShowLabelsListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelViewBoxListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomInListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomOutListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomSpinnerListener;
 import acide.gui.mainWindow.AcideMainWindow;
+import acide.gui.menuBar.viewMenu.listeners.AcideShowAcideDataBasePanelMenuItemListener;
 import acide.language.AcideLanguageManager;
 import acide.log.AcideLog;
 import acide.process.console.AcideDatabaseManager;
@@ -117,6 +139,14 @@ import acide.resources.exception.MissedPropertyException;
  */
 public class AcideDataBasePanel extends JPanel {
 
+	/**
+	 * ACIDE - A Configurable IDE view menu name.
+	 */
+	public final static String VIEW_MENU_NAME = "View";
+	/**
+	 * ACIDE - A Configurable IDE view menu show data base panel menu item name.
+	 */
+	public static final String SHOW_DATA_BASE_PANEL_NAME = "Show Data Base Panel";
 	/**
 	 * ACIDE - A Configurable IDE database panel class serial version UID.
 	 */
@@ -188,6 +218,17 @@ public class AcideDataBasePanel extends JPanel {
 	 * ACIDE - display names, columns and types of table and view nodes.
 	 */
 	private boolean _nameFieldsTypesTables = false;
+	/**
+	 * ACIDE - A Configurable IDE trace SQL panel button panel.
+	 */
+	private JPanel _mainButtonPanel;
+	/**
+	 * ACIDE - A Configurable IDE Data Base panel refresh button icon
+	 */
+	private final static ImageIcon REFRESH_IMAGE = new ImageIcon("./resources/icons/panels/refresh.png");
+	
+	// builds the refresh button
+	public static JButton refreshDB = new JButton();
 	
 	/**
 	 * Creates a new ACIDE - A Configurable IDE database panel.
@@ -243,6 +284,9 @@ public class AcideDataBasePanel extends JPanel {
 			//Initialize the values of show details pop up menu
 			initalizeShowDetails();
 			
+			// Builds the button panel
+			buildButtons();
+			
 			// Builds the explorer panel menu bar
 			buildMenuBar();
 
@@ -277,6 +321,9 @@ public class AcideDataBasePanel extends JPanel {
 		
 		// Adds the menu bar
 		add(menuBar, BorderLayout.NORTH);
+		
+		// Adds the button panel
+		add(_mainButtonPanel, BorderLayout.SOUTH);
 		
 		// Creates the control structure for the data views
 		_dataView = new HashMap<String, AcideDataBaseDataViewControl>();
@@ -313,7 +360,41 @@ public class AcideDataBasePanel extends JPanel {
 		
 	}
 
-	/*
+	/**
+	 * Builds the buttons for the ACIDE - A Configurable IDE trace SQL panel.
+	 */
+	private void buildButtons() {
+		// builds the button panel
+		_mainButtonPanel = new JPanel();
+		// adds the layout to the button panel
+		_mainButtonPanel.setLayout(new BorderLayout());
+		// creates the sub button panel 1
+		JPanel subButtonPanel1 = new JPanel();
+		// adds the layout to the sub button panel
+		subButtonPanel1.setLayout(new FlowLayout());
+		// adds the sub button panel to the main button panel
+		_mainButtonPanel.add(subButtonPanel1, BorderLayout.NORTH);
+		refreshDB.setIcon(REFRESH_IMAGE);
+		refreshDB.setPreferredSize(new Dimension((int) (1.5 * refreshDB.getIcon()
+				.getIconWidth()), (int) refreshDB.getPreferredSize().getHeight()));
+		// adds the action listener to the refresh button
+		refreshDB
+			// .addActionListener(new AcideShowAcideDataBasePanelMenuItemListener());
+				.addActionListener(new AcideInsertedItemListener(
+						AcideMenuItemsConfiguration.getInstance()
+								.getSubmenu(VIEW_MENU_NAME)
+								.getItem(SHOW_DATA_BASE_PANEL_NAME)));
+		// sets tooltip button
+		refreshDB.setToolTipText(AcideLanguageManager.getInstance().getLabels()
+				.getString("s2044"));
+		// unable the button
+		refreshDB.setEnabled(true);
+		// adds the refresh button
+		subButtonPanel1.add(refreshDB);
+		
+	}
+
+	/**
 	 * Sets the ACIDE - A Configurable IDE database panel listeners.
 	 */
 	private void setListeners() {

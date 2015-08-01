@@ -47,7 +47,7 @@
           <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
             <__path>.\examples\family.sql</__path>
             <__type>Normal</__type>
-            <__caretPosition>336</__caretPosition>
+            <__caretPosition>245</__caretPosition>
             <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
             <__activeTextEditionArea>1</__activeTextEditionArea>
             <__lexiconConfiguration>./configuration/lexicon/sql.xml</__lexiconConfiguration>
@@ -87,7 +87,7 @@
         </__list>
       </__list>
     </__fileEditorPanelConfigurationList>
-    <__selectedFileEditorPanelName>p.sql</__selectedFileEditorPanelName>
+    <__selectedFileEditorPanelName>family.sql</__selectedFileEditorPanelName>
     <__fontName>Monospaced.plain</__fontName>
     <__fontStyle>0</__fontStyle>
     <__fontSize>15</__fontSize>

@@ -370,19 +370,26 @@ public class AcideAssertedDatabasePanel extends JFrame {
 		_reloadButton.setIcon(new ImageIcon(
 				"./resources/icons/panels/refresh.png"));
 		_reloadButton.setPreferredSize(new Dimension(40, 25));
+		//sets tooltip button 
+		_reloadButton.setToolTipText(AcideLanguageManager.getInstance().getLabels().getString("s2044"));
+				
 
 		_buttonPanel.add(_reloadButton);
 
 		_clearButton = new JButton("C");
 		_clearButton.setPreferredSize(new Dimension(40, 25));
-
+		//sets tooltip button 
+		_clearButton.setToolTipText(AcideLanguageManager.getInstance().getLabels().getString("s455"));
+				
 		_buttonPanel.add(_clearButton);
 
 		String nameFilter = AcideLanguageManager.getInstance().getLabels()
 				.getString("s2281");
 		_filterCheckBox = new JCheckBox(nameFilter);
 		_filterCheckBox.setSelected(false);
-
+		//sets tooltip button 
+		_filterCheckBox.setToolTipText(AcideLanguageManager.getInstance().getLabels().getString("s456"));
+				
 		_buttonPanel.add(_filterCheckBox);
 
 		int size = _predicates.size();

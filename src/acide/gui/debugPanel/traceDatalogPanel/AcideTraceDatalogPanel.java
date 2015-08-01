@@ -212,6 +212,8 @@ public class AcideTraceDatalogPanel extends JPanel {
 				.getIconWidth()), (int) refreshDatalog.getPreferredSize().getHeight()));
 		// adds the action listener to the refresh button
 		refreshDatalog.addActionListener(new AcideTraceDatalogPanelRefreshListener());
+		//sets tooltip button 
+		refreshDatalog.setToolTipText(AcideLanguageManager.getInstance().getLabels().getString("s2044"));
 		//unable the button
 		refreshDatalog.setEnabled(false);
 		// adds the refresh button

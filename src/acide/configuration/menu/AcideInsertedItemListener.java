@@ -97,12 +97,12 @@ public class AcideInsertedItemListener implements ActionListener {
 		
 		//Gets the command of the inserted item
 		String command = item.getItemConfiguration().getCommand();
-		LinkedList<String> test = AcideDatabaseManager.getInstance()
-				.executeCommand("/tapi /test_tapi");
+	/*	LinkedList<String> test = AcideDatabaseManager.getInstance()
+				.executeCommand("/tapi /test_tapi");*/
 		
-		if (test.equals("$succes")){
+		if (/*(test.equals("$succes")) ||*/ (command.startsWith("$"))){
 		//If command starts with $ it is a default command
-		if (command.startsWith("$")){
+	//	if (command.startsWith("$")){
 		
 			
 			//Execute the default action for the command
@@ -136,7 +136,7 @@ public class AcideInsertedItemListener implements ActionListener {
 			}
 		}
 
-	}
+	//}
 		// Sets the focus in the last element on focus in ACIDE - A
 		// Configurable IDE
 		AcideLastElementOnFocus.setFocusOnLastElementOnFocus(AcideMainWindow.getInstance()
