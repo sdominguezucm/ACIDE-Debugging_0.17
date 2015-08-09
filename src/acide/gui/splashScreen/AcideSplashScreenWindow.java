@@ -73,7 +73,7 @@ public class AcideSplashScreenWindow extends JWindow {
 	 */
 	private static JPanel _mainPanel;
 
-//	private static JProgressBar _progress;
+	//private static JProgressBar _progress;
 	
 	/**
 	 * Returns the ACIDE - A Configurable IDE splash screen window unique class
@@ -149,7 +149,7 @@ public class AcideSplashScreenWindow extends JWindow {
 		// Creates the image label
 		_image = new JLabel(IMAGE);
 		
-	/*	_progress = new JProgressBar(0, 1000);
+		/*_progress = new JProgressBar(0, 1000);
 		_progress.setValue(0);
 		_progress.setStringPainted(true);
 		_progress.setVisible(true);*/
@@ -158,6 +158,7 @@ public class AcideSplashScreenWindow extends JWindow {
 
 /*	public void iterate(final int finalValue) {
 		//_progress.setValue(count);
+		int count = 0;
 		while ((finalValue <= 1000) && (count < finalValue)) {
 			 _progress.setIndeterminate(false);
 			try {
@@ -176,10 +177,10 @@ public class AcideSplashScreenWindow extends JWindow {
 	 */
 	public void showSplashScreenWindow() {
 
-		// iterate(200);
+	//	 iterate(200);
 		// Displays it
 		setVisible(true);
-		//iterate(1000);
+	//	iterate(1000);
 
 	}
 

@@ -70,6 +70,8 @@ public class AcideDebugPanelNodeShapeSquareMenuItemListener implements ActionLis
 		AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setNodeShape(AcideGraphCanvas.NODE_SQUARE);
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setArrowShape(AcideGraphCanvas.NODE_SQUARE);
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		//updates the selected component
 		((JCheckBoxMenuItem)actionEvent.getSource()).setSelected(true);
 		AcideMainWindow.getInstance().getMenu().getConfigurationMenu().getDebugPanelMenu()

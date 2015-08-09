@@ -72,6 +72,8 @@ public class AcideDebugPanelNodeColorItemMenuItemListener implements ActionListe
 			AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setNodeColor(c);
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setNodeColor(c);
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		}
 	}
 

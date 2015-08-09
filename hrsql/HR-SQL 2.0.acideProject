@@ -1,0 +1,129 @@
+HR-SQL 2.0
+.\\HR-SQL 2.0.acideProject
+
+
+false
+
+
+
+
+.\hrsql.exe
+.\
+/q
+true
+
+-16777216
+-1
+Monospaced
+0
+12
+80
+true
+true
+false
+true
+false
+1277
+910
+10
+10
+167
+1
+779
+227
+784
+English
+.\configuration\menu\lastModified.menuConfig
+./configuration/menu/defaultAllOn.xml
+.\configuration\toolbar\hrsql.toolbarConfig
+AcideExplorerPanel
+AcideFileEditor
+AcideDataBasePanel
+AcideConsolePanel
+AcideGraphPanel
+AcideDebugPanel
+12
+.\examples\example0.sql
+example0.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example1.sql
+example1.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example2.sql
+example2.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example4.sql
+example4.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example7.sql
+example7.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\figure10dag.sql
+figure10dag.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example13.sql
+example13.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example14.sql
+example14.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example15.sql
+example15.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example16.sql
+example16.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example16b.sql
+example16b.sql
+HR-SQL 2.0
+false
+false
+false
+true
+.\examples\example20.sql
+example20.sql
+HR-SQL 2.0
+false
+false
+false
+true

@@ -73,6 +73,9 @@ public class AcideDebugPanelSelectedNodeColorItemMenuItemListener implements
 			AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setSelectedNodeColor(c);
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setSelectedNodeColor(c);
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
+			
 		}
 	}
 }

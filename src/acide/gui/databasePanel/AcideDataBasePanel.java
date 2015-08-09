@@ -373,7 +373,7 @@ public class AcideDataBasePanel extends JPanel {
 		// adds the layout to the sub button panel
 		subButtonPanel1.setLayout(new FlowLayout());
 		// adds the sub button panel to the main button panel
-		_mainButtonPanel.add(subButtonPanel1, BorderLayout.NORTH);
+		_mainButtonPanel.add(subButtonPanel1, BorderLayout.CENTER);
 		refreshDB.setIcon(REFRESH_IMAGE);
 		refreshDB.setPreferredSize(new Dimension((int) (1.5 * refreshDB.getIcon()
 				.getIconWidth()), (int) refreshDB.getPreferredSize().getHeight()));

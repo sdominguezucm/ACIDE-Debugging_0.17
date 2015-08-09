@@ -96,7 +96,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	/**
 	 * ACIDE - A Configurable IDE debug canvas selected node color.
 	 */
-	private Color _selectedNodeColor = Color.GREEN;
+	private Color _selectedTraceNodeColor = Color.GREEN;
 	/**
 	 * ACIDE - A Configurable IDE debug canvas path's graph.
 	 */
@@ -104,7 +104,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	/**
 	 * ACIDE - A Configurable IDE debug canvas path's graph index.
 	 */
-	private int _pathGraphindex;	
+	private int _pathGraphindex;
 	/**
 	 * ACIDE - A Configurable IDE debug canvas flag to enable the draw.
 	 */
@@ -221,8 +221,8 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		for (int i = 0; i < _graph.get_nodes().size(); i++) {
 			if (i == 0)
 				rootCandiate = _graph.get_nodes().get(0);
-			if (_rootNode.getLabel()
-					.equals(_graph.get_nodes().get(i).getLabel())
+			if (_rootNode.getLabel().equals(
+					_graph.get_nodes().get(i).getLabel())
 					|| _graph.get_nodes().get(i).getLabel()
 							.matches(_rootNode.getLabel() + "(/\\p{Digit}+)*"))
 				rootCandiate = _graph.get_nodes().get(i);
@@ -230,7 +230,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		// Marks the root candidate as the selected node
 		_selectedNode = rootCandiate;
 		// Aplies the layout
-		this._layout = new TreeLayout(_selectedNode,TreeLayout.INVERSE_MODE);
+		this._layout = new TreeLayout(_selectedNode, TreeLayout.INVERSE_MODE);
 		_layout.calculateNodesPosition(_graph, getWidth(), getHeight(),
 				_nodeSize);
 		_enableDraw = true;
@@ -301,16 +301,18 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 				// saves the default stroke
 				Stroke trazo = ((Graphics2D) g).getStroke();
 				if (n.equals(_selectedNode))
-					g.setColor(_selectedNodeColor);
+					g.setColor(_selectedTraceNodeColor);
 				else
 					g.setColor(_nodeColor);
 				// draws the node
 				if (_nodeShape == NODE_CIRCLE)
 					g.fillOval((int) n.getX(), (int) n.getY(),
-							(int) (_nodeSize * _zoom), (int) (_nodeSize * _zoom));
+							(int) (_nodeSize * _zoom),
+							(int) (_nodeSize * _zoom));
 				if (_nodeShape == NODE_SQUARE)
 					g.fillRect((int) n.getX(), (int) n.getY(),
-							(int) (_nodeSize * _zoom), (int) (_nodeSize * _zoom));
+							(int) (_nodeSize * _zoom),
+							(int) (_nodeSize * _zoom));
 				// draws the label of the node
 				if (_showingLabels) {
 					Rectangle2D rect = g.getFontMetrics().getStringBounds(
@@ -333,10 +335,12 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 				((Graphics2D) g).setStroke(new BasicStroke(_strokeSize));
 				if (_nodeShape == NODE_CIRCLE)
 					g.drawOval((int) n.getX(), (int) n.getY(),
-							(int) (_nodeSize * _zoom), (int) (_nodeSize * _zoom));
+							(int) (_nodeSize * _zoom),
+							(int) (_nodeSize * _zoom));
 				if (_nodeShape == NODE_SQUARE)
 					g.drawRect((int) n.getX(), (int) n.getY(),
-							(int) (_nodeSize * _zoom), (int) (_nodeSize * _zoom));
+							(int) (_nodeSize * _zoom),
+							(int) (_nodeSize * _zoom));
 				((Graphics2D) g).setStroke(trazo);
 			}
 		}
@@ -373,11 +377,11 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		return _selectedNode;
 	}
 
-	private void updateSelectedNode(Node selectedNode,int selectedNodeIndex){
+	private void updateSelectedNode(Node selectedNode, int selectedNodeIndex) {
 		setSelectedNode(selectedNode);
 		_pathGraphindex = selectedNodeIndex;
 	}
-	
+
 	/**
 	 * Sets a new value to the ACIDE - A Configurable IDE debug canvas selected
 	 * node.
@@ -390,12 +394,10 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		boolean found = false;
 		// Checks if the selected node matches with any node of the path's graph
 		for (int i = 0; i < _pathGraph.size() && !found; i++)
-			if (selectedNode.getLabel().equals(
-					_pathGraph.get(i).getLabel())
+			if (selectedNode.getLabel().equals(_pathGraph.get(i).getLabel())
 					|| selectedNode.getLabel().matches(
-							_pathGraph.get(i).getLabel()
-									+ "(/\\p{Digit}+)*")){
-				_pathGraphindex=i;
+							_pathGraph.get(i).getLabel() + "(/\\p{Digit}+)*")) {
+				_pathGraphindex = i;
 				found = true;
 			}
 		if (found) {
@@ -430,11 +432,11 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 */
 	public void advanceSelectedNode() {
 
-		if (_pathGraphindex+1<_pathGraph.size() && _pathGraph.size()>0) {
+		if (_pathGraphindex + 1 < _pathGraph.size() && _pathGraph.size() > 0) {
 			_pathGraphindex++;
-			updateSelectedNode(_pathGraph.get(_pathGraphindex),_pathGraphindex);
+			updateSelectedNode(_pathGraph.get(_pathGraphindex), _pathGraphindex);
 		}
-			
+
 	}
 
 	/**
@@ -443,9 +445,9 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 */
 	public void retardSelectedNode() {
 
-		if (_pathGraphindex>0 && _pathGraph.size()>0) {
+		if (_pathGraphindex > 0 && _pathGraph.size() > 0) {
 			_pathGraphindex--;
-			updateSelectedNode(_pathGraph.get(_pathGraphindex),_pathGraphindex);
+			updateSelectedNode(_pathGraph.get(_pathGraphindex), _pathGraphindex);
 		}
 	}
 
@@ -455,7 +457,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 * @return the ACIDE - A Configurable IDE debug canvas selected node color.
 	 */
 	public Color getSelectedNodeColor() {
-		return _selectedNodeColor;
+		return _selectedTraceNodeColor;
 	}
 
 	/**
@@ -466,7 +468,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 *            the new value to ser
 	 */
 	public void setSelectedNodeColor(Color selectedNodeColor) {
-		this._selectedNodeColor = selectedNodeColor;
+		this._selectedTraceNodeColor = selectedNodeColor;
 	}
 
 	/**
@@ -488,18 +490,16 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	public void setPathGraph(ArrayList<Node> pathGraph) {
 		// Updates the path graph
 		this._pathGraph = pathGraph;
-			// Sets a position for the nodes
-			for (int i = 0; i < pathGraph.size(); i++) {
-				if(i==0)
-					setRootNode(_pathGraph.get(i));
-				Node n = pathGraph.get(i);
-				n.setX(_nodeSize * i);
-				n.setY(_nodeSize * i);
-				n.setPosicionado(true);
-			}
-			_pathGraphindex=0;
-
-		
+		// Sets a position for the nodes
+		for (int i = 0; i < pathGraph.size(); i++) {
+			if (i == 0)
+				setRootNode(_pathGraph.get(i));
+			Node n = pathGraph.get(i);
+			n.setX(_nodeSize * i);
+			n.setY(_nodeSize * i);
+			n.setPosicionado(true);
+		}
+		_pathGraphindex = 0;
 
 	}
 
@@ -511,22 +511,21 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	@Override
 	public void setZoom(double zoom) {
 		// Updates the zoom level
-		
+
 		this._zoom = zoom;
 		// Updates the zoom level on the zoom spinner
-		JSpinner s = AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel()
-				.getZoomSpinner();
-		/*JSpinner s = AcideMainWindow.getInstance().getDebugPanel()
-				.getTraceDatalogPanel().getZoomSpinner();*/
+		JSpinner s = AcideMainWindow.getInstance().getDebugPanel()
+				.getTraceSQLPanel().getZoomSpinner();
+		/*
+		 * JSpinner s = AcideMainWindow.getInstance().getDebugPanel()
+		 * .getTraceDatalogPanel().getZoomSpinner();
+		 */
 		ChangeListener cl = s.getChangeListeners()[0];
 		s.removeChangeListener(cl);
 		s.setValue((int) (zoom * 100));
 		s.addChangeListener(cl);
 	}
 
-	
-	
-	
 	public ArrayList<Node> get_pathGraph() {
 		return _pathGraph;
 	}
@@ -542,7 +541,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	public void set_pathGraphindex(int _pathGraphindex) {
 		this._pathGraphindex = _pathGraphindex;
 	}
-	
+
 	/**
 	 * Sets the new value to the ACIDE - A Configurable IDE debug canvas node
 	 * size.
@@ -562,8 +561,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 * 
 	 * @param input
 	 *            input stream to parse.
-	 * @return the graph generated by parsing the input
-	 *         stream.
+	 * @return the graph generated by parsing the input stream.
 	 * @throws AcideDebugCanvasParseInputEqualsErrorException
 	 */
 	public static ArrayList<Node> parsePathGraphTapi(InputStream input)
@@ -575,35 +573,35 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		Scanner reader = new Scanner(input);
 		String line = "";
 		int countNodes = 0;
-		
+
 		// Puts the wait cursor
 		AcideDataViewReplaceWindow.getInstance().setCursor(
-			Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		
+				Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
 		try {
 			// reads the next line
 			while (reader.hasNextLine()
 					&& !((line = reader.nextLine().replaceAll("\\p{Space}", ""))
 							.equals("$eot"))
 					&& !((line.replaceAll("\\p{Space}", "")).equals("$error"))) {
-				
+
 				if (!line.contains("$")) {
-					
+
 					// creates a new node
 					Node n = new Node();
 					// set the label
 					n.setLabel(line);
 					// sets the positioned label
 					n.setPosicionado(false);
-					
+
 					g.add(n);
-					} else
-						throw new Exception(
-								"wrong entry. Couldn't be able to add a new node");
-				}
-			
+				} else
+					throw new Exception(
+							"wrong entry. Couldn't be able to add a new node");
+			}
+
 		} catch (Exception e) {
-			
+
 			// resets the graph
 			g = new ArrayList<Node>();
 		}
@@ -612,8 +610,7 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 			// generates an empty graph
 			g = new ArrayList<Node>();
 			String errorMsg = "";
-			
-			
+
 			// reads the output to get the error message from the console
 			while (reader.hasNextLine()
 					&& !((line = reader.nextLine())
@@ -624,17 +621,17 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 			}
 			// Closes the reader
 			reader.close();
-			// thros a new Acide Debug Canvas Parse Input Equals Error Exception with the message
+			// thros a new Acide Debug Canvas Parse Input Equals Error Exception
+			// with the message
 			throw new AcideDebugCanvasParseInputEqualsErrorException(errorMsg);
 		}
 		// Closes the reader
 		reader.close();
-		
+
 		// Puts the default cursor
 		AcideDataViewReplaceWindow.getInstance().setCursor(
-			Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					
-		
+				Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
 		// returns the graph
 		return g;
 	}

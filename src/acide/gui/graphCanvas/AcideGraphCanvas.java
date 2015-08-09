@@ -237,8 +237,8 @@ public class AcideGraphCanvas extends Canvas {
 		this._height = height;
 		// gets the center of the canvas
 		this.setSize(width, height);
-		X0 = width / 2;
-		Y0 = height / 2;
+		this.X0 = this._width / 2;
+		this.Y0 = this._height / 2;
 		// adds the listeners of the canvas
 		this.addMouseMotionListener(new AcideGraphCanvasMouseMotionListener());
 		this.addMouseWheelListener(new AcideGraphCanvasMouseWheelListener());
@@ -281,25 +281,41 @@ public class AcideGraphCanvas extends Canvas {
 		this.setZoom(1);
 		this._graph = _graph;
 		Node root = null;
-		if (this._graph.get_nodes().size() > 0) {
-			int[] outgoingLinks = new int[_graph.get_nodes().size()];
-			int[] incomingLinks = new int[_graph.get_nodes().size()];
+		int numElemGraph = this._graph.get_nodes().size();
+
+		if (numElemGraph > 0) {
+			int[] outgoingLinks = new int[numElemGraph];
+			int[] incomingLinks = new int[numElemGraph];
+			DirectedWeightedLink link;
+			Node nodeOrigin;
+			Node nodeDestiny;
+
 			for (int i = 0; i < _graph.get_links().size(); i++) {
-				DirectedWeightedLink link = _graph.get_links().get(i);
-				if (!link.getOrigin().equals(link.getDestiny())) {
-					outgoingLinks[_graph.get_nodes().indexOf(link.getOrigin())]++;
-					incomingLinks[_graph.get_nodes().indexOf(link.getDestiny())]++;
+				link = _graph.get_links().get(i);
+				nodeOrigin = link.getOrigin();
+				nodeDestiny = link.getDestiny();
+
+				if (!nodeOrigin.equals(nodeDestiny)) {
+					outgoingLinks[_graph.get_nodes().indexOf(nodeOrigin)]++;
+					incomingLinks[_graph.get_nodes().indexOf(nodeDestiny)]++;
 				}
 			}
+
+			// We want to select the node with less incoming connections and
+			// more outgoing connections
 			int rootIndex = 0;
-			for (int i = 1; i < incomingLinks.length; i++) {
-				if (incomingLinks[i] == incomingLinks[rootIndex]
-						&& outgoingLinks[i] > outgoingLinks[rootIndex])
-					rootIndex = i;
+			for (int i = 1; i < numElemGraph; i++) {
+				// Less i incoming -> rootIndex = i;
 				if (incomingLinks[i] < incomingLinks[rootIndex])
+					rootIndex = i;
+				// Same i incoming & more i outgoing -> rootIndex = i;
+				else if (incomingLinks[i] == incomingLinks[rootIndex]
+						&& outgoingLinks[i] > outgoingLinks[rootIndex])
 					rootIndex = i;
 			}
 			root = _graph.get_nodes().get(rootIndex);
+
+			// Aplies the layout
 			this._layout = new TreeLayout(root, TreeLayout.DIRECT_MODE);
 			// updates the nodes distribution
 			_layout.calculateNodesPosition(this._graph, this._width,
@@ -318,11 +334,13 @@ public class AcideGraphCanvas extends Canvas {
 		if (X0 == width / 2 && Y0 == height / 2) {
 			this._width = width;
 			this._height = height;
-			X0 = width / 2;
-			Y0 = height / 2;
+			// X0 = width / 2;
+			// Y0 = height / 2;
 		} else {
 			this._width = width;
 			this._height = height;
+			X0 = width / 2;
+			Y0 = height / 2;
 
 		}
 	}
@@ -335,8 +353,8 @@ public class AcideGraphCanvas extends Canvas {
 	@Override
 	public void setBounds(Rectangle r) {
 		this.setBounds(r.x, r.y, r.width, r.height);
-		X0 = r.width / 2;
-		Y0 = r.height / 2;
+		// X0 = r.width / 2;
+		// Y0 = r.height / 2;
 	}
 
 	/*
@@ -871,11 +889,11 @@ public class AcideGraphCanvas extends Canvas {
 		Scanner reader = new Scanner(input);
 		String line = "";
 		boolean parseLinks = false;
-		
+
 		// Puts the wait cursor
 		AcideDataViewReplaceWindow.getInstance().setCursor(
 				Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-						
+
 		try {
 			// reads the next line
 			while (reader.hasNextLine()
@@ -942,11 +960,11 @@ public class AcideGraphCanvas extends Canvas {
 			// closes the reader
 			reader.close();
 		}
-		
+
 		// Puts the default cursor
 		AcideDataViewReplaceWindow.getInstance().setCursor(
-			Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				
+				Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
 		return g;
 	}
 
@@ -1063,5 +1081,4 @@ public class AcideGraphCanvas extends Canvas {
 
 	}
 
-	
 }

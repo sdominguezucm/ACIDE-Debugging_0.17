@@ -71,6 +71,8 @@ public class AcideDebugPanelShowLabelsMenuItemListener implements ActionListener
 		AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setShowingLabels(selected);
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setShowingLabels(selected);
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		
 		AcideMainWindow.getInstance()
 		.getMenu().getConfigurationMenu()

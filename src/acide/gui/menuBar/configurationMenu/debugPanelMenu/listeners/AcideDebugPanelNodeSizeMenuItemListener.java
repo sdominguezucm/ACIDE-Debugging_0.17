@@ -127,6 +127,8 @@ public class AcideDebugPanelNodeSizeMenuItemListener implements ActionListener {
 			AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setNodeSize((Integer)spinner.getValue());
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setNodeSize((Integer)spinner.getValue());
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		}
 	}
 

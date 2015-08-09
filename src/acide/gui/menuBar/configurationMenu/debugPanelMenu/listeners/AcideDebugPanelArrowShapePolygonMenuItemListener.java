@@ -69,6 +69,9 @@ public class AcideDebugPanelArrowShapePolygonMenuItemListener implements ActionL
 		AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setArrowShape(AcideGraphCanvas.ARROW_POLYGON);
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setArrowShape(AcideGraphCanvas.ARROW_POLYGON);
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
+		
 		//updates the selected component
 		((JCheckBoxMenuItem)actionEvent.getSource()).setSelected(true);
 		AcideMainWindow.getInstance().getMenu().getConfigurationMenu().getDebugPanelMenu()

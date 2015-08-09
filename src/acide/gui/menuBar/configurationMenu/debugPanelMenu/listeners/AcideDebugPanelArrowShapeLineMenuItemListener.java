@@ -69,6 +69,8 @@ public class AcideDebugPanelArrowShapeLineMenuItemListener implements ActionList
 		AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setArrowShape(AcideGraphCanvas.ARROW_LINE);
 		AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setArrowShape(AcideGraphCanvas.ARROW_LINE);
+		AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		//updates the selected component
 
 		((JCheckBoxMenuItem)actionEvent.getSource()).setSelected(true);

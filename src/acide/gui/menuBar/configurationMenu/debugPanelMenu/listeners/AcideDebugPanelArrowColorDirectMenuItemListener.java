@@ -74,6 +74,8 @@ public class AcideDebugPanelArrowColorDirectMenuItemListener implements
 			AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setLinkColor1(c);
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setLinkColor1(c);
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		}	
 	}
 

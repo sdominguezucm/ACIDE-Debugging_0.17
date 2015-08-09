@@ -74,6 +74,8 @@ public class AcideDebugPanelArrowColorInverseMenuItemListener implements
 			AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getCanvas().repaint();
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().setLinkColor2(c);
 			AcideMainWindow.getInstance().getDebugPanel().getTraceSQLPanel().getCanvas().repaint();
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().setLinkColor2(c);
+			AcideMainWindow.getInstance().getDebugPanel().getDebugSQLPanel().getCanvas().repaint();
 		}	
 	}
 

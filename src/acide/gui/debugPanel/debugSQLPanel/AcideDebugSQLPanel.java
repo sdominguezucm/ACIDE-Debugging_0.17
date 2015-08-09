@@ -40,11 +40,15 @@
 package acide.gui.debugPanel.debugSQLPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -53,11 +57,15 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable;
+import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable.MyPopUpMenu;
 import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
@@ -86,6 +94,10 @@ import acide.process.console.DesDatabaseManager;
  */
 public class AcideDebugSQLPanel extends JPanel {
 
+	/**
+	 * ACIDE - A Configurable IDE debug canvas selected Debug node color.
+	 */
+	private Color _selectedDebugNodeColor = Color.YELLOW;
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel class serial version UID.
 	 */
@@ -123,6 +135,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	 * ACIDE - A Configurable IDE trace SQL panel high lighter.
 	 */
 	private AcideDebugPanelHighLighter _highLighter;
+	private Color c;
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel to the first button icon
 	 */
@@ -160,6 +173,8 @@ public class AcideDebugSQLPanel extends JPanel {
 	public static JButton refreshSQL = new JButton();
 			
 	private static AcideMainWindow acideWindow;
+	
+//	public MyPopUpMenu _popUp = new MyPopUpMenu();
 	
 	
 	public AcideDebugSQLPanel() {
@@ -359,6 +374,7 @@ public class AcideDebugSQLPanel extends JPanel {
 		_showSQLMenuItem.setFont(_showSQLMenuItem.getFont().deriveFont(10f));
 		// showRulesMenuItem.addActionListener(arg0)
 		subButtonPanel2.add(_showSQLMenuItem);
+		
 	}
 
 	/**
@@ -368,6 +384,7 @@ public class AcideDebugSQLPanel extends JPanel {
 		this._canvas = new AcideDebugCanvas();
 		_canvas.setBounds(this.getBounds());
 		_canvas.setVisible(true);
+		_canvas.setSelectedNodeColor(_selectedDebugNodeColor);
 		_canvas.repaint();
 	}
 
@@ -529,4 +546,34 @@ public class AcideDebugSQLPanel extends JPanel {
 		return _canvas;
 	}
 
+	/*public void mouseClicked(java.awt.event.MouseEvent e){
+		if(e.getButton()==MouseEvent.BUTTON3){ //menu contextual fila
+			_popUp.setVisible(_popUp.isVisible());
+			_popUp.show(e.getComponent(), e.getX(), e.getY() );
+			
+		} 
+	}
+	
+	
+	public static class MyPopUpMenu extends JPopupMenu{
+		private static final long serialVersionUID = 1L;
+		
+		private static final ImageIcon DROP= new ImageIcon("./resources/icons/database/dropTable.png");
+		
+		private JMenuItem _dropRow;
+		
+		public MyPopUpMenu(){
+			super();
+			_dropRow = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2050"), DROP);
+			add(_dropRow);
+			_dropRow.addActionListener(new ActionListener() {				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					((AcideDataBaseDataViewTable)MyPopUpMenu.this.getInvoker())._dataView.deleteRow();
+				}
+			});
+		}
+	}*/
+	
+	
 }
