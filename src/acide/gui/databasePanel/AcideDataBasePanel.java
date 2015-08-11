@@ -112,6 +112,7 @@ import acide.gui.databasePanel.popup.AcideDataBasePanelColumnsPopupMenu;
 import acide.gui.databasePanel.utils.AcideDataBaseTreeCellRenderer;
 import acide.gui.databasePanel.utils.AcideEnterTextWindow;
 import acide.gui.databasePanel.utils.AcideTree;
+import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelLastNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelNexNodeListener;
@@ -1130,6 +1131,8 @@ public class AcideDataBasePanel extends JPanel {
 			_tree = tree;
 			_tree.setToggleClickCount(0);
 		}
+
+		
 
 		@SuppressWarnings("static-access")
 		@Override

@@ -65,6 +65,8 @@ import javax.swing.table.DefaultTableModel;
 import acide.gui.assertedDatabasePanel.listeners.AcideAssertedDatabaseKeyboardListener;
 import acide.gui.assertedDatabasePanel.listeners.AcideAssertedDatabasePanelClearButtonListener;
 import acide.gui.assertedDatabasePanel.listeners.AcideAssertedDatabasePanelRefreshButtonListener;
+import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
+import acide.gui.debugPanel.debugSQLPanel.AcideDebugSQLPanel;
 import acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel;
 import acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel;
 import acide.gui.debugPanel.utils.AcideDebugPanelHighLighter;
@@ -455,6 +457,7 @@ public class AcideAssertedDatabasePanel extends JFrame {
 					refreshNode();
 				else
 					refresh();
+						
 			}
 		});
 

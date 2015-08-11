@@ -47,6 +47,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Stroke;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
@@ -56,6 +57,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 
@@ -70,6 +74,7 @@ import acide.gui.graphUtils.DirectedWeightedGraph;
 import acide.gui.graphUtils.DirectedWeightedLink;
 import acide.gui.graphUtils.Node;
 import acide.gui.mainWindow.AcideMainWindow;
+import acide.language.AcideLanguageManager;
 import acide.resources.AcideResourceManager;
 import acide.resources.exception.MissedPropertyException;
 
@@ -110,6 +115,8 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 */
 	private boolean _enableDraw;
 
+//	public MyPopUpMenu _popUp = new MyPopUpMenu();
+	
 	/**
 	 * Creates a new ACIDE - A Configurable IDE debug canvas.
 	 */
@@ -635,5 +642,34 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		// returns the graph
 		return g;
 	}
+
+	/*public void mouseClicked(java.awt.event.MouseEvent e) {
+		if (e.getButton() == MouseEvent.BUTTON3) { // menu contextual fila
+			_popUp.setVisible(_popUp.isVisible());
+			_popUp.show(e.getComponent(), e.getX(), e.getY());
+
+		}
+	}
+
+	public static class MyPopUpMenu extends JPopupMenu {
+		private static final long serialVersionUID = 1L;
+
+		private static final ImageIcon DROP = new ImageIcon(
+				"./resources/icons/database/dropTable.png");
+
+		private JMenuItem _dropRow;
+
+		public MyPopUpMenu() {
+			super();
+			_dropRow = new JMenuItem(AcideLanguageManager.getInstance()
+					.getLabels().getString("s2050"), DROP);
+			add(_dropRow);
+			_dropRow.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+		}
+	}*/
 
 }
