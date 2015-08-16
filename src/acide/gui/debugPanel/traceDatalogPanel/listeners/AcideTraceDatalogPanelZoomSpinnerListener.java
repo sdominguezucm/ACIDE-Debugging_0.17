@@ -44,6 +44,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
+import acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel;
 import acide.gui.mainWindow.AcideMainWindow;
 
 /**
@@ -64,12 +65,12 @@ public class AcideTraceDatalogPanelZoomSpinnerListener implements ChangeListener
 	 */
 	@Override
 	public void stateChanged(ChangeEvent ev) {
-		AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
-				.getTraceDatalogPanel().getCanvas();
+		/*AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
+				.getTraceDatalogPanel().getCanvas();*/
 		// change the zoom of the graphs and updates the image.
-		canvas.changeZoom(new Float(((Integer) ((JSpinner) ev.getSource())
+		AcideTraceDatalogPanel._canvas.changeZoom(new Float(((Integer) ((JSpinner) ev.getSource())
 				.getValue())) / 100);
-		canvas.repaint();
+		AcideTraceDatalogPanel._canvas.repaint();
 
 	}
 

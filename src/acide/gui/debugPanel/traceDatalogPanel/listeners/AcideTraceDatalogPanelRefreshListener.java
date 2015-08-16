@@ -44,6 +44,8 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import acide.gui.debugPanel.debugCanvas.tasks.AcideDebugCanvasParseTask;
+import acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel;
+import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
 import acide.gui.graphCanvas.tasks.AcideGraphCanvasParseTask;
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.process.console.DesDatabaseManager;
@@ -127,6 +129,7 @@ public class AcideTraceDatalogPanelRefreshListener implements ActionListener {
 			}
 		}).start();
 
-	}
+		AcideTraceDatalogPanel._canvas.setZoom(1, CanvasPanel.TraceData);
+		}
 
 }

@@ -43,6 +43,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
+import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
 
 /**
  * ACIDE - A Configurable IDE debug canvas mouse wheel listener.
@@ -80,13 +81,13 @@ public class AcideDebugCanvasMouseWheelListener implements MouseWheelListener {
 			// checks the wheel rotation direction
 			if (ev.getWheelRotation() < 0) {
 				// zooms in the canvas and move the graph
-				_canvas.zoomIn();
+				_canvas.zoomIn(CanvasPanel.Graph);
 				int difx2 = ev.getX() - _canvas.getX0();
 				int dify2 = ev.getY() - _canvas.getY0();
 				_canvas.moveGraph(difx2 - difx, dify2 - dify);
 			} else {
 				// zooms out the canvas and move the graph
-				_canvas.zoomOut();
+				_canvas.zoomOut(null);
 				int difx2 = ev.getX() - _canvas.getX0();
 				int dify2 = ev.getY() - _canvas.getY0();
 				_canvas.moveGraph(difx2 - difx, dify2 - dify);

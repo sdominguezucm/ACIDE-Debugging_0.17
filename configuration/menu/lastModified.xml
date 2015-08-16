@@ -722,7 +722,7 @@
                           <__name>Des Panel</__name>
                           <__visible>true</__visible>
                           <__erasable>false</__erasable>
-                          <__image>./resources/icons/menu/configuration/databasePanel/des.png</__image>
+                          <__image></__image>
                         </acide.configuration.menu.AcideMenuItemConfiguration>
                         <acide.configuration.menu.AcideMenuItemConfiguration>
                           <__command>$ODBC_PANEL</__command>
@@ -730,7 +730,7 @@
                           <__name>Odbc Panel</__name>
                           <__visible>true</__visible>
                           <__erasable>false</__erasable>
-                          <__image>./resources/icons/menu/configuration/databasePanel/odbc.png</__image>
+                          <__image></__image>
                         </acide.configuration.menu.AcideMenuItemConfiguration>
                         <acide.configuration.menu.AcideMenuSubmenuConfiguration>
 		                  <__itemsManager>

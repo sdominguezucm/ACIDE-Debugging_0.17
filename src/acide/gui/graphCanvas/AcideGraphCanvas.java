@@ -61,6 +61,9 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 
 import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
+import acide.gui.debugPanel.debugSQLPanel.AcideDebugSQLPanel;
+import acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel;
+import acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel;
 import acide.gui.graphCanvas.listeners.AcideGraphCanvasMouseMotionListener;
 import acide.gui.graphCanvas.listeners.AcideGraphCanvasMouseWheelListener;
 import acide.gui.graphLayout.DHLayout;
@@ -178,6 +181,8 @@ public class AcideGraphCanvas extends Canvas {
 	 */
 	private static AcideGraphCanvas _instance;
 
+	public enum CanvasPanel { TraceData, TraceSQL, DebugSQL, Graph }
+	
 	/**
 	 * 
 	 * @return the instance of ACIDE - A Configurable IDE graph canvas.
@@ -278,7 +283,7 @@ public class AcideGraphCanvas extends Canvas {
 	 *            the new value to set.
 	 */
 	public void set_graph(DirectedWeightedGraph _graph) {
-		this.setZoom(1);
+		this.setZoom(1, CanvasPanel.Graph);
 		this._graph = _graph;
 		Node root = null;
 		int numElemGraph = this._graph.get_nodes().size();
@@ -585,10 +590,11 @@ public class AcideGraphCanvas extends Canvas {
 
 	/**
 	 * Increases the zoom of the ACIDE - A Configurable IDE graph canvas graph.
+	 * @param canvasPanel TODO
 	 */
-	public void zoomIn() {
+	public void zoomIn(CanvasPanel panel) {
 		ArrayList<Node> nodes = _graph.get_nodes();
-		this.setZoom(_zoom * _inc);
+		this.setZoom(_zoom * _inc, panel );
 		for (Node n : nodes) {
 			float difx = n.getX() - X0;
 			float dify = n.getY() - Y0;
@@ -601,11 +607,12 @@ public class AcideGraphCanvas extends Canvas {
 
 	/**
 	 * Decreases the zoom of the ACIDE - A Configurable IDE graph canvas graph.
+	 * @param panel TODO
 	 */
-	public void zoomOut() {
+	public void zoomOut(CanvasPanel panel) {
 		ArrayList<Node> nodes = _graph.get_nodes();
 
-		this.setZoom(_zoom / _inc);
+		this.setZoom(_zoom / _inc, panel);
 		for (Node n : nodes) {
 			float difx = n.getX() - X0;
 			float dify = n.getY() - Y0;
@@ -657,11 +664,32 @@ public class AcideGraphCanvas extends Canvas {
 	 * 
 	 * @param zoom
 	 *            new value to set.
+	 * @param canvasPanel TODO
 	 */
-	public void setZoom(double zoom) {
+	public void setZoom(double zoom, CanvasPanel panel) {
 		this._zoom = zoom;
-		JSpinner s = AcideMainWindow.getInstance().getGraphPanel()
-				.getZoomSpinner();
+		JSpinner s;
+		switch (panel) {
+		case DebugSQL:
+			s = AcideDebugSQLPanel.getZoomSpinner();
+
+			break;
+		case TraceData:
+			s = AcideTraceDatalogPanel.getZoomSpinner();
+
+			break;
+		case TraceSQL:
+			s = AcideTraceSQLPanel.getZoomSpinner();
+
+			break;
+		case Graph:
+			s = AcideMainWindow.getInstance().getGraphPanel().getZoomSpinner();
+			break;
+		default:
+			s = AcideMainWindow.getInstance().getGraphPanel().getZoomSpinner();
+			break;
+		}
+
 		ChangeListener cl = s.getChangeListeners()[0];
 		s.removeChangeListener(cl);
 		s.setValue((int) (zoom * 100));

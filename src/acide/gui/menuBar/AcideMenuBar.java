@@ -1607,7 +1607,7 @@ public class AcideMenuBar extends JMenuBar {
 				} else {
 					des = new AcideMenuItemConfiguration(
 							AcideDatabasePanelMenu.DES_PANEL_NAME);
-					des.setImage("./resources/icons/menu/configuration/databasePanel/des.png");
+					//des.setImage("./resources/icons/menu/configuration/databasePanel/des.png");
 					des.setCommand("$DES_PANEL");
 					des.setVisible(AcideMenuConfiguration.getInstance()
 							.getIsDisplayed(
@@ -1636,7 +1636,7 @@ public class AcideMenuBar extends JMenuBar {
 				} else {
 					odbc = new AcideMenuItemConfiguration(
 							AcideDatabasePanelMenu.ODBC_PANEL_NAME);
-					odbc.setImage("./resources/icons/menu/configuration/databasePanel/odbc.png");
+					//odbc.setImage("./resources/icons/menu/configuration/databasePanel/odbc.png");
 					odbc.setCommand("$ODBC_PANEL");
 					odbc.setVisible(AcideMenuConfiguration.getInstance()
 							.getIsDisplayed(

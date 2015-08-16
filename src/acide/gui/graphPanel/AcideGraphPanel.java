@@ -83,7 +83,7 @@ public class AcideGraphPanel extends JPanel {
 	/**
 	 * ACIDE - A Configurable IDE canvas.
 	 */
-	AcideGraphCanvas _canvas;
+	public static AcideGraphCanvas _canvas;
 	/**
 	 * ACIDE - A Configurable IDE size of the window.
 	 */

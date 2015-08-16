@@ -87,7 +87,7 @@ public class AcideTraceDatalogPanel extends JPanel {
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel debug canvas.
 	 */
-	private AcideDebugCanvas _canvas;
+	public static AcideDebugCanvas _canvas;
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel button panel.
 	 */
@@ -95,7 +95,7 @@ public class AcideTraceDatalogPanel extends JPanel {
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel zoom spinner.
 	 */
-	private JSpinner _zoomSpinner;
+	private static JSpinner _zoomSpinner;
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel show label check box.
 	 */
@@ -441,7 +441,7 @@ public class AcideTraceDatalogPanel extends JPanel {
 	 * 
 	 * @return the ACIDE - A Configurable IDE trace datalog panel zoom spinner.
 	 */
-	public JSpinner getZoomSpinner() {
+	public static JSpinner getZoomSpinner() {
 		return _zoomSpinner;
 	}
 

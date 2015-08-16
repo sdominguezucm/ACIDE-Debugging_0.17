@@ -92,7 +92,7 @@ public class AcideTraceSQLPanel extends JPanel {
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel debug canvas.
 	 */
-	private AcideDebugCanvas _canvas;
+	public static AcideDebugCanvas _canvas;
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel button panel.
 	 */
@@ -100,7 +100,7 @@ public class AcideTraceSQLPanel extends JPanel {
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel zoom spinner.
 	 */
-	private JSpinner _zoomSpinner;
+	private static JSpinner _zoomSpinner;
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel show label check box.
 	 */
@@ -421,7 +421,7 @@ public class AcideTraceSQLPanel extends JPanel {
 	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel zoom
 	 *         spinner.
 	 */
-	public JSpinner getZoomSpinner() {
+	public static JSpinner getZoomSpinner() {
 		return _zoomSpinner;
 	}
 

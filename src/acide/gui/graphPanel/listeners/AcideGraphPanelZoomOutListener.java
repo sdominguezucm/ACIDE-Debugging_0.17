@@ -43,6 +43,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import acide.gui.graphCanvas.AcideGraphCanvas;
+import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
+import acide.gui.graphPanel.AcideGraphPanel;
 
 /**
  * ACIDE - A Configurable IDE graph zoom out button listener.
@@ -57,9 +59,9 @@ public class AcideGraphPanelZoomOutListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//decrease the zoom of the graphs and updates the image.
-		 if(AcideGraphCanvas.getInstance().get_graph()!=null)
-			 AcideGraphCanvas.getInstance().zoomOut();
-		 AcideGraphCanvas.getInstance().repaint();
+		 if(AcideGraphPanel._canvas!=null)
+			 AcideGraphPanel._canvas.zoomOut(CanvasPanel.Graph);
+		 AcideGraphPanel._canvas.repaint();
 	
 }
 

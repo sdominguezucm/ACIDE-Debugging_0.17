@@ -1,85 +1,85 @@
-09 ago 2015 20:54:03,757 [main] INFO  LogAcide - Using your system's LookAndFeel
-09 ago 2015 20:54:04,085 [AWT-EventQueue-0] INFO  LogAcide - Initiating application...
-09 ago 2015 20:54:04,085 [AWT-EventQueue-0] INFO  LogAcide - Loading the ACIDE - A Configurable IDE - Workbench Configuration
-09 ago 2015 20:54:04,398 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Lexicon Assigner Configuration
-09 ago 2015 20:54:04,398 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Lexicon Assigner Configuration
-09 ago 2015 20:54:05,131 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Tool Bar Configuration
-09 ago 2015 20:54:05,147 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Menu Configuration
-09 ago 2015 20:54:05,147 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Language Configuration
-09 ago 2015 20:54:05,147 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Explorer Configuration
-09 ago 2015 20:54:05,178 [AWT-EventQueue-0] INFO  LogAcide - Initializing ACIDE - A Configurable IDE - Main Window...
-09 ago 2015 20:54:05,193 [AWT-EventQueue-0] INFO  LogAcide - Initializing ACIDE - A Configurable IDE - Menu...
-09 ago 2015 20:54:05,225 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Menu Configuration loaded: .\configuration\menu\lastModified.menuConfig
-09 ago 2015 20:54:05,303 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Menu Configuration loaded: .\configuration\menu\defaultAllOn.xml
-09 ago 2015 20:54:05,505 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,521 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,521 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,521 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,521 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,537 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,552 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,552 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
-09 ago 2015 20:54:05,552 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Menu created
-09 ago 2015 20:54:05,568 [AWT-EventQueue-0] INFO  LogAcide - Menu Listeners established
-09 ago 2015 20:54:05,568 [AWT-EventQueue-0] INFO  LogAcide - Generating the tree of the working directory
-09 ago 2015 20:54:05,615 [AWT-EventQueue-0] INFO  LogAcide - Tree of the working directory generated
-09 ago 2015 20:54:05,630 [AWT-EventQueue-0] INFO  LogAcide - Generating the tree of the database directory
-09 ago 2015 20:54:05,646 [AWT-EventQueue-0] INFO  LogAcide - Tree of the working directory generated
-09 ago 2015 20:54:05,708 [AWT-EventQueue-0] INFO  LogAcide - Creating exit of text... 
-09 ago 2015 20:54:05,724 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:05,724 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:05,739 [AWT-EventQueue-0] INFO  LogAcide - Exit of created text 
-09 ago 2015 20:54:05,895 [AWT-EventQueue-0] INFO  LogAcide - Initializing icons...
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - Icons created
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - Icons created
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - Initializing the ACIDE - A Configurable IDE - Tool Bar...
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Tool Bar created
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - Initializing the ACIDE - A Configurable IDE - Tool Bar...
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - Icons created
-09 ago 2015 20:54:05,911 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Tool Bar created
-09 ago 2015 20:54:05,927 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Main Window created
-09 ago 2015 20:54:05,927 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Console Configuration
-09 ago 2015 20:54:05,942 [AWT-EventQueue-0] ERROR LogAcide - 
-09 ago 2015 20:54:05,973 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Recent Files Configuration
-09 ago 2015 20:54:05,989 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Recent Projects Configuration
-09 ago 2015 20:54:05,989 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - File Editor Configuration
-09 ago 2015 20:54:06,036 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,036 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,036 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,098 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,317 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,317 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,317 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,332 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,410 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,410 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,410 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,426 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,504 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,504 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,504 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,504 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,691 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,691 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,691 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,707 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,816 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,816 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,816 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,831 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,909 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,909 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,909 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,925 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:06,987 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
-09 ago 2015 20:54:06,987 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
-09 ago 2015 20:54:06,987 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
-09 ago 2015 20:54:06,987 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
-09 ago 2015 20:54:07,377 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Main Window Configuration
-09 ago 2015 20:55:38,606 [AWT-EventQueue-0] INFO  LogAcide - Unable to kill des.exe. Exit code: 128n
+16 ago 2015 13:13:30,974 [main] INFO  LogAcide - Using your system's LookAndFeel
+16 ago 2015 13:13:31,317 [AWT-EventQueue-0] INFO  LogAcide - Initiating application...
+16 ago 2015 13:13:31,317 [AWT-EventQueue-0] INFO  LogAcide - Loading the ACIDE - A Configurable IDE - Workbench Configuration
+16 ago 2015 13:13:31,629 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Lexicon Assigner Configuration
+16 ago 2015 13:13:31,629 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Lexicon Assigner Configuration
+16 ago 2015 13:13:32,362 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Tool Bar Configuration
+16 ago 2015 13:13:32,393 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Menu Configuration
+16 ago 2015 13:13:32,393 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Language Configuration
+16 ago 2015 13:13:32,393 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Explorer Configuration
+16 ago 2015 13:13:32,409 [AWT-EventQueue-0] INFO  LogAcide - Initializing ACIDE - A Configurable IDE - Main Window...
+16 ago 2015 13:13:32,425 [AWT-EventQueue-0] INFO  LogAcide - Initializing ACIDE - A Configurable IDE - Menu...
+16 ago 2015 13:13:32,456 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Menu Configuration loaded: .\configuration\menu\lastModified.menuConfig
+16 ago 2015 13:13:32,549 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Menu Configuration loaded: .\configuration\menu\defaultAllOn.xml
+16 ago 2015 13:13:32,768 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,783 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,783 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,783 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,783 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,799 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,799 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,799 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,799 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,799 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,815 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,815 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,815 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,815 [AWT-EventQueue-0] INFO  LogAcide - File save correctly: ./configuration/menu/lastModified.menuConfig
+16 ago 2015 13:13:32,815 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Menu created
+16 ago 2015 13:13:32,846 [AWT-EventQueue-0] INFO  LogAcide - Menu Listeners established
+16 ago 2015 13:13:32,846 [AWT-EventQueue-0] INFO  LogAcide - Generating the tree of the working directory
+16 ago 2015 13:13:32,877 [AWT-EventQueue-0] INFO  LogAcide - Tree of the working directory generated
+16 ago 2015 13:13:32,893 [AWT-EventQueue-0] INFO  LogAcide - Generating the tree of the database directory
+16 ago 2015 13:13:32,908 [AWT-EventQueue-0] INFO  LogAcide - Tree of the working directory generated
+16 ago 2015 13:13:32,955 [AWT-EventQueue-0] INFO  LogAcide - Creating exit of text... 
+16 ago 2015 13:13:32,971 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:32,971 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:32,986 [AWT-EventQueue-0] INFO  LogAcide - Exit of created text 
+16 ago 2015 13:13:33,205 [AWT-EventQueue-0] INFO  LogAcide - Initializing icons...
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - Icons created
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - Icons created
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - Initializing the ACIDE - A Configurable IDE - Tool Bar...
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Tool Bar created
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - Initializing the ACIDE - A Configurable IDE - Tool Bar...
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - Icons created
+16 ago 2015 13:13:33,220 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Tool Bar created
+16 ago 2015 13:13:33,236 [AWT-EventQueue-0] INFO  LogAcide - ACIDE - A Configurable IDE - Main Window created
+16 ago 2015 13:13:33,236 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Console Configuration
+16 ago 2015 13:13:33,251 [AWT-EventQueue-0] ERROR LogAcide - 
+16 ago 2015 13:13:33,298 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Recent Files Configuration
+16 ago 2015 13:13:33,298 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Recent Projects Configuration
+16 ago 2015 13:13:33,314 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - File Editor Configuration
+16 ago 2015 13:13:33,376 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:33,376 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:33,376 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:33,439 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:33,688 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:33,688 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:33,688 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:33,688 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:33,766 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:33,766 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:33,766 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:33,766 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:33,829 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:33,829 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:33,829 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:33,844 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:34,016 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:34,016 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:34,016 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:34,031 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:34,172 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:34,172 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:34,172 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:34,187 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:34,343 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:34,343 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:34,343 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:34,359 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:34,421 [AWT-EventQueue-0] INFO  LogAcide - Creating text editor...
+16 ago 2015 13:13:34,421 [AWT-EventQueue-0] INFO  LogAcide - Creating the syntax...
+16 ago 2015 13:13:34,421 [AWT-EventQueue-0] INFO  LogAcide - Created syntax
+16 ago 2015 13:13:34,437 [AWT-EventQueue-0] INFO  LogAcide - Created text editor
+16 ago 2015 13:13:34,780 [AWT-EventQueue-0] INFO  LogAcide - Loading ACIDE - A Configurable IDE - Main Window Configuration
+16 ago 2015 13:14:06,333 [AWT-EventQueue-0] INFO  LogAcide - Unable to kill des.exe. Exit code: 128n

@@ -44,6 +44,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
+import acide.gui.debugPanel.debugSQLPanel.AcideDebugSQLPanel;
 import acide.gui.mainWindow.AcideMainWindow;
 
 /**
@@ -65,11 +66,11 @@ public class AcideDebugSQLPanelZoomSpinnerListener implements ChangeListener {
 	 */
 	@Override
 	public void stateChanged(ChangeEvent ev) {
-		AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
-				.getDebugSQLPanel().getCanvas();
+		/*AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
+				.getDebugSQLPanel().getCanvas();*/
 		// change the zoom of the graphs and updates the image.
-		canvas.changeZoom(new Float(((Integer) ((JSpinner) ev.getSource()).getValue())) / 100);
-		canvas.repaint();
+		AcideDebugSQLPanel._canvas.changeZoom(new Float(((Integer) ((JSpinner) ev.getSource()).getValue())) / 100);
+		AcideDebugSQLPanel._canvas.repaint();
 
 	}
 }

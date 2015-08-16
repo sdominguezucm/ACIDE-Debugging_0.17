@@ -43,6 +43,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
+import acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel;
+import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
 import acide.gui.mainWindow.AcideMainWindow;
 
 /**
@@ -59,12 +61,12 @@ public class AcideTraceSQLPanelZoomOutListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
-				.getTraceSQLPanel().getCanvas();
+		/*AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
+				.getTraceSQLPanel().getCanvas();*/
 		// increase the zoom of the graphs and updates the image.
-		if (canvas != null)
-			canvas.zoomOut();
-		canvas.repaint();
+		if (AcideTraceSQLPanel._canvas != null)
+			AcideTraceSQLPanel._canvas.zoomOut(CanvasPanel.TraceSQL);
+		AcideTraceSQLPanel._canvas.repaint();
 	}
 
 }

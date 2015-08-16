@@ -68,10 +68,10 @@ public class AcideDebugSQLPanelShowLabelsListener implements ActionListener {
 		// Gets the new value of the checkBox
 		boolean selected = ((JCheckBox) ev.getSource()).isSelected();
 		// updates the show labels flag and repaint the graph
-		AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
-				.getDebugSQLPanel().getCanvas();
-		canvas.setShowingLabels(selected);
-		canvas.repaint();
+	/*	AcideDebugCanvas canvas = AcideMainWindow.getInstance().getDebugPanel()
+				.getDebugSQLPanel().getCanvas();*/
+		AcideDebugSQLPanel._canvas.setShowingLabels(selected);
+		AcideDebugSQLPanel._canvas.repaint();
 
 	}
 

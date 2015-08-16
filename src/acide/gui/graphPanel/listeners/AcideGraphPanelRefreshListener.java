@@ -46,7 +46,10 @@ import java.util.LinkedList;
 
 import acide.gui.consolePanel.tasks.AcideConsolePDGTask;
 import acide.gui.debugPanel.debugCanvas.tasks.AcideDebugCanvasParseTask;
+import acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel;
+import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
 import acide.gui.graphCanvas.tasks.AcideGraphCanvasParseTask;
+import acide.gui.graphPanel.AcideGraphPanel;
 import acide.gui.mainWindow.AcideMainWindow;
 import acide.process.console.DesDatabaseManager;
 
@@ -97,6 +100,7 @@ public class AcideGraphPanelRefreshListener implements ActionListener {
 			}
 		});
 		
-	}
+		AcideGraphPanel._canvas.setZoom(1, CanvasPanel.Graph);
+		}
 
 }

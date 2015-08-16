@@ -43,7 +43,7 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import acide.gui.graphCanvas.AcideGraphCanvas;
+import acide.gui.graphPanel.AcideGraphPanel;
 
 /**
  * ACIDE - A Configurable IDE trace datalog zoom spinner listener.
@@ -58,8 +58,8 @@ public class AcideGraphPanelZoomSpinnerListener implements ChangeListener {
 	 */
 	public void stateChanged(ChangeEvent ev) {
 		//change the zoom of the graphs and updates the image.
-		AcideGraphCanvas.getInstance().changeZoom(new Float(((Integer)((JSpinner)ev.getSource()).getValue()))/100);
-		AcideGraphCanvas.getInstance().repaint();
+		AcideGraphPanel._canvas.changeZoom(new Float(((Integer)((JSpinner)ev.getSource()).getValue()))/100);
+		AcideGraphPanel._canvas.repaint();
 	}
 
 }

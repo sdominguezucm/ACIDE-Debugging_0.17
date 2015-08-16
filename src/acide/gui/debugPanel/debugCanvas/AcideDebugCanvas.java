@@ -68,7 +68,11 @@ import acide.gui.debugPanel.debugCanvas.exceptions.AcideDebugCanvasParseInputEqu
 import acide.gui.debugPanel.debugCanvas.listeners.AcideDebugCanvasMouseListener;
 import acide.gui.debugPanel.debugCanvas.listeners.AcideDebugCanvasMouseMotionListener;
 import acide.gui.debugPanel.debugCanvas.listeners.AcideDebugCanvasMouseWheelListener;
+import acide.gui.debugPanel.debugSQLPanel.AcideDebugSQLPanel;
+import acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel;
+import acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel;
 import acide.gui.graphCanvas.AcideGraphCanvas;
+import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
 import acide.gui.graphLayout.TreeLayout;
 import acide.gui.graphUtils.DirectedWeightedGraph;
 import acide.gui.graphUtils.DirectedWeightedLink;
@@ -516,17 +520,27 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 * @see acide.gui.graphCanvas.AcideGraphCanvas#setZoom(double)
 	 */
 	@Override
-	public void setZoom(double zoom) {
-		// Updates the zoom level
-
+	public void setZoom(double zoom, CanvasPanel panel) {
 		this._zoom = zoom;
-		// Updates the zoom level on the zoom spinner
-		JSpinner s = AcideMainWindow.getInstance().getDebugPanel()
-				.getTraceSQLPanel().getZoomSpinner();
-		/*
-		 * JSpinner s = AcideMainWindow.getInstance().getDebugPanel()
-		 * .getTraceDatalogPanel().getZoomSpinner();
-		 */
+		JSpinner s;
+		switch (panel) {
+		case DebugSQL:
+			s = AcideDebugSQLPanel.getZoomSpinner();
+
+			break;
+		case TraceData:
+			s = AcideTraceDatalogPanel.getZoomSpinner();
+
+			break;
+		case TraceSQL:
+			s = AcideTraceSQLPanel.getZoomSpinner();
+
+			break;
+		default:
+			s = AcideMainWindow.getInstance().getGraphPanel().getZoomSpinner();
+			break;
+		}
+
 		ChangeListener cl = s.getChangeListeners()[0];
 		s.removeChangeListener(cl);
 		s.setValue((int) (zoom * 100));
