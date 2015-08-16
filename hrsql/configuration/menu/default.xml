@@ -468,6 +468,14 @@
                   <__erasable>false</__erasable>
                   <__image>./resources/icons/menu/view/showGraphPanel.png</__image>
                 </acide.configuration.menu.AcideMenuItemConfiguration>
+                <acide.configuration.menu.AcideMenuItemConfiguration>
+                  <__command>$REFRESH_DATABASE_PANEL</__command>
+                  <__parameter>None</__parameter>
+                  <__name>Refresh Data Base Panel</__name>
+                  <__visible>true</__visible>
+                  <__erasable>false</__erasable>
+                  <__image>.resources/icons/panels/refresh.png</__image>
+                </acide.configuration.menu.AcideMenuItemConfiguration>
               </__list>
             </__list>
           </__itemsManager>

@@ -97,6 +97,10 @@ public class AcideViewMenu extends JMenu {
 	 * ACIDE - A Configurable IDE view menu show data base panel menu item name.
 	 */
 	public static final String SHOW_DATA_BASE_PANEL_NAME = "Show Data Base Panel";
+		/**
+	 * ACIDE - A Configurable IDE view menu show data base panel menu item name.
+	 */
+	public static final String REFRESH_DATA_BASE_PANEL_NAME = "Refresh Data Base Panel";
 	/**
 	 * ACIDE - A Configurable IDE view menu graph panel menu item name.
 	 */

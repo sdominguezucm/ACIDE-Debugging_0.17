@@ -41,7 +41,6 @@ package acide.gui.debugPanel.debugSQLPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -62,30 +61,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
-import javax.swing.JTree;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeSelectionModel;
 
-import acide.gui.databasePanel.AcideDataBasePanel.AcideDatabasePanelClickListener;
-import acide.gui.databasePanel.Nodes.AcideDataBaseNodes;
-import acide.gui.databasePanel.Nodes.NodeColumns;
-import acide.gui.databasePanel.Nodes.NodeConstraint;
-import acide.gui.databasePanel.Nodes.NodeDDBB;
-import acide.gui.databasePanel.Nodes.NodeDefinition;
-import acide.gui.databasePanel.Nodes.NodeTable;
-import acide.gui.databasePanel.Nodes.NodeView;
+import acide.configuration.menu.AcideInsertedItemListener;
+import acide.configuration.menu.AcideMenuItemsConfiguration;
 import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable;
-import acide.gui.databasePanel.dataView.AcideDatabaseDataView;
 import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable.MyPopUpMenu;
-import acide.gui.databasePanel.dataView.menuBar.editMenu.gui.AcideDataViewReplaceWindow;
-import acide.gui.databasePanel.listeners.AcideDatabasePanelKeyboardListener;
-import acide.gui.databasePanel.popup.AcideDataBasePanelColumnsPopupMenu;
-import acide.gui.databasePanel.utils.AcideEnterTextWindow;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelLastNodeListener;
@@ -98,12 +80,13 @@ import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomInList
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomOutListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelZoomSpinnerListener;
 import acide.gui.debugPanel.utils.AcideDebugPanelHighLighter;
-import acide.gui.fileEditor.fileEditorPanel.fileEditorTextEditionArea.listeners.AcideFileEditorKeyboardListener;
+import acide.gui.graphUtils.DirectedWeightedGraph;
+import acide.gui.graphUtils.Node;
 import acide.gui.mainWindow.AcideMainWindow;
+import acide.gui.menuBar.configurationMenu.AcideConfigurationMenu;
+import acide.gui.menuBar.configurationMenu.debugPanelMenu.AcideDebugPanelMenu;
 import acide.language.AcideLanguageManager;
-import acide.process.console.AcideDatabaseManager;
 import acide.process.console.DesDatabaseManager;
-
 
 /**
  * 
@@ -155,7 +138,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	 * ACIDE - A Configurable IDE trace SQL panel high lighter.
 	 */
 	private AcideDebugPanelHighLighter _highLighter;
-	private Color c;
+
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel to the first button icon
 	 */
@@ -179,24 +162,26 @@ public class AcideDebugSQLPanel extends JPanel {
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel add button icon
 	 */
-	private final static ImageIcon ADD_IMAGE = new ImageIcon("./resources/icons/graph/add.png");
+	private final static ImageIcon ADD_IMAGE = new ImageIcon(
+			"./resources/icons/graph/add.png");
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel minus button icon
 	 */
-	private final static ImageIcon MINUS_IMAGE = new ImageIcon("./resources/icons/graph/minus.png");
+	private final static ImageIcon MINUS_IMAGE = new ImageIcon(
+			"./resources/icons/graph/minus.png");
 	/**
 	 * ACIDE - A Configurable IDE trace SQL panel refresh button icon
 	 */
-	private final static ImageIcon REFRESH_IMAGE = new ImageIcon("./resources/icons/panels/refresh.png");
-	
+	private final static ImageIcon REFRESH_IMAGE = new ImageIcon(
+			"./resources/icons/panels/refresh.png");
+
 	// builds the refresh button
 	public static JButton refreshSQL = new JButton();
-			
+
 	private static AcideMainWindow acideWindow;
-	
+
 	public JPopupMenu _popUp = null;
-	
-	
+
 	public AcideDebugSQLPanel() {
 		// Sets the layout of the panel
 		setLayout(new BorderLayout());
@@ -213,10 +198,10 @@ public class AcideDebugSQLPanel extends JPanel {
 		add(_mainButtonPanel, BorderLayout.SOUTH);
 
 		setHighLighter(new AcideDebugPanelHighLighter());
-		
-		//AcideDebugSQLPanel.acideWindow = AcideMainWindow.getInstance();
+		//Inits the popUp panel
+		popUpInit();
 
-	}
+		}
 
 	/**
 	 * Builds the buttons for the ACIDE - A Configurable IDE trace SQL panel.
@@ -233,13 +218,15 @@ public class AcideDebugSQLPanel extends JPanel {
 		// adds the sub button panel to the main button panel
 		_mainButtonPanel.add(subButtonPanel1, BorderLayout.NORTH);
 		refreshSQL.setIcon(REFRESH_IMAGE);
-		refreshSQL.setPreferredSize(new Dimension((int) (1.5 * refreshSQL.getIcon()
-				.getIconWidth()), (int) refreshSQL.getPreferredSize().getHeight()));
+		refreshSQL.setPreferredSize(new Dimension((int) (1.5 * refreshSQL
+				.getIcon().getIconWidth()), (int) refreshSQL.getPreferredSize()
+				.getHeight()));
 		// adds the action listener to the refresh button
 		refreshSQL.addActionListener(new AcideDebugSQLPanelRefreshListener());
-		//sets tooltip button 
-		refreshSQL.setToolTipText(AcideLanguageManager.getInstance().getLabels().getString("s2044"));
-		//unable the button
+		// sets tooltip button
+		refreshSQL.setToolTipText(AcideLanguageManager.getInstance()
+				.getLabels().getString("s2044"));
+		// unable the button
 		refreshSQL.setEnabled(false);
 		// adds the refresh button
 		subButtonPanel1.add(refreshSQL);
@@ -277,8 +264,8 @@ public class AcideDebugSQLPanel extends JPanel {
 		// sets the text of the show labels check box
 		_showLabelsMenuItem.setText(AcideLanguageManager.getInstance()
 				.getLabels().getString("s2263"));
-		_showLabelsMenuItem
-				.setFont(_showLabelsMenuItem.getFont().deriveFont(10f));
+		_showLabelsMenuItem.setFont(_showLabelsMenuItem.getFont().deriveFont(
+				10f));
 		// adds the action listener to the show labels check box
 		_showLabelsMenuItem
 				.addActionListener(new AcideDebugSQLPanelShowLabelsListener());
@@ -291,7 +278,8 @@ public class AcideDebugSQLPanel extends JPanel {
 		// adds the sub button panel to the main button panel
 		_mainButtonPanel.add(subButtonPanel2, BorderLayout.SOUTH);
 		// Builds the view label
-		JLabel viewLabel = new JLabel(AcideLanguageManager.getInstance().getLabels().getString("s2287"));
+		JLabel viewLabel = new JLabel(AcideLanguageManager.getInstance()
+				.getLabels().getString("s2287"));
 		viewLabel.setFont(viewLabel.getFont().deriveFont(10f));
 		subButtonPanel2.add(viewLabel);
 		// Builds the views combo box
@@ -302,14 +290,18 @@ public class AcideDebugSQLPanel extends JPanel {
 		_viewBox.addFocusListener(new FocusAdapter() {
 			/*
 			 * (non-Javadoc)
-			 * @see java.awt.event.FocusAdapter#focusGained(java.awt.event.FocusEvent)
+			 * 
+			 * @see
+			 * java.awt.event.FocusAdapter#focusGained(java.awt.event.FocusEvent
+			 * )
 			 */
 			@Override
 			public void focusGained(FocusEvent e) {
-				
+
 				// Puts the wait cursor
-				//AcideDebugSQLPanel.acideWindow.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-				
+				// AcideDebugSQLPanel.acideWindow.setCursor(new
+				// Cursor(Cursor.WAIT_CURSOR));
+
 				// Gets the views from the database
 				LinkedList<String> l = DesDatabaseManager.getInstance()
 						.executeCommand("/tapi /list_views");
@@ -319,13 +311,13 @@ public class AcideDebugSQLPanel extends JPanel {
 				for (String s : l) {
 					// Checks if the output is an error output
 					if (s.equals("$error")) {
-						//Resets the list of views
+						// Resets the list of views
 						views = new ArrayList<String>();
 						views.add(AcideLanguageManager.getInstance()
 								.getLabels().getString("s2287"));
 						break;
 					}
-					//Checks if the output has ended
+					// Checks if the output has ended
 					if (s.equals("$eot"))
 						break;
 					// Adds the actual's view name to the list
@@ -341,27 +333,29 @@ public class AcideDebugSQLPanel extends JPanel {
 					viewBox.addItem(item);
 				viewBox.setPopupVisible(false);
 				viewBox.setPopupVisible(true);
-				
+
 				// Puts the default cursor
-				//AcideDebugSQLPanel.acideWindow.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				
+				// AcideDebugSQLPanel.acideWindow.setCursor(new
+				// Cursor(Cursor.DEFAULT_CURSOR));
+
 			}
 		});
 		subButtonPanel2.add(_viewBox);
 		// Creates the first node button
-				JButton firstNodeButton = new JButton(TO_THE_FIRST_IMAGE);
-				firstNodeButton.setPreferredSize(new Dimension(
-						(int) (1.5 * firstNodeButton.getIcon().getIconWidth()),
-						(int) firstNodeButton.getPreferredSize().getHeight()));
-				// adds the action listener to the first node button
-				firstNodeButton
-						.addActionListener(new AcideDebugSQLPanelFirstNodeListener());
-				// adds the firs node button to the button panel
-				subButtonPanel2.add(firstNodeButton);
+		JButton firstNodeButton = new JButton(TO_THE_FIRST_IMAGE);
+		firstNodeButton.setPreferredSize(new Dimension(
+				(int) (1.5 * firstNodeButton.getIcon().getIconWidth()),
+				(int) firstNodeButton.getPreferredSize().getHeight()));
+		// adds the action listener to the first node button
+		firstNodeButton
+				.addActionListener(new AcideDebugSQLPanelFirstNodeListener());
+		// adds the firs node button to the button panel
+		subButtonPanel2.add(firstNodeButton);
 		// creates the previous node button
 		JButton prevNodeButton = new JButton(TO_THE_LEFT_IMAGE);
-		prevNodeButton.setPreferredSize(new Dimension((int) (1.5 * prevNodeButton.getIcon()
-				.getIconWidth()), (int) prevNodeButton.getPreferredSize().getHeight()));
+		prevNodeButton.setPreferredSize(new Dimension(
+				(int) (1.5 * prevNodeButton.getIcon().getIconWidth()),
+				(int) prevNodeButton.getPreferredSize().getHeight()));
 		// adds the action listener to the previous node button
 		prevNodeButton
 				.addActionListener(new AcideDebugSQLPanelPreviousNodeListener());
@@ -369,23 +363,24 @@ public class AcideDebugSQLPanel extends JPanel {
 		subButtonPanel2.add(prevNodeButton);
 		// creates the next node button
 		JButton nextNodeButton = new JButton(TO_THE_RIGHT_IMAGE);
-		nextNodeButton.setPreferredSize(new Dimension((int) (1.5 * nextNodeButton.getIcon()
-				.getIconWidth()), (int) nextNodeButton.getPreferredSize().getHeight()));
+		nextNodeButton.setPreferredSize(new Dimension(
+				(int) (1.5 * nextNodeButton.getIcon().getIconWidth()),
+				(int) nextNodeButton.getPreferredSize().getHeight()));
 		// adds the action listener to the next node button
 		nextNodeButton
 				.addActionListener(new AcideDebugSQLPanelNexNodeListener());
 		// adds the next node button to the button panel
 		subButtonPanel2.add(nextNodeButton);
 		// Creates the last node button
-				JButton lastNodeButton = new JButton(TO_THE_LAST_IMAGE);
-				lastNodeButton.setPreferredSize(new Dimension(
-						(int) (1.5 * lastNodeButton.getIcon().getIconWidth()),
-						(int) lastNodeButton.getPreferredSize().getHeight()));
-				// adds the action listener to the last node button
-				lastNodeButton
-						.addActionListener(new AcideDebugSQLPanelLastNodeListener());
-				// adds the last node button to the button panel
-				subButtonPanel2.add(lastNodeButton);
+		JButton lastNodeButton = new JButton(TO_THE_LAST_IMAGE);
+		lastNodeButton.setPreferredSize(new Dimension(
+				(int) (1.5 * lastNodeButton.getIcon().getIconWidth()),
+				(int) lastNodeButton.getPreferredSize().getHeight()));
+		// adds the action listener to the last node button
+		lastNodeButton
+				.addActionListener(new AcideDebugSQLPanelLastNodeListener());
+		// adds the last node button to the button panel
+		subButtonPanel2.add(lastNodeButton);
 		// Builds the show rules check box
 		_showSQLMenuItem = new JCheckBox();
 		// sets the default selected option
@@ -397,7 +392,7 @@ public class AcideDebugSQLPanel extends JPanel {
 		_showSQLMenuItem.setFont(_showSQLMenuItem.getFont().deriveFont(10f));
 		// showRulesMenuItem.addActionListener(arg0)
 		subButtonPanel2.add(_showSQLMenuItem);
-		
+
 	}
 
 	/**
@@ -433,10 +428,6 @@ public class AcideDebugSQLPanel extends JPanel {
 		this._canvas = canvas;
 	}
 
-	public void repaintCanvas(){
-		this._canvas.repaint();
-	}
-	
 	/**
 	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel view
 	 * box.
@@ -573,197 +564,109 @@ public class AcideDebugSQLPanel extends JPanel {
 		return _canvas;
 	}
 
-	public class AcideDegugSQLPanelClickListener extends MouseAdapter {
-
-		private AcideDebugCanvas _tree;
-
-		public AcideDegugSQLPanelClickListener(AcideDebugCanvas tree) {
-			_tree = tree;
-			//_tree.setToggleClickCount(0);
-		}
-
-		
-/*
-		@SuppressWarnings("static-access")
-		@Override
-		public void mouseClicked(MouseEvent arg0) { 
-			
-			try{
-				
-				if(arg0.getClickCount()==2 && !_tree.isSelectionEmpty()){
-					
-					TreePath path = _tree.getSelectionPath();
-					AcideDataBaseNodes selectedNode = (AcideDataBaseNodes) path.getLastPathComponent();
-					
-					//Double click on node table
-					if(selectedNode instanceof NodeTable){
-						
-						String table = selectedNode.toString();
-						String db = path.getParentPath().getParentPath().getLastPathComponent().toString();
-						
-						if (table.contains("("))
-							table =   table.substring(0,table.indexOf("("));
-							
-						AcideDatabaseDataView panelDv  = AcideMainWindow.getInstance().getDataBasePanel().getDataView(db, table);	
-	
-						panelDv.setState(panelDv.NORMAL);
-						panelDv.setAlwaysOnTop(true);
-						panelDv.setAlwaysOnTop(false);
-					} 	
-						//Double click on node view
-					else if (selectedNode instanceof NodeView){
-						
-							String view = selectedNode.toString();
-						
-							String db = path.getParentPath().getParentPath().getLastPathComponent().toString();
-							
-							if (view.contains("("))
-								view = view.substring(0,view.indexOf("("));
-							
-							AcideDatabaseDataView panelDv  = AcideMainWindow.getInstance().getDataBasePanel().getDataView(db, view);
-							
-							if (!panelDv.isReadOnly()) panelDv.setIsReadOnly(true);
-							
-							panelDv.setState(panelDv.NORMAL);
-							panelDv.setAlwaysOnTop(true);
-							panelDv.setAlwaysOnTop(false);
-					
-						}else{
-			
-							if(_tree.isCollapsed(path)) _tree.expandPath(path);
-								else _tree.collapsePath(path);
-							
-							if (selectedNode instanceof NodeDefinition){
-								
-								String node = path.getParentPath().getParentPath().getLastPathComponent().toString();
-								
-								if (node.contains("("))
-									node = node.substring(0, node.indexOf("("));
-								
-								String database = path.getParentPath().getParentPath().getParentPath().getParentPath().getLastPathComponent().toString();
-								
-								String text = "";
-								boolean editable;
-								
-								if (selectedNode.getParent().toString().equals(AcideLanguageManager.getInstance().getLabels().getString("s2036"))){
-									text = AcideDatabaseManager.getInstance().getSQLText(database, node);
-									editable = true;
-									new AcideEnterTextWindow(text
-											, AcideLanguageManager.getInstance().getLabels().getString("s2036"), editable);
-									
-								}else if (selectedNode.getParent().toString().equals(AcideLanguageManager.getInstance().getLabels().getString("s2288"))){
-									text = AcideDatabaseManager.getInstance().getRAText(database, node);
-									editable = true;
-									new AcideEnterTextWindow(text
-											, AcideLanguageManager.getInstance().getLabels().getString("s2288"), editable);
-								} else {
-									text = AcideDatabaseManager.getInstance().getDatalogText(database, node);
-									editable = false;
-									new AcideEnterTextWindow(text
-											, AcideLanguageManager.getInstance().getLabels().getString("s2037"), editable);
-								}
-							
-							}
-						}
-					}
-				
-					// Right button clicked then display popup
-					if(arg0.getButton()==MouseEvent.BUTTON3){
-						
-						TreePath path = _tree.getSelectionPath();
-
-						DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
-						
-						if (!(selectedNode instanceof NodeDDBB)){
-							AcideDataBaseNodes parentNode = (AcideDataBaseNodes) path.getParentPath().getLastPathComponent();
-							
-							if (parentNode instanceof NodeColumns){
-								AcideDataBaseNodes tableNode = (AcideDataBaseNodes) path.getParentPath().getParentPath().getLastPathComponent();
-								
-								if(_popUp!=null) _popUp.setVisible(false);
-								_popUp = new AcideDataBasePanelColumnsPopupMenu(tableNode,selectedNode.toString());
-								_popUp.show(arg0.getComponent(), arg0.getX(), arg0.getY() );
-							}
-						}
-						
-						_popUp = (AcideDataBasePanelColumnsPopupMenu) ((AcideDataBaseNodes)selectedNode).getPopUp();
-						_popUp.show(arg0.getComponent(), arg0.getX(), arg0.getY() );
-					} 
-					else {
-					
-						TreePath path = _tree.getSelectionPath();
-						AcideDataBaseNodes selectedNode = (AcideDataBaseNodes) path.getLastPathComponent();
-							
-						if (selectedNode instanceof NodeConstraint)
-								_tree.setToolTipText((String) selectedNode.getUserObject());
-						else
-								_tree.setToolTipText(null);
-							
-						if(_popUp!=null) _popUp.setVisible(false);
-						if (_tree.isSelectionEmpty()) return;
-					}
-						
-				} catch(ClassCastException cast){
-					//DefaultMutableTreeNode
-				}catch(NullPointerException cast){
-					//DefaultMutableTreeNode
-				}
-			}*/
+	private static final ImageIcon DROP= new ImageIcon("./resources/icons/database/dropTable.png");
+	private JMenuItem _dropRow;
+	private JMenuItem _colorNode;
+	/**
+	 * Inits the popUp panel for the ACIDE - A Configurable IDE trace SQL panel.
+	 */
+	private void popUpInit() {
+		//we ceate the popUp menu
+		_popUp = new JPopupMenu(); 
+		_dropRow = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2050"), DROP);
+		_colorNode = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2234"));
+		_colorNode.addActionListener(new AcideInsertedItemListener(
+				AcideMenuItemsConfiguration.getInstance()
+				.getSubmenu(AcideConfigurationMenu.CONFIGURATION_MENU_NAME)
+				.getSubmenu(AcideDebugPanelMenu.DEBUG_MENU_NAME)
+				.getItem(AcideDebugPanelMenu.SELECTED_NODE_COLOR_NAME)));
+		//_canvas.setSelectedNodeColor(AcideDebugPanelMenu.NODE_COLOR_NAME);
+		//_canvas.repaint();
+		_popUp.add(_dropRow);
+		/*_dropRow.addActionListener(new ActionListener() {				
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((AcideDataBaseDataViewTable)MyPopUpMenu.this.getInvoker())._dataView.deleteRow();
+			}
+		});*/
+		_popUp.add(_colorNode); 
 	}
 
-								
+	/* esto hará cuando se presione el boton del raton */
+	public void this_mousePressed(MouseEvent e) {
+		showPopupMenu(e);
+
+	}
+
+	/*
+	 * esto hará cuando se libere el boton del raton. En algunos VM funcionan
+	 * diferente. Este metodo y el anterior al final llaman al metodo
+	 * showPopupMenu()
+	 */
+
+	public void this_mouseReleased(MouseEvent e) {
+		
+		// Gets the graph of the canvas
+		DirectedWeightedGraph graph = _canvas.get_graph();
+		// Gets the nodes of the graph
+		ArrayList<Node> nodes = graph.get_nodes();
+		// Searches if a node has been clicked
+		for (Node n : nodes) {
+			if (e.getX() >= n.getX()
+					&& e.getX() <= n.getX() + (int) (_canvas.getNodeSize() * _canvas.getZoom())
+					&& e.getY() >= n.getY()
+					&& e.getY() <= n.getY() + (int) (_canvas.getNodeSize() * _canvas.getZoom())) {
+				// Shows PopUp menu
+				showPopupMenu(e);
+				// Gets the selected node name
+				String selected = n.getLabel();
+				// Gets the highlighter
+				AcideDebugPanelHighLighter highLighter = AcideMainWindow.getInstance().getDebugPanel().getTraceDatalogPanel().getHighLighter();
+				// Resets the highlights
+				highLighter.resetLines();
+				highLighter.unHighLight();
+				// Highlights the lines corresponding to the new selected node
+				highLighter.highLight(selected);
+				
+				}
+		}
+	
+	}
+
+	/* Este metodo se encarga de show el menu saliente */
+	private void showPopupMenu(MouseEvent e) {
+
+		if (e.isPopupTrigger()) { // si se desea show el menu saliente...
+			// ... mostramos el menu en la ubicacion del raton
+			_popUp.show(e.getComponent(), e.getX(), e.getY());
+		}
+
+	}
+
+	class AcideDegugSQLPanelClickListener extends MouseAdapter {
+		private AcideDebugSQLPanel adaptee;
+
+		AcideDegugSQLPanelClickListener(AcideDebugSQLPanel adaptee) {
+			this.adaptee = adaptee;
+		}
+
+		public void mousePressed(MouseEvent e) {
+			adaptee.this_mousePressed(e);
+		}
+
+		public void mouseReleased(MouseEvent e) {
+			adaptee.this_mouseReleased(e);
+		}
+	}
+
 	/**
 	 * Sets the ACIDE - A Configurable IDE database panel listeners.
 	 */
 	private void setListeners() {
 
-		// Sets the ACIDE - A Configurable IDE database panel popup menu
-		// listener
-		_canvas.addMouseListener(new AcideDegugSQLPanelClickListener(_canvas));
-
-		//Sets the ACIDE - A Configurable IDE database panel click listener             
-	//	_canvas.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
-		// Sets the ACIDE - A Configurable IDE database panel keyboard listener
-		_canvas.addKeyListener(new AcideDatabasePanelKeyboardListener());
-
-	/*	_canvas.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
-
-			@Override
-			public void valueChanged(TreeSelectionEvent evt) {                              
-				build(evt);     
-			}
-		});*/
+		// Sets the ACIDE - A Configurable IDE database panel _popUp menu listener
+		_canvas.addMouseListener(new AcideDegugSQLPanelClickListener(this));
+				
 	}
-	
-	 public void mouseClicked(java.awt.event.MouseEvent e){
-		if(e.getButton()==MouseEvent.BUTTON3){ //menu contextual fila
-			_popUp.setVisible(_popUp.isVisible());
-			_popUp.show(e.getComponent(), e.getX(), e.getY() );
-			
-		} 
-	}
-	
-	
-	public static class MyPopUpMenu extends JPopupMenu{
-		private static final long serialVersionUID = 1L;
-		
-		private static final ImageIcon DROP= new ImageIcon("./resources/icons/database/dropTable.png");
-		
-		private JMenuItem _dropRow;
-		
-		public MyPopUpMenu(){
-			super();
-			_dropRow = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2050"), DROP);
-			add(_dropRow);
-			_dropRow.addActionListener(new ActionListener() {				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					((AcideDataBaseDataViewTable)MyPopUpMenu.this.getInvoker())._dataView.deleteRow();
-				}
-			});
-		}
-	}
-	
-	
+
 }

@@ -887,6 +887,14 @@ public class AcideMenuItemsConfiguration {
 		showDatabasePanel.setCommand("$SHOW_DATABASE_PANEL");
 		result.insertObject(showDatabasePanel);
 		
+		//SHOW DATABASE PANEL
+		AcideMenuItemConfiguration refreshDatabasePanel = new AcideMenuItemConfiguration(AcideViewMenu.REFRESH_DATA_BASE_PANEL_NAME);
+		refreshDatabasePanel.setErasable(false);
+		refreshDatabasePanel.setVisible(true);
+		refreshDatabasePanel.setImage("./resources/icons/menu/view/showDataBasePanel.png");
+		refreshDatabasePanel.setCommand("$REFRESH_DATABASE_PANEL");
+		result.insertObject(refreshDatabasePanel);
+				
 		//SHOW GRAPH PANEL 
 		AcideMenuItemConfiguration showGraphPanel = new AcideMenuItemConfiguration(AcideViewMenu.SHOW_GRAPH_PANEL_NAME);
 		showGraphPanel.setErasable(false);

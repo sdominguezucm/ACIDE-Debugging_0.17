@@ -87,6 +87,10 @@ public class AcideDebugPanelMenu extends JMenu {
 	 */
 	public static final String SELECTED_NODE_COLOR_NAME = "Selected Node Color";
 	/**
+	 * ACIDE - A Configurable IDE debug panel menu selected node color menu name.
+	 */
+	//public static final String DEBUG_NODE_COLOR_NAME = "Debug Node Color";
+	/**
 	 * ACIDE - A Configurable IDE debug panel menu node size menu item name.
 	 */
 	public static final String NODE_SIZE_NAME = "Node Size";
@@ -124,9 +128,18 @@ public class AcideDebugPanelMenu extends JMenu {
 	 */
 	private JMenuItem _selectedNodeColorMenuItem;
 	/**
+	 * ACIDE - A Configurable IDE debug menu selected node color menu item.
+	 */
+	//private JMenuItem _debugNodeColorMenuItem;
+	
+	/**
 	 * ACIDE - A Configurable IDE debug menu selected node color menu item has been inserted.
 	 */
 	private boolean _selectedNodeColorInserted;
+	/**
+	 * ACIDE - A Configurable IDE debug menu selected node color menu item has been inserted.
+	 */
+	//private boolean _debugNodeColorInserted;
 	/**
 	 * ACIDE - A Configurable IDE debug menu show labels menu item.
 	 */
@@ -181,6 +194,7 @@ public class AcideDebugPanelMenu extends JMenu {
 		_arrowColorInserted=false;
 		_arrowShapeInserted=false;
 		_selectedNodeColorInserted=false;
+		//_debugNodeColorInserted=false;
 		
 		_insertedItems = new HashMap<String, AcideInsertedItem>();
 		
@@ -236,7 +250,11 @@ public class AcideDebugPanelMenu extends JMenu {
 				// Adds the line arrow shape menu to the menu
 				add(_selectedNodeColorMenuItem);
 				_selectedNodeColorInserted = true;
-			}else{
+			}/*else if(name.equals(DEBUG_NODE_COLOR_NAME)){
+				// Adds the line arrow shape menu to the menu
+				add(_debugNodeColorMenuItem);
+				_debugNodeColorInserted = true;
+			}*/else{
 				if (ob.isSubmenu()){
 					add(_insertedMenus.get(ob.getName()));
 				}else{
@@ -259,6 +277,8 @@ public class AcideDebugPanelMenu extends JMenu {
 			add(_arrowShapeMenu);
 		if(!_selectedNodeColorInserted)
 			add(_selectedNodeColorMenuItem);
+	/*	if(!_debugNodeColorInserted)
+			add(_debugNodeColorMenuItem);*/
 		
 	}
 
@@ -309,9 +329,15 @@ public class AcideDebugPanelMenu extends JMenu {
 		// Sets the selected node color menu item name
 		_selectedNodeColorMenuItem.setName(SELECTED_NODE_COLOR_NAME);
 		
+	/*	// Creates the selected node color menu item
+		_debugNodeColorMenuItem = new JMenuItem();
+
+		// Sets the selected node color menu item name
+		_debugNodeColorMenuItem.setName(DEBUG_NODE_COLOR_NAME);*/
+
 		// Creates the show labels menu item
 		_showLabelsMenuItem = new JCheckBoxMenuItem();
-		
+
 		// Sets the node show labels item name
 		_showLabelsMenuItem.setName(SHOW_LABELS_NAME);
 		
@@ -384,6 +410,9 @@ public class AcideDebugPanelMenu extends JMenu {
 				//sets the selected node color menu item text
 				_selectedNodeColorMenuItem.setText(AcideLanguageManager
 						.getInstance().getLabels().getString("s2317"));
+			/*	//sets the selected node color menu item text
+				_debugNodeColorMenuItem.setText(AcideLanguageManager
+						.getInstance().getLabels().getString("s2318"));*/
 				
 				_arrowColorMenu.setTextOfMenuComponents();
 				//sets the arrow shape menu text
@@ -438,6 +467,13 @@ public class AcideDebugPanelMenu extends JMenu {
 						.getSubmenu(AcideConfigurationMenu.CONFIGURATION_MENU_NAME)
 						.getSubmenu(AcideDebugPanelMenu.DEBUG_MENU_NAME)
 						.getItem(AcideDebugPanelMenu.SELECTED_NODE_COLOR_NAME)));
+				
+				//sets the node debug selected node color item listener
+			/*	_debugNodeColorMenuItem.addActionListener(new AcideInsertedItemListener(
+						AcideMenuItemsConfiguration.getInstance()
+						.getSubmenu(AcideConfigurationMenu.CONFIGURATION_MENU_NAME)
+						.getSubmenu(AcideDebugPanelMenu.DEBUG_MENU_NAME)
+						.getItem(AcideDebugPanelMenu.DEBUG_NODE_COLOR_NAME)));*/
 		
 	}
 
