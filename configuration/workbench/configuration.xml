@@ -74,16 +74,6 @@
             <__previousGrammarConfiguration>./configuration/grammars/bytes.jar</__previousGrammarConfiguration>
             <__currentGrammarConfiguration>./configuration/grammars/bytes.jar</__currentGrammarConfiguration>
           </acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
-          <acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
-            <__path>C:\Users\Sergio\Dropbox\Universidad\ACIDE\ACIDE_16_trunk\trunk\examples\p.sql</__path>
-            <__type>Normal</__type>
-            <__caretPosition>0</__caretPosition>
-            <__splitPaneDividerLocation>1</__splitPaneDividerLocation>
-            <__activeTextEditionArea>1</__activeTextEditionArea>
-            <__lexiconConfiguration>./configuration/lexicon/sql.xml</__lexiconConfiguration>
-            <__previousGrammarConfiguration>./configuration/grammars/bytes.jar</__previousGrammarConfiguration>
-            <__currentGrammarConfiguration>./configuration/grammars/bytes.jar</__currentGrammarConfiguration>
-          </acide.configuration.workbench.fileEditor.AcideFileEditorPanelConfiguration>
         </__list>
       </__list>
     </__fileEditorPanelConfigurationList>
