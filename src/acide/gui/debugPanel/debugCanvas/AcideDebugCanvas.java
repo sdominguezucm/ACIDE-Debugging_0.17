@@ -119,8 +119,8 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 */
 	private boolean _enableDraw;
 
-//	public MyPopUpMenu _popUp = new MyPopUpMenu();
-	
+	// public MyPopUpMenu _popUp = new MyPopUpMenu();
+
 	/**
 	 * Creates a new ACIDE - A Configurable IDE debug canvas.
 	 */
@@ -311,10 +311,17 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 				Node n = nodes.get(i);
 				// saves the default stroke
 				Stroke trazo = ((Graphics2D) g).getStroke();
+				if (n.getNodeColor().equals(Color.WHITE)) { // adaptation 0.17 - debug SQL
+					n.setNodeColor(_nodeColor);
+					g.setColor(n.getNodeColor());
+				} else
+					g.setColor(n.getNodeColor());
 				if (n.equals(_selectedNode))
 					g.setColor(_selectedTraceNodeColor);
-				else
-					g.setColor(_nodeColor);
+				/*
+				 * else g.setColor(_nodeColor);
+				 */
+
 				// draws the node
 				if (_nodeShape == NODE_CIRCLE)
 					g.fillOval((int) n.getX(), (int) n.getY(),
@@ -480,6 +487,12 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 */
 	public void setSelectedNodeColor(Color selectedNodeColor) {
 		this._selectedTraceNodeColor = selectedNodeColor;
+	}
+
+	public void setColorNode(Color colorNode) {
+
+		getSelectedNode().setNodeColor(colorNode);
+
 	}
 
 	/**
@@ -656,34 +669,5 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 		// returns the graph
 		return g;
 	}
-
-	/*public void mouseClicked(java.awt.event.MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON3) { // menu contextual fila
-			_popUp.setVisible(_popUp.isVisible());
-			_popUp.show(e.getComponent(), e.getX(), e.getY());
-
-		}
-	}
-
-	public static class MyPopUpMenu extends JPopupMenu {
-		private static final long serialVersionUID = 1L;
-
-		private static final ImageIcon DROP = new ImageIcon(
-				"./resources/icons/database/dropTable.png");
-
-		private JMenuItem _dropRow;
-
-		public MyPopUpMenu() {
-			super();
-			_dropRow = new JMenuItem(AcideLanguageManager.getInstance()
-					.getLabels().getString("s2050"), DROP);
-			add(_dropRow);
-			_dropRow.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-		}
-	}*/
 
 }

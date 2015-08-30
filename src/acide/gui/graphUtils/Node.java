@@ -39,6 +39,10 @@
  */
 package acide.gui.graphUtils;
 
+import java.awt.Color;
+
+
+
 /**
  * ACIDE - A Configurable IDE Node.
  * 
@@ -67,6 +71,8 @@ public class Node {
 	 * ACIDE - A Configurable IDE Node is position changed.
 	 */
 	private boolean posicionado=false;
+	
+	private Color nodeColor = Color.WHITE;
 	
 	/**
 	 * Creates a ACIDE - A Configurable IDE Node.
@@ -226,7 +232,14 @@ public class Node {
 		this.y+=height;
 	}
 
-	
-	
+	public Color getNodeColor() {
+		return nodeColor;
+	}
+
+	public void setNodeColor(Color color) {
+		this.nodeColor = color;
+	}
+
+
 	
 }

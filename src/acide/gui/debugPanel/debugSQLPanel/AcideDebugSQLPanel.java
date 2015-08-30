@@ -70,6 +70,8 @@ import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable;
 import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable.MyPopUpMenu;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelRedNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelGreenNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelLastNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelNexNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelPreviousNodeListener;
@@ -90,7 +92,7 @@ import acide.process.console.DesDatabaseManager;
 
 /**
  * 
- * ACIDE - A Configurable IDE trace SQL panel.
+ * ACIDE - A Configurable IDE debug SQL panel.
  * 
  * @version 0.15
  * @see JPanel
@@ -102,75 +104,95 @@ public class AcideDebugSQLPanel extends JPanel {
 	 */
 	private Color _selectedDebugNodeColor = Color.YELLOW;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel class serial version UID.
+	 * ACIDE - A Configurable IDE debug SQL panel class serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel debug canvas.
+	 * ACIDE - A Configurable IDE debug SQL panel debug canvas.
 	 */
 	public static AcideDebugCanvas _canvas;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel button panel.
+	 * ACIDE - A Configurable IDE debug SQL panel button panel.
 	 */
 	private JPanel _mainButtonPanel;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel zoom spinner.
+	 * ACIDE - A Configurable IDE debug SQL panel zoom spinner.
 	 */
 	private static JSpinner _zoomSpinner;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel show label check box.
+	 * ACIDE - A Configurable IDE debug SQL panel show label check box.
 	 */
 	private JCheckBox _showLabelsMenuItem;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel show rules check box.
+	 * ACIDE - A Configurable IDE debug SQL panel show rules check box.
 	 */
 	private JCheckBox _showSQLMenuItem;
 
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel view box.
+	 * ACIDE - A Configurable IDE debug SQL panel view box.
 	 */
 	private JComboBox _viewBox;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel query.
+	 * ACIDE - A Configurable IDE debug SQL panel query.
 	 */
 	private String _query;
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel high lighter.
+	 * ACIDE - A Configurable IDE debug SQL panel high lighter.
 	 */
 	private AcideDebugPanelHighLighter _highLighter;
-
 	/**
-	 * ACIDE - A Configurable IDE trace datalog panel to the first button icon
+	 * ACIDE - A Configurable IDE debug SQL panel _drop Row.
+	 */
+	private JMenuItem _dropRow;
+	/**
+	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
+	 */
+	private JMenuItem _colorNode;
+	/**
+	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
+	 */
+	private JMenuItem _colorNodeRed;
+	/**
+	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
+	 */
+	private JMenuItem _colorNodeGreen;
+	/**
+	 * ACIDE - A Configurable IDE trace datalog panel to the first button for the PopUp
+	 */
+	private final static ImageIcon DROP= new ImageIcon("./resources/icons/database/dropTable.png");
+	
+	/**
+	 * ACIDE - A Configurable IDE debug datalog panel to the first button icon
 	 */
 	private final static ImageIcon TO_THE_FIRST_IMAGE = new ImageIcon(
 			"./resources/icons/menu/configuration/menu/double_left_arrow.png");
 	/**
-	 * ACIDE - A Configurable IDE trace datalog panel to the last button icon
+	 * ACIDE - A Configurable IDE debug datalog panel to the last button icon
 	 */
 	private final static ImageIcon TO_THE_LAST_IMAGE = new ImageIcon(
 			"./resources/icons/menu/configuration/menu/double_right_arrow.png");
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel to the right button icon
+	 * ACIDE - A Configurable IDE debug SQL panel to the right button icon
 	 */
 	private final static ImageIcon TO_THE_RIGHT_IMAGE = new ImageIcon(
 			"./resources/icons/menu/configuration/menu/right_arrow.png");
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel to the left button icon
+	 * ACIDE - A Configurable IDE debug SQL panel to the left button icon
 	 */
 	private final static ImageIcon TO_THE_LEFT_IMAGE = new ImageIcon(
 			"./resources/icons/menu/configuration/menu/left_arrow.png");
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel add button icon
+	 * ACIDE - A Configurable IDE debug SQL panel add button icon
 	 */
 	private final static ImageIcon ADD_IMAGE = new ImageIcon(
 			"./resources/icons/graph/add.png");
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel minus button icon
+	 * ACIDE - A Configurable IDE debug SQL panel minus button icon
 	 */
 	private final static ImageIcon MINUS_IMAGE = new ImageIcon(
 			"./resources/icons/graph/minus.png");
 	/**
-	 * ACIDE - A Configurable IDE trace SQL panel refresh button icon
+	 * ACIDE - A Configurable IDE debug SQL panel refresh button icon
 	 */
 	private final static ImageIcon REFRESH_IMAGE = new ImageIcon(
 			"./resources/icons/panels/refresh.png");
@@ -204,7 +226,7 @@ public class AcideDebugSQLPanel extends JPanel {
 		}
 
 	/**
-	 * Builds the buttons for the ACIDE - A Configurable IDE trace SQL panel.
+	 * Builds the buttons for the ACIDE - A Configurable IDE debug SQL panel.
 	 */
 	private void buildButtons() {
 		// builds the button panel
@@ -323,7 +345,7 @@ public class AcideDebugSQLPanel extends JPanel {
 					// Adds the actual's view name to the list
 					views.add(s);
 				}
-				// Gets the trace datalog panel list of views
+				// Gets the debug datalog panel list of views
 				JComboBox viewBox = AcideMainWindow.getInstance()
 						.getDebugPanel().getDebugSQLPanel().getViewBox();
 				// Removes the previous views
@@ -396,7 +418,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Builds the canvas of the the ACIDE - A Configurable IDE trace SQL panel.
+	 * Builds the canvas of the the ACIDE - A Configurable IDE debug SQL panel.
 	 */
 	private void buildCanvas() {
 		this._canvas = new AcideDebugCanvas();
@@ -407,10 +429,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel
+	 * Returns the ACIDE - A Configurable IDE debug panel debug SQL panel
 	 * canvas.
 	 * 
-	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel
+	 * @return the ACIDE - A Configurable IDE debug panel debug SQL panel
 	 *         canvas.
 	 */
 	public AcideDebugCanvas getCanvas() {
@@ -418,7 +440,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Sets a new value to the ACIDE - A Configurable IDE trace SQL panel
+	 * Sets a new value to the ACIDE - A Configurable IDE debug SQL panel
 	 * canvas.
 	 * 
 	 * @param canvas
@@ -429,10 +451,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel view
+	 * Returns the ACIDE - A Configurable IDE debug panel debug SQL panel view
 	 * box.
 	 * 
-	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel view
+	 * @return the ACIDE - A Configurable IDE debug panel debug SQL panel view
 	 *         box.
 	 */
 	public JComboBox getViewBox() {
@@ -440,7 +462,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Sets a new value to the ACIDE - A Configurable IDE trace SQL panel view
+	 * Sets a new value to the ACIDE - A Configurable IDE debug SQL panel view
 	 * box.
 	 * 
 	 * @param viewBox
@@ -451,10 +473,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel zoom
+	 * Returns the ACIDE - A Configurable IDE debug panel debug SQL panel zoom
 	 * spinner.
 	 * 
-	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel zoom
+	 * @return the ACIDE - A Configurable IDE debug panel debug SQL panel zoom
 	 *         spinner.
 	 */
 	public static JSpinner getZoomSpinner() {
@@ -462,7 +484,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Sets a new value to the ACIDE - A Configurable IDE trace SQL panel zoom
+	 * Sets a new value to the ACIDE - A Configurable IDE debug SQL panel zoom
 	 * spinner.
 	 * 
 	 * @param zoomSpinner
@@ -473,10 +495,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel show
+	 * Returns the ACIDE - A Configurable IDE debug panel debug SQL panel show
 	 * labels item.
 	 * 
-	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel show
+	 * @return the ACIDE - A Configurable IDE debug panel debug SQL panel show
 	 *         labels item.
 	 */
 	public JCheckBox getShowLabelsMenuItem() {
@@ -484,7 +506,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Sets a new value to the ACIDE - A Configurable IDE trace SQL panel show
+	 * Sets a new value to the ACIDE - A Configurable IDE debug SQL panel show
 	 * labels item.
 	 * 
 	 * @param showLabelsMenuItem
@@ -495,10 +517,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel show
+	 * Returns the ACIDE - A Configurable IDE debug panel debug SQL panel show
 	 * SQL item.
 	 * 
-	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel show
+	 * @return the ACIDE - A Configurable IDE debug panel debug SQL panel show
 	 *         SQL item.
 	 */
 	public JCheckBox getShowSQLMenuItem() {
@@ -506,7 +528,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Sets a new value to the ACIDE - A Configurable IDE trace SQL panel show
+	 * Sets a new value to the ACIDE - A Configurable IDE debug SQL panel show
 	 * SQL item.
 	 * 
 	 * @param showSQLsMenuItem
@@ -517,16 +539,16 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE debug panel trace SQL panel query.
+	 * Returns the ACIDE - A Configurable IDE debug panel debug SQL panel query.
 	 * 
-	 * @return the ACIDE - A Configurable IDE debug panel trace SQL panel query.
+	 * @return the ACIDE - A Configurable IDE debug panel debug SQL panel query.
 	 */
 	public String getQuery() {
 		return _query;
 	}
 
 	/**
-	 * Sets a new value to the ACIDE - A Configurable IDE trace SQL panel query.
+	 * Sets a new value to the ACIDE - A Configurable IDE debug SQL panel query.
 	 * 
 	 * @param query
 	 *            new value to set.
@@ -536,7 +558,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the the ACIDE - A Configurable IDE trace SQL panel highligther.
+	 * Returns the the ACIDE - A Configurable IDE debug SQL panel highligther.
 	 * 
 	 * @return the the ACIDE - A Configurable IDE trace datalog highligther.
 	 */
@@ -556,54 +578,41 @@ public class AcideDebugSQLPanel extends JPanel {
 	}
 
 	/**
-	 * Returns the ACIDE - A Configurable IDE trace SQL canvas.
-	 * 
-	 * @return the ACIDE - A Configurable IDE trace SQL canvas.
-	 */
-	public AcideDebugCanvas getDebugSQLCanvas() {
-		return _canvas;
-	}
-
-	private static final ImageIcon DROP= new ImageIcon("./resources/icons/database/dropTable.png");
-	private JMenuItem _dropRow;
-	private JMenuItem _colorNode;
-	/**
-	 * Inits the popUp panel for the ACIDE - A Configurable IDE trace SQL panel.
+	 * Initialization the popUp panel for the ACIDE - A Configurable IDE debug SQL panel.
 	 */
 	private void popUpInit() {
-		//we ceate the popUp menu
+		//we create the popUp menu
 		_popUp = new JPopupMenu(); 
+		//Option delete node
 		_dropRow = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2050"), DROP);
+		//_dropRow.addActionListener(new new AcideDebugSQLPanelDropNodeListener());
+		_popUp.add(_dropRow);
+		//option change comun color nodes
 		_colorNode = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2234"));
 		_colorNode.addActionListener(new AcideInsertedItemListener(
 				AcideMenuItemsConfiguration.getInstance()
 				.getSubmenu(AcideConfigurationMenu.CONFIGURATION_MENU_NAME)
 				.getSubmenu(AcideDebugPanelMenu.DEBUG_MENU_NAME)
 				.getItem(AcideDebugPanelMenu.SELECTED_NODE_COLOR_NAME)));
-		//_canvas.setSelectedNodeColor(AcideDebugPanelMenu.NODE_COLOR_NAME);
-		//_canvas.repaint();
-		_popUp.add(_dropRow);
-		/*_dropRow.addActionListener(new ActionListener() {				
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				((AcideDataBaseDataViewTable)MyPopUpMenu.this.getInvoker())._dataView.deleteRow();
-			}
-		});*/
 		_popUp.add(_colorNode); 
+		//
+		_colorNodeRed = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2319"));
+		_colorNodeRed.addActionListener(new AcideDebugSQLPanelRedNodeListener());
+		_popUp.add(_colorNodeRed); 
+		//
+		_colorNodeGreen = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2320"));
+		_colorNodeGreen.addActionListener(new AcideDebugSQLPanelGreenNodeListener());
+		_popUp.add(_colorNodeGreen); 
+		
+		
 	}
 
-	/* esto hará cuando se presione el boton del raton */
 	public void this_mousePressed(MouseEvent e) {
 		showPopupMenu(e);
 
 	}
 
-	/*
-	 * esto hará cuando se libere el boton del raton. En algunos VM funcionan
-	 * diferente. Este metodo y el anterior al final llaman al metodo
-	 * showPopupMenu()
-	 */
-
+	
 	public void this_mouseReleased(MouseEvent e) {
 		
 		// Gets the graph of the canvas
@@ -633,11 +642,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	
 	}
 
-	/* Este metodo se encarga de show el menu saliente */
 	private void showPopupMenu(MouseEvent e) {
 
-		if (e.isPopupTrigger()) { // si se desea show el menu saliente...
-			// ... mostramos el menu en la ubicacion del raton
+		if (e.isPopupTrigger()) { 
+			// we show the popUp in the position of mouse
 			_popUp.show(e.getComponent(), e.getX(), e.getY());
 		}
 
