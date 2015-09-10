@@ -43,8 +43,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
@@ -64,11 +62,6 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
-import acide.configuration.menu.AcideInsertedItemListener;
-import acide.configuration.menu.AcideMenuItemsConfiguration;
-import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable;
-import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable.MyPopUpMenu;
-import acide.gui.databasePanel.popup.listeners.AcideDropTableMenuItemAction;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelColorNodeListener;
@@ -88,8 +81,6 @@ import acide.gui.debugPanel.utils.AcideDebugPanelHighLighter;
 import acide.gui.graphUtils.DirectedWeightedGraph;
 import acide.gui.graphUtils.Node;
 import acide.gui.mainWindow.AcideMainWindow;
-import acide.gui.menuBar.configurationMenu.AcideConfigurationMenu;
-import acide.gui.menuBar.configurationMenu.debugPanelMenu.AcideDebugPanelMenu;
 import acide.language.AcideLanguageManager;
 import acide.process.console.DesDatabaseManager;
 
@@ -144,10 +135,6 @@ public class AcideDebugSQLPanel extends JPanel {
 	 */
 	private AcideDebugPanelHighLighter _highLighter;
 	/**
-	 * ACIDE - A Configurable IDE debug SQL panel _drop Row.
-	 */
-	private JMenuItem _dropRow;
-	/**
 	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
 	 */
 	private JMenuItem _colorNode;
@@ -163,10 +150,6 @@ public class AcideDebugSQLPanel extends JPanel {
 	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
 	 */
 	private JMenuItem _colorNodeGray;
-	/**
-	 * ACIDE - A Configurable IDE trace datalog panel to the first button for the PopUp
-	 */
-	private final static ImageIcon DROP= new ImageIcon("./resources/icons/database/dropTable.png");
 	
 	/**
 	 * ACIDE - A Configurable IDE debug datalog panel to the first button icon
@@ -206,8 +189,6 @@ public class AcideDebugSQLPanel extends JPanel {
 
 	// builds the refresh button
 	public static JButton refreshSQL = new JButton();
-
-	private static AcideMainWindow acideWindow;
 
 	public JPopupMenu _popUp = null;
 
@@ -428,7 +409,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	 * Builds the canvas of the the ACIDE - A Configurable IDE debug SQL panel.
 	 */
 	private void buildCanvas() {
-		this._canvas = new AcideDebugCanvas();
+		_canvas = new AcideDebugCanvas();
 		_canvas.setBounds(this.getBounds());
 		_canvas.setVisible(true);
 		_canvas.setSelectedNodeColor(_selectedDebugNodeColor);
@@ -454,7 +435,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	 *            new value to set.
 	 */
 	public void setCanvas(AcideDebugCanvas canvas) {
-		this._canvas = canvas;
+		_canvas = canvas;
 	}
 
 	/**
@@ -476,7 +457,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	 *            new value to set.
 	 */
 	public void setViewBox(JComboBox viewBox) {
-		this._viewBox = viewBox;
+		_viewBox = viewBox;
 	}
 
 	/**
@@ -498,7 +479,7 @@ public class AcideDebugSQLPanel extends JPanel {
 	 *            new value to set.
 	 */
 	public void setZoomSpinner(JSpinner zoomSpinner) {
-		this._zoomSpinner = zoomSpinner;
+		_zoomSpinner = zoomSpinner;
 	}
 
 	/**
@@ -590,10 +571,6 @@ public class AcideDebugSQLPanel extends JPanel {
 	private void popUpInit() {
 		// we create the popUp menu
 		_popUp = new JPopupMenu();
-		// Option delete node
-		_dropRow = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2050"), DROP);
-		// _dropRow.addActionListener(new AcideDropTableMenuItemAction());
-		// _popUp.add(_dropRow);
 		// Option unknow node
 		_colorNodeGray = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2322"));
 		_colorNodeGray.addActionListener(new AcideDebugSQLPanelGrayNodeListener());

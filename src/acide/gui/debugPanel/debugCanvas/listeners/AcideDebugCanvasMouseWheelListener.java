@@ -44,6 +44,7 @@ import java.awt.event.MouseWheelListener;
 
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
+import acide.gui.graphUtils.DirectedWeightedGraph;
 
 /**
  * ACIDE - A Configurable IDE debug canvas mouse wheel listener.
@@ -74,20 +75,33 @@ public class AcideDebugCanvasMouseWheelListener implements MouseWheelListener {
 	public void mouseWheelMoved(MouseWheelEvent ev) {
 
 		// checks if the graph exists and if the control key is pressed
-		if (_canvas.get_graph() != null && ev.isControlDown()) {
+		DirectedWeightedGraph canvasGraph = _canvas.get_graph();
+		if (canvasGraph != null && ev.isControlDown()) {
+			
+			//We search the name of canvas parent
+			CanvasPanel panelParent;
+			String panel = _canvas.getParent().getClass().getName();
+			if (panel.equals("acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel")) 
+				panelParent = CanvasPanel.TraceSQL;
+			else if (panel.equals("acide.gui.debugPanel.debugSQLPanel.AcideDebugSQLPanel"))
+				panelParent = CanvasPanel.DebugSQL;
+			else if (panel.equals("acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel"))
+				panelParent = CanvasPanel.TraceData;
+			else panelParent = null;
+
 			// gets the coordinates of the event
 			int difx = ev.getX() - _canvas.getX0();
 			int dify = ev.getY() - _canvas.getY0();
 			// checks the wheel rotation direction
 			if (ev.getWheelRotation() < 0) {
 				// zooms in the canvas and move the graph
-				_canvas.zoomIn(CanvasPanel.Graph);
+				_canvas.zoomIn(panelParent);
 				int difx2 = ev.getX() - _canvas.getX0();
 				int dify2 = ev.getY() - _canvas.getY0();
 				_canvas.moveGraph(difx2 - difx, dify2 - dify);
 			} else {
 				// zooms out the canvas and move the graph
-				_canvas.zoomOut(null);
+				_canvas.zoomOut(panelParent);
 				int difx2 = ev.getX() - _canvas.getX0();
 				int dify2 = ev.getY() - _canvas.getY0();
 				_canvas.moveGraph(difx2 - difx, dify2 - dify);

@@ -74,7 +74,7 @@ public class AcideGraphCanvasMouseWheelListener implements MouseWheelListener {
 				canvas.moveGraph(difx2-difx, dify2-dify);
 			}else{
 				//zooms out the canvas and move the graph
-				canvas.zoomOut(null);
+				canvas.zoomOut(CanvasPanel.Graph);
 				int difx2=ev.getX()-canvas.getX0();
 				int dify2=ev.getY()-canvas.getY0();
 				canvas.moveGraph(difx2-difx, dify2-dify);

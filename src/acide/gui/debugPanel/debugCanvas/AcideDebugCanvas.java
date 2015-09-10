@@ -47,7 +47,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Stroke;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
@@ -57,9 +56,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 
@@ -72,13 +68,11 @@ import acide.gui.debugPanel.debugSQLPanel.AcideDebugSQLPanel;
 import acide.gui.debugPanel.traceDatalogPanel.AcideTraceDatalogPanel;
 import acide.gui.debugPanel.traceSQLPanel.AcideTraceSQLPanel;
 import acide.gui.graphCanvas.AcideGraphCanvas;
-import acide.gui.graphCanvas.AcideGraphCanvas.CanvasPanel;
 import acide.gui.graphLayout.TreeLayout;
 import acide.gui.graphUtils.DirectedWeightedGraph;
 import acide.gui.graphUtils.DirectedWeightedLink;
 import acide.gui.graphUtils.Node;
 import acide.gui.mainWindow.AcideMainWindow;
-import acide.language.AcideLanguageManager;
 import acide.resources.AcideResourceManager;
 import acide.resources.exception.MissedPropertyException;
 
