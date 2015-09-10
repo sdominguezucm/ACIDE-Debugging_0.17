@@ -1,18 +1,18 @@
-%
-% Understanding Relational Database Query Languages, S. W. Dietrich, Prentice Hall, 2001.
-%
-% -------------------------------------------------------------------------------------------------------------------------------
-%                 		SQL
-% -------------------------------------------------------------------------------------------------------------------------------
-%                        EMPLOYEE TRAINING Enterprise
-%
-%  employee(eID, eLast, eFirst, eTitle, eSalary)	key: eID
-%  technologyArea(aID, aTitle, aURL, aLeadID)	    key: aID
-%  trainingCourse(cID, cTitle, cHours, areaID)	  key: cID
-%  takes(eID, cID, tYear, tMonth, tDay)	          key: eID, cID
-%
-%--------------------------------------------------------------------------------------------------------------------------------
-%
+--
+-- Understanding Relational Database Query Languages, S. W. Dietrich, Prentice Hall, 2001.
+--
+-- ---------------------------------------------------------------------------------------
+--                 		SQL
+-- ---------------------------------------------------------------------------------------
+--          EMPLOYEE TRAINING Enterprise
+--
+--  employee(eID, eLast, eFirst, eTitle, eSalary)	key: eID
+--  technologyArea(aID, aTitle, aURL, aLeadID)	  key: aID
+--  trainingCourse(cID, cTitle, cHours, areaID)	  key: cID
+--  takes(eID, cID, tYear, tMonth, tDay)	        key: eID, cID
+--
+-- ---------------------------------------------------------------------------------------
+--
 
 /multiline on
 /abolish
@@ -241,7 +241,6 @@ create view q4 as
 
 % Q5: Which employees have the minimum salary?
 %     (eID, eLast, eFirst, eTitle, eSalary)
-% WARNING
 
 create view q5 as
    select    E.eID, E.eLast, E.eFirst, E.eTitle  
@@ -254,7 +253,6 @@ create view q5 as
 % Q6: Which employees took all of the training courses offered 
 %     in the `Database' technology area?  
 %     (eID, eLast, eFirst, eTitle)
-% WARNING
 
 create view q6 as
    select    E.eID, E.eLast, E.eFirst, E.eTitle  
@@ -290,7 +288,6 @@ create view a2(numEmpsTakenDB) as
    where       D.cID = T.cID; 
 
 % Grouping
-% WARNING
 
 create view g1(eTitle, minSalary, maxSalary, avgSalary) as
    select      E.eTitle, min(E.eSalary), max(E.eSalary), avg(E.eSalary) 
@@ -334,7 +331,6 @@ create view q4Ai as
   group by T.eID
   having numAreas > 1;
 
-% WARNING
 create view q4Aii as
   select E.eID, E.eLast, E.eFirst, E.eTitle
   from employee E
@@ -368,7 +364,6 @@ create view q5Aii as
    where     E.eSalary = Q.minSalary;
 
 % Alternative for q2: nested subqueries set membership comparison
-% WARNING
 create view q2A as
    select    E.eID, E.eLast, E.eFirst, E.eTitle
    from      employee E 
@@ -378,7 +373,6 @@ create view q2A as
        where     T.cID=D.cID); 
 
 % Alternative for q3: nested subqueries set membership comparison
-% WARNING
 create view q3A as
    select    E.eID, E.eLast, E.eFirst, E.eTitle
    from      employee E 
@@ -421,19 +415,17 @@ create view q1C as
 %   	 from   	takes T, dbCourse D 
 %   	 where  	T.cID=D.cID); 
 
-% WARNING
 create view q2B as
   select distinct E.eID, E.eLast, E.eFirst, E.eTitle
   from (employee E natural inner join (takes T natural inner join dbCourse D));
 
-% WARNING
 % Alternative for q2 (Q2C): join condition in the where clause
 create view q2C as
     select 	distinct E.eID, E.eLast, E.eFirst, E.eTitle
     from   	employee E, takes T, dbCourse D 
     where  	E.eID = T.eID and T.cID=D.cID; 
 
-%-----------------------------------------End EMPLOYEE TRAINING Enterprise--------------------------------------
+-----------------------------------------End EMPLOYEE TRAINING Enterprise--------------------------------------
 
 select * from qSelection;
 select * from qProjection;

@@ -1,5 +1,6 @@
 % File: cosmos.dl
 % Date: 04/20/2012
+% Revised: 08/22/2014
 % Author: Fernando Sáenz-Pérez
 % Description:
 %   Ontology for describing cosmological objects
@@ -8,6 +9,9 @@
 %      F.J. Álvarez, A. Vaquero, and F. Sáenz-Pérez,
 %      "Conceptual Modeling of Ontology-based Linguistic Resources with a Focus on Semantic Relations",
 %      In Proceedings of the Sixth International Conference on Language Resources and Evaluation (LREC 2008), May, 2008.
+%   This example is inspired on:
+%      “A Theoretical Framework for the Declarative Debugging of Datalog Programs”,
+%      In International Workshop on Semantics in Data and Knowledge Bases (SDKB 2008), Springer, LNCS 4925, 2008
 %   This Datalog program can be tested on DES (des.sourceforge.net)
 
 
@@ -21,14 +25,22 @@
 %   - Primary key constraint:
 :- pk(concepts,[id]).
 %   - Domain constraints:
-:- concepts(Type,Id,Arity), Arity < 0.
-:- concepts(Type,Id,Arity), Id \= concept, Id \= relation.
+%     * Concepts can be either a concept or a relation:
+:- concepts(Type,Id,Arity),
+   Type \= concept, 
+   Type \= relation.
+%     * A concept has arity 0:
+:- concepts(concept,Id,Arity),
+   Arity \= 0.
+%     * A relation has arity 2:
+:- concepts(relation,Id,Arity),
+   Arity \= 2.
 
 % Binary relations
 %   - Type constraints:
 :- type(binary_relation(relation:string, fromConcept:string, toConcept:string)).
 %   - Primary key constraint:
-%:- pk(binary_relation,[relation, fromConcept, toConcept]). % Does not work in DES 2.7, but does in 3.0
+:- pk(binary_relation,[relation, fromConcept, toConcept]). 
 %   - Foreign key constraint:
 :- fk(binary_relation,[relation],concepts,[id]).
 :- fk(binary_relation,[fromConcept],concepts,[id]).
@@ -44,7 +56,7 @@
 %   - Type constraints:
 :- type(has_algebraic_property(relation:string, algebraicProperty:string)).
 %   - Primary key constraint:
-%:- pk(has_algebraic_property,[relation, algebraicProperty]). % Does not work in DES 2.7, but does in 3.0
+:- pk(has_algebraic_property,[relation, algebraicProperty]). 
 %   - Foreign key constraint:
 :- fk(has_algebraic_property,[relation],concepts,[id]).
 :- fk(has_algebraic_property,[algebraicProperty],algebraic_properties,[algebraicProperty]).
@@ -335,6 +347,14 @@ binary_relation(BinaryRelation, A, A) :-
   has_algebraic_property(BinaryRelation, reflexive),
   binary_relation(BinaryRelation, _, A).
 
+direct_part_of(X,Y) :-
+  binary_relation(part_of,X,Y),
+  not indirect_part_of(X,Y).
+  
+indirect_part_of(X,Y) :-
+  binary_relation(part_of,X,Z),
+  binary_relation(part_of,Z,Y).
+  
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Semantics of Domain-dependent Intrinsic Properties
@@ -388,7 +408,8 @@ is_satellite_violation(Satellite) :-
   
 % Intrinsic property "is_planetary_system"
 % * Description:
-%   - Describes the properties that a planetary system S must fulfill: S must include a star and a planet, at the least
+%   - Describes the properties that a planetary system S must fulfill: 
+%     S must include a star and a planet, at the least
 % * Enrollment:
 %   - Exclusion constraint
 % * Relates:
@@ -400,9 +421,9 @@ is_satellite_violation(Satellite) :-
 is_planetary_system(X) :-
   binary_relation(is_a,X,object_instance),
   binary_relation(member_of,X,planetary_system),
-  binary_relation(part_of,S,X),
+  direct_part_of(S,X),
   binary_relation(member_of,S,star),
-  binary_relation(part_of,P,X),
+  direct_part_of(P,X),
   binary_relation(member_of,P,planet).
   
 is_planetary_system_violation(PlanetarySystem) :-
@@ -412,7 +433,8 @@ is_planetary_system_violation(PlanetarySystem) :-
     
 % Intrinsic property "is_galaxy"
 % * Description:
-%   - Describes the properties that a galaxy G must fulfill: G must include a star, at the least
+%   - Describes the properties that a galaxy G must fulfill: 
+%     G must include a star, at the least
 % * Enrollment:
 %   - Exclusion constraint
 % * Relates:
@@ -432,31 +454,25 @@ is_galaxy_violation(Galaxy) :-
   binary_relation(member_of,Galaxy,galaxy), 
   not(is_galaxy(Galaxy)).
 
+% Intrinsic property "is_object"
+% * Description:
+%   - An object can be either a type or an instance, but not both at the same time
+% * Enrollment:
+%   - Exclusion constraint
+% * Relates:
+%   - concept: Concept identifier
+% * Formalization:
+%   is_object(Concept), where:
+%     Concept is an alphanumeric atom
+%     Concept \in concepts.id (usual referential integrity constraint)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Constraint Checking
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This part is devoted to examine consistency of the instance 
-% ontology w.r.t. ontology constraints, i.e., algebraic 
-% properties attached to relations and intrinsic properties
-% attached to concepts under a relation 
+is_object(Object) :-
+  concepts(concept, Object, 0),
+  not(is_object_violation(Object)).
 
-% The following are strong constraints which are
-% checked whenever any data related to their definition are updated
-% Only exclusion properties are checked
-% Inclusion constraints are intensionally stated
-
-% Built-in Algebraic Properties
-:- irreflexive_violation(BinaryRelation, From, To).
-:- asymmetric_violation(BinaryRelation, From, To).
-
-% Domain-dependent Intrinsic Properties
-:- is_planet_violation(Planet).
-:- is_satellite_violation(Satellite).
-:- is_planetary_system_violation(PlanetarySystem).
-:- is_galaxy_violation(Galaxy).
-
+is_object_violation(Object) :-
+  binary_relation(is_a, Object, object_type),
+  binary_relation(is_a, Object, object_instance).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ontology Relations
@@ -523,34 +539,100 @@ binary_relation(member_of, 'Universe',     universe).
 %binary_relation(part_of, galaxy, planet).
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Constraint Checking
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This part is devoted to examine consistency of the instance 
+% ontology w.r.t. ontology constraints, i.e., algebraic 
+% properties attached to relations and intrinsic properties
+% attached to concepts under a relation 
+
+% The following are strong constraints which are
+% checked whenever any data related to their definition are updated
+% Only exclusion properties are checked
+% Inclusion constraints are intensionally stated
+
+% Built-in Algebraic Properties
+:- irreflexive_violation(BinaryRelation, From, To).
+:- asymmetric_violation(BinaryRelation, From, To).
+
+% Domain-dependent Intrinsic Properties
+:- is_planet_violation(Planet).
+:- is_satellite_violation(Satellite).
+:- is_planetary_system_violation(PlanetarySystem).
+:- is_galaxy_violation(Galaxy).
+:- is_object_violation(Object).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % System Session Example
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-
-%%%%%%%%%%%%%%%%%%%% START OF SYSTEM SESSION %%%%%%%%%%%%%%%%%%%%%%%
 % *********************************************************
 % *                                                       *
-% *        DES: Datalog Educational System v.3.0          *
-% *                                                       *
+% *        DES: Datalog Educational System v.Devel        *
 % *                                                       *
 % * Type "/help" for help about commands                  *
-% * Type "des." to continue if you get out of DES         *
-% *   from a Prolog interpreter                           *
 % *                                                       *
-% *                    Fernando Saenz-Perez (c) 2004-2012 *
-% *                                         GPD DISIA UCM *
+% *                    Fernando Saenz-Perez (c) 2004-2014 *
+% *                                         DISIA GPD UCM *
 % *             Please send comments, questions, etc. to: *
 % *                                     fernan@sip.ucm.es *
 % *                                             Web site: *
 % *                           http://des.sourceforge.net/ *
+% *                                                       *
+% * This program comes with ABSOLUTELY NO WARRANTY, is    *
+% * free software, and you are welcome to redistribute it *
+% * under certain conditions. Type "/license" for details *
 % *********************************************************
 
+% DES> /p examples/ontology/cosmos          
 
-% DES> % First, consult this file
+% Info: Processing file 'examples/ontology/cosmos.ini' ...
 
-
+% DES> /compact_listings on
 % DES> /consult examples/ontology/cosmos
-
+% Info: 86 rules consulted.                   
+% Info: 25 constraints consulted.
+% DES> % Trying to assert a concept of incorrect arity:
+% DES> /assert concepts(concept,'Venus',1)
+% Error: Integrity constraint violation.      
+%        ic(Id,Arity) :-
+%          concepts(concept,Id,Arity),
+%          Arity\=0.
+%        Offending values in database: [ic(Venus,1)]
+% DES> % Trying to assert a concept of incorrect type:
+% DES> /assert concepts(concepto,'Venus',0)
+% Error: Integrity constraint violation.      
+%        ic(Type,Id,Arity) :-
+%          concepts(Type,Id,Arity),
+%          Type\=concept,
+%          Type\=relation.
+%        Offending values in database: [ic(concepto,Venus,0)]
+% DES> % Trying to assert a binary relation relating an unknown concept:
+% DES> /assert binary_relation(member_of, 'Venus', planet)  
+% Error: Foreign key violation binary_relation.[fromConcept]->concepts.[id]
+%        when trying to insert: binary_relation(member_of,Venus,planet)
+% DES> % Trying to assert an unknown binary relation:
+% DES> /assert binary_relation(space_flight, 'Earth', 'Moon') 
+% Error: Foreign key violation binary_relation.[relation]->concepts.[id]
+%        when trying to insert: binary_relation(space_flight,Earth,Moon)
+% DES> % Trying to assert an incorrect fact: a planet which are not directly orbiting a star:
+% DES> /assert binary_relation(member_of, 'Moon', planet) 
+% Error: Integrity constraint violation.      
+%        ic(Planet) :-
+%          is_planet_violation(Planet).
+%        Offending values in database: [ic(Moon)]
+% DES> % A star and a planet must be a direct part of a planetary system:
+% DES> /assert binary_relation(member_of, 'Milky Way', planetary_system) 
+% Error: Integrity constraint violation.      
+%        ic(BinaryRelation,From,To) :-
+%          irreflexive_violation(BinaryRelation,From,To).
+%        Offending values in database: [ic(part_of,Milky Way,Milky Way)]
+% DES> % Earth cannot be an object type because it is already asserted as an object instance:
+% DES> /assert binary_relation(is_a, 'Earth', object_type) 
+% Error: Integrity constraint violation.      
+%        ic(Object) :-
+%          is_object_violation(Object).
+%        Offending values in database: [ic(Earth)]

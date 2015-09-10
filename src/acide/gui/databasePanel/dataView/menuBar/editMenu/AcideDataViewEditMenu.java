@@ -21,7 +21,7 @@
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      - Version from 0.16 to 0.17
+ *      - Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -266,7 +266,9 @@ public class AcideDataViewEditMenu extends JMenu {
 				.getString("s26"));
 		
 		if (AcideLanguageManager.getInstance().getCurrentLocale()
-				.equals(new Locale("en", "EN")))
+				.equals(new Locale("en", "EN"))
+				|| AcideLanguageManager.getInstance().getCurrentLocale()
+				.equals(new Locale("fr", "FR")))
 			_searchMenuItem.setAccelerator(KeyStroke.getKeyStroke(
 					KeyEvent.VK_F, ActionEvent.CTRL_MASK));
 		else

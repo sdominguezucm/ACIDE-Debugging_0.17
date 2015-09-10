@@ -1,7 +1,7 @@
-%
-% Mutual recursion
-%
-% SQL formulation
+--
+-- Mutual recursion
+--
+-- SQL formulation
 
 /assert p(a)
 /assert p(b)

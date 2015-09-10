@@ -1,3 +1,5 @@
+:-type(closed(string)).
+
 flight_travel(X,Y) :-
   flight(X,Y),
   not(closed(X)),

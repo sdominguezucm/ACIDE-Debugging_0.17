@@ -17,7 +17,7 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      -Version from 0.12 to 0.15
+ *      -Version from 0.12 to 0.16
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente

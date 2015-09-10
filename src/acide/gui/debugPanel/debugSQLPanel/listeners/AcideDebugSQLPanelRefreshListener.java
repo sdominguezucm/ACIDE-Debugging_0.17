@@ -17,11 +17,11 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      - Version from 0.12 to 0.15
+ *      - Version from 0.12 to 0.16
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      - Version from 0.16 to 0.17
+ *      - Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ import acide.process.console.DesDatabaseManager;
  * /** ACIDE - A Configurable IDE trace SQL panel refresh button listener.
  * 
  * @see ActionListener
- * @version 0.15
+ * @version 0.17
  * 
  */
 public class AcideDebugSQLPanelRefreshListener implements ActionListener {

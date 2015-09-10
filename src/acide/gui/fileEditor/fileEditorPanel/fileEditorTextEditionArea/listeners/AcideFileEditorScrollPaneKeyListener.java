@@ -17,7 +17,7 @@
  *      	- Pablo Guti�rrez Garc�a-Pardo.
  *      	- Elena Tejeiro P�rez de �greda.
  *      	- Andr�s Vicente del Cura.
- *      - Version from 0.12 to 0.15
+ *      - Version from 0.12 to 0.16
  *      	- Sem�ramis Guti�rrez Quintana
  *      	- Juan Jes�s Marqu�s Ortiz
  *      	- Fernando Ord�s Lorente

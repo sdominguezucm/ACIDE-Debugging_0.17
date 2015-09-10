@@ -17,11 +17,11 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      -Version from 0.12 to 0.15
+ *      -Version from 0.12 to 0.16
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      - Version from 0.16 to 0.17
+ *      - Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,6 +44,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -267,9 +268,9 @@ public class AcideHelpMenu extends JMenu {
 				.getLabels().getString("s38"));
 
 		// Sets the show help menu item accelerator
-		_showHelpMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
+			_showHelpMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,
 				ActionEvent.CTRL_MASK));
-
+		
 		// Sets the show about us menu item text
 		_showAboutUsMenuItem.setText(AcideLanguageManager.getInstance()
 				.getLabels().getString("s39"));

@@ -35,6 +35,12 @@ project a (c);
 select a='a2' (a);
 % Cartesian product
 a product b;
+% Union 
+a union b;
+% Difference
+a difference b;
+% Intersection
+a intersect b;
 % Theta Join
 select a.a=b.b (a product b);
 a zjoin a.a=b.b b;
@@ -46,12 +52,6 @@ a ljoin a.a=b.b b;
 a rjoin a.a=b.b b;
 % Full Outer Join
 a fjoin a.a=b.b b;
-% Union 
-a union b;
-% Difference
-a difference b;
-% Intersection
-a intersect b;
 % Grouping
 group_by a a,count(*) true (c);
 % Renaming

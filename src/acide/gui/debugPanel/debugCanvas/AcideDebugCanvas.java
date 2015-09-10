@@ -17,11 +17,11 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      - Version from 0.12 to 0.15
+ *      - Version from 0.12 to 0.16
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      -Version from 0.16 to 0.17
+ *      -Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -483,18 +483,39 @@ public class AcideDebugCanvas extends AcideGraphCanvas {
 	 * selected node color.
 	 * 
 	 * @param selectedNodeColor
-	 *            the new value to ser
+	 *            the new value to selected node color
 	 */
 	public void setSelectedNodeColor(Color selectedNodeColor) {
 		this._selectedTraceNodeColor = selectedNodeColor;
 	}
 
-	public void setColorNode(Color colorNode) {
-
+	/**
+	 * Sets a new node color to the the ACIDE - A Configurable IDE debug canvas
+	 * selected node color.
+	 * 
+	 * @param colorNode
+	 *            the new color to the node
+	 */
+	public void setColorSelectedNode(Color colorNode) {
 		getSelectedNode().setNodeColor(colorNode);
-
 	}
 
+	/**
+	 * Sets a new node color to the the ACIDE - A Configurable IDE debug canvas
+	 * selected node color.
+	 * 
+	 * @param colorNode
+	 *            the new color to all the nodes
+	 */
+	public void setColorNodes(Color colorNode) {
+		// gets the nodes of the graph
+		ArrayList<Node> nodes = _graph.get_nodes();
+		for (int i = 0; i < nodes.size(); i++) {
+			Node n = nodes.get(i);
+			n.setNodeColor(colorNode);
+		}
+	}
+	
 	/**
 	 * Returns the ACIDE - A Configurable IDE debug canvas path graph.
 	 * 

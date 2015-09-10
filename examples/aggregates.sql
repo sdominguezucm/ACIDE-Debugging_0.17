@@ -1,19 +1,17 @@
-%
-% Aggregates
-%
-% SQL Formulation
-%
+--
+-- Aggregates
+--
+-- SQL Formulation
+--
 
 /multiline on
 
-
-
-create or replace table employee(name string, department string, salary int); 
+create or replace table employee(name string, department string, salary int);
 insert into employee values('anderson','accounting',1200);
 insert into employee values('andrews','accounting',1200);
 insert into employee values('arlingon','accounting',1000);
-insert into employee values('nolan','accounting',null);
-insert into employee values('norton','accounting',null);
+insert into employee values('nolan',null,null);
+insert into employee values('norton',null,null);
 insert into employee values('randall','resources',800);
 insert into employee values('sanders','sales',null);
 insert into employee values('silver','sales',1000);

@@ -55,6 +55,6 @@ select * from ancestor where ancestor='tom';
 -- Tom's descendants:
 select * from ancestor where ancestor='tom';
 -- Children and their parents:
-select child,father,mother 
+select father.child,father,mother 
  from father,mother 
  where father.child=mother.child;

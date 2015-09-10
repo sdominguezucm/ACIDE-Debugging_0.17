@@ -12,13 +12,23 @@ insert into edge values('a','c');
 insert into edge values('b','a');
 insert into edge values('b','d');
 
-create view paths(origin,destination) as
- with recursive path(origin,destination) as
+-- Following the standard:
+-- create view paths(origin,destination) as
+--  with recursive path(origin,destination) as
+--   (select * from edge)
+--   union 
+--   (select path.origin,edge.destination 
+--    from path,edge 
+--    where path.destination=edge.origin) 
+--  select * from path;
+ 
+-- A neater definition:
+create or replace view paths(origin,destination) as
   (select * from edge)
   union 
-  (select path.origin,edge.destination 
-   from path,edge 
-   where path.destination=edge.origin) 
- select * from path;
+  (select paths.origin,edge.destination 
+   from paths,edge 
+   where paths.destination=edge.origin);
+ 
  
 select * from paths;

@@ -29,11 +29,11 @@ odd(Y) :-
 
 % Succeeds if the cardinality of the sequence is even
 br_is_even :-
-  even(X), not(next(X,Y)).
+  even(X), not(next(X,_Y)).
 
 % Succeeds if the cardinality of the sequence is odd
 br_is_odd :-
-  odd(X), not(next(X,Y)).
+  odd(X), not(next(X,_Y)).
 
 % Base relation
 br(a). % Has no preceding (a previous value X s.t. X>a and X<>nil. nil is the implicit head of the chain). Odd position

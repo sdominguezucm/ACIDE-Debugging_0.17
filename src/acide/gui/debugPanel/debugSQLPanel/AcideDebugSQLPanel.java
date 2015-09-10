@@ -17,11 +17,11 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      - Version from 0.12 to 0.15
+ *      - Version from 0.12 to 0.16
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      - Version from 0.16 to 0.17
+ *      - Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -68,8 +68,11 @@ import acide.configuration.menu.AcideInsertedItemListener;
 import acide.configuration.menu.AcideMenuItemsConfiguration;
 import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable;
 import acide.gui.databasePanel.dataView.AcideDataBaseDataViewTable.MyPopUpMenu;
+import acide.gui.databasePanel.popup.listeners.AcideDropTableMenuItemAction;
 import acide.gui.debugPanel.debugCanvas.AcideDebugCanvas;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelFirstNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelColorNodeListener;
+import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelGrayNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelRedNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelGreenNodeListener;
 import acide.gui.debugPanel.debugSQLPanel.listeners.AcideDebugSQLPanelLastNodeListener;
@@ -156,6 +159,10 @@ public class AcideDebugSQLPanel extends JPanel {
 	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
 	 */
 	private JMenuItem _colorNodeGreen;
+	/**
+	 * ACIDE - A Configurable IDE debug SQL panel Color Node.
+	 */
+	private JMenuItem _colorNodeGray;
 	/**
 	 * ACIDE - A Configurable IDE trace datalog panel to the first button for the PopUp
 	 */
@@ -581,28 +588,28 @@ public class AcideDebugSQLPanel extends JPanel {
 	 * Initialization the popUp panel for the ACIDE - A Configurable IDE debug SQL panel.
 	 */
 	private void popUpInit() {
-		//we create the popUp menu
-		_popUp = new JPopupMenu(); 
-		//Option delete node
+		// we create the popUp menu
+		_popUp = new JPopupMenu();
+		// Option delete node
 		_dropRow = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2050"), DROP);
-		//_dropRow.addActionListener(new new AcideDebugSQLPanelDropNodeListener());
-		_popUp.add(_dropRow);
-		//option change comun color nodes
-		_colorNode = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2234"));
-		_colorNode.addActionListener(new AcideInsertedItemListener(
-				AcideMenuItemsConfiguration.getInstance()
-				.getSubmenu(AcideConfigurationMenu.CONFIGURATION_MENU_NAME)
-				.getSubmenu(AcideDebugPanelMenu.DEBUG_MENU_NAME)
-				.getItem(AcideDebugPanelMenu.SELECTED_NODE_COLOR_NAME)));
-		_popUp.add(_colorNode); 
-		//
+		// _dropRow.addActionListener(new AcideDropTableMenuItemAction());
+		// _popUp.add(_dropRow);
+		// Option unknow node
+		_colorNodeGray = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2322"));
+		_colorNodeGray.addActionListener(new AcideDebugSQLPanelGrayNodeListener());
+		_popUp.add(_colorNodeGray);				
+		// Option non valid node
 		_colorNodeRed = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2319"));
 		_colorNodeRed.addActionListener(new AcideDebugSQLPanelRedNodeListener());
-		_popUp.add(_colorNodeRed); 
-		//
+		_popUp.add(_colorNodeRed);
+		// option valid node
 		_colorNodeGreen = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2320"));
 		_colorNodeGreen.addActionListener(new AcideDebugSQLPanelGreenNodeListener());
-		_popUp.add(_colorNodeGreen); 
+		_popUp.add(_colorNodeGreen);
+		// option change comun color nodes
+		_colorNode = new JMenuItem(AcideLanguageManager.getInstance().getLabels().getString("s2321"));
+		_colorNode.addActionListener(new AcideDebugSQLPanelColorNodeListener());
+		_popUp.add(_colorNode);
 		
 		
 	}

@@ -7,9 +7,9 @@
 /display_answer off
 
 create view fib(n,f) as
-  select 0,1
+  select 0,1.0
   union
-  select 1,1
+  select 1,1.0
   union
   select fib1.n+1,fib1.f+fib2.f
   from fib fib1, fib fib2

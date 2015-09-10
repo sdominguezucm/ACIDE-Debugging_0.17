@@ -56,12 +56,12 @@ basic_subparts(Prt,BasicP) :-
 
 % For each basic part, find the least time needed for delivery
 fastest(Part,Time) :- 
-  part_cost(Part,Sup,Cost,Time),
+  part_cost(Part,_Sup,_Cost,Time),
   not(faster(Part,Time)).
 
 faster(Part,Time) :- 
-  part_cost(Part,Sup,Cost,Time),
-  part_cost(Part,Sup1,Cost1,Time1),
+  part_cost(Part,_Sup,_Cost,Time),
+  part_cost(Part,_Sup1,_Cost1,Time1),
   Time1 < Time.
 
 % Times required for basic subparts of the given assembly

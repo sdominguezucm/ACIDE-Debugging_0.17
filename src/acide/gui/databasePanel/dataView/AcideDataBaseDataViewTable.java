@@ -21,7 +21,7 @@
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      - Version from 0.16 to 0.17
+ *      - Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -238,7 +238,8 @@ public class AcideDataBaseDataViewTable extends JTable implements ClipboardOwner
 			break;
 			
 		case KeyEvent.VK_F:
-			if (AcideLanguageManager.getInstance().getCurrentLocale().equals(new Locale("en", "EN"))){
+			if (AcideLanguageManager.getInstance().getCurrentLocale().equals(new Locale("en", "EN"))
+					|| AcideLanguageManager.getInstance().getCurrentLocale().equals(new Locale("fr", "FR"))){
 				if(event.isControlDown()){
 					if(!processed){
 						_dataView.setAlwaysOnTop(false);

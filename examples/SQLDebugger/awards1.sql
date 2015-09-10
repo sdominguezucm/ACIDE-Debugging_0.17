@@ -12,7 +12,9 @@
 /development off
 
 /* Tables */
-DROP TABLE IF EXISTS registration, courses, allInOneCourse;
+DROP TABLE IF EXISTS registration;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS allInOneCourse;
 
 CREATE TABLE allInOneCourse (
   student varchar(45) NOT NULL,
@@ -72,7 +74,7 @@ INSERT INTO courses(id,level)  VALUES ('c4',  4);
 INSERT INTO courses(id,level)  VALUES ('c5',  5);
 INSERT INTO courses(id,level)  VALUES ('c0',  0);
 
-INSERT INTO registration(student,course,pass) VALUES ('Alba','c1',0);
+INSERT INTO registration(student,course,pass) VALUES  ('Alba','c1',0);
 INSERT INTO registration(student,course,pass) VALUES  ('Alba','c2',1);
 INSERT INTO registration(student,course,pass) VALUES  ('Anna','c0',1);
 INSERT INTO registration(student,course,pass) VALUES  ('Anna','c1',1);

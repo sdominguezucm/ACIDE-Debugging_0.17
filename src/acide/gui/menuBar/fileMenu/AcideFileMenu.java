@@ -17,11 +17,11 @@
  *      	- Pablo Gutiérrez García-Pardo.
  *      	- Elena Tejeiro Pérez de Ágreda.
  *      	- Andrés Vicente del Cura.
- *      -Version from 0.12 to 0.15
+ *      -Version from 0.12 to 0.16
  *      	- Semíramis Gutiérrez Quintana
  *      	- Juan Jesús Marqués Ortiz
  *      	- Fernando Ordás Lorente
- *      - Version from 0.16 to 0.17
+ *      - Version 0.17
  *      	- Sergio Domínguez Fuentes
  *
  * This program is free software: you can redistribute it and/or modify
@@ -576,7 +576,9 @@ public class AcideFileMenu extends JMenu {
 
 		// Sets the open file menu item accelerator
 		if (AcideLanguageManager.getInstance().getCurrentLocale()
-				.equals(new Locale("en", "EN")))
+				.equals(new Locale("en", "EN"))
+			|| AcideLanguageManager.getInstance().getCurrentLocale()
+				.equals(new Locale("fr", "FR")))
 			_openFileMenuItem.setAccelerator(KeyStroke.getKeyStroke(
 					KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		else
@@ -609,7 +611,9 @@ public class AcideFileMenu extends JMenu {
 
 		// Sets the save file menu item accelerator
 		if (AcideLanguageManager.getInstance().getCurrentLocale()
-				.equals(new Locale("en", "EN")))
+				.equals(new Locale("en", "EN"))
+			|| AcideLanguageManager.getInstance().getCurrentLocale()
+				.equals(new Locale("fr", "FR")))
 			_saveFileMenuItem.setAccelerator(KeyStroke.getKeyStroke(
 					KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		else
@@ -622,7 +626,9 @@ public class AcideFileMenu extends JMenu {
 
 		// Sets the save all files menu item accelerator
 		if (AcideLanguageManager.getInstance().getCurrentLocale()
-				.equals(new Locale("en", "EN")))
+				.equals(new Locale("en", "EN"))
+			|| AcideLanguageManager.getInstance().getCurrentLocale()
+				.equals(new Locale("fr", "FR")))
 			_saveAllFilesMenuItem.setAccelerator(KeyStroke.getKeyStroke(
 					KeyEvent.VK_S, ActionEvent.CTRL_MASK
 							+ ActionEvent.SHIFT_MASK));
