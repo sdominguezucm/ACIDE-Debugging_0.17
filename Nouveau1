@@ -1,3 +1,0 @@
-CREATE Table t(a int) 
-CREATE Table s(a int) 
-create view v as select * from t union select * from s 

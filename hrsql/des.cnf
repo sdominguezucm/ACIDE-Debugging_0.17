@@ -1,7 +1,0 @@
-% Configuration file
-%   Silently processes its contents as DES inputs
-/running_info off
-/set_editor cedt
-/display_banner off
-%/compact_listings on
-/silent on
